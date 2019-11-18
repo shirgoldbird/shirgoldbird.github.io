@@ -1,0 +1,173 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A portfolio template that uses Material Design Lite.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Twitch Dev Docs Case Study</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-pink.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <main class="mdl-layout__content">
+            <div class="mdl-grid portfolio-max-width">
+                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__title title">
+                        <h2 class="mdl-card__title-text">Redesigning Twitch's Developer Docs Homepage</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <strong>a case study</strong>
+                        <span>by shir goldberg</span>
+                    </div>
+                    <div class="mdl-card__media">
+                        <img class="article-image" src="images/twitch-homepage.png" border="0" alt="The top of Twitch's homepage.">
+                    </div>
+                    <div class="mdl-grid portfolio-copy">
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Introduction</h3>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
+                            <p>
+                                If you have even a casual interest in video games, you've probably heard of Twitch. Founded in 2011, the streaming site has seen an immense rise in popularity over its lifetime, driven largely by its decision to focus on video games and e-sports. 
+                            <br /><br />
+                                Twitch's explosion and subsequent 2014 acquisition by Amazon has inspired a slew of competing products from other major companies, including YouTube Live, Facebook Gaming, and Microsoft's Mixer. Twitch's head start and lineup of star streamers has kept them in a lead by a <a href="https://techcrunch.com/2019/07/12/twitch-continues-to-dominate-live-streaming-with-its-second-biggest-quarter-to-date/" target="_blank">wide margin</a>, but as time goes on and competing services lure streamers and viewers to their platform, Twitch may find themselves losing market share.
+                            <br /><br />
+                                In order to prevent a gradual exodus to other sites, Twitch needs to create and focus on key differentiators. So why not let others help in this mission? Twitch has begun developing a rich ecosystem of tools allowing third-party developers access to modify the viewing experience. For example, Twitch Extensions allow viewers to be more than a passive part of the stream. They can be used to provide information about the game, such as what equipment an on-screen character has; direct the stream via voting on things like what game the streamer plays next; or even manipulating the game being streamed itself.
+                            </p>
+                        </div>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Thesis</h3>
+                            <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
+                            <p>
+                                I believe a world-class developer experience is Twitch's best shot at maintaining market share and creating a stellar user experience, and the first step in creating that is amazing documentation. Giving developers a great documentation experience acts as a multiplier. If you enable them to build things quickly and easily, they will—and then, they will passionately evangelize your documentation and platform to others.
+                                <br /><br />
+                                Finally, the core of any streaming site is its community. Helping developers create innovative, interactive experiences is a critical component of supporting the currently vibrant community on Twitch. Let's see what we can do to enable that!
+                            </p>
+                        </div>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Initial Review</h3>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <img class="article-image" src="images/twitch-dev-header.png" border="0" alt="">
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
+                            <p>
+                                I started out by reviewing the information architecture (IA) of <a href="https://dev.twitch.tv/" target="_blank">Twitch's Developer Hub</a>.
+
+                                Without solid IA, users can't easily form a mental map of your site and won't know where to find information. Especially for larger sites that span a variety of topics, like the Developer Hub, it's critical to get users to the right content fast. I quickly discovered that the IA of the Developer Hub has significant room for improvement.
+                                
+                                <ul>
+                                    <li><strong>Developer content and marketing content co-exist on the site, but not peacefully.</strong> Developers hate marketing content. Marketing folks don't understand developer content. Twitch provides ample information for both parties, but buries it.</li>
+                                    <li><strong>Content is hard to find.</strong> Tying into the first point. See "User Interviews" section below.</li>
+                                    <li><strong>Content and links are duplicated, but not consistent.</strong> For example, "Support".</li>
+                                    <li><strong>No clear funnel or direction is presented for new users.</strong> The Developer Hub homepage tries to cater to too wide a population, and instead winds up catering to nobody. Marketers or producers won't benefit from the numerous links to API documentation, but developers are likely to ignore the page entirely and head straight to the docs. The "Create an Extension" CTA on the Developer Hub homepage leads to the screen to actually create a new extension, rather than documentation or more information about how to build an extension.</li>
+                                </ul>
+                            </p>
+                            <p>
+                                After reviewing the Developer Hub, I zoomed in on <a href="https://dev.twitch.tv/docs/" target="_blank">Twitch's developer documentation</a>.
+
+                                <ul>
+                                    <li>“Explore Twitch” feels like a waste of homepage space as it just reiterates the TOC</li>
+                                    <li>TOC feels poorly and unituitively structured (need more data)</li>
+                                    <li>homepage doesn’t have clear structure/funnel, errs too heavily on letting users choose own path without guiding them strongly to that path</li>
+                                    <li>support link is only at bottom of homepage</li>
+                                    <li>Quick Links also don’t feel useful</li>
+                                </ul>
+                        
+                                Out of the available opportunities, I chose to focus on improving the <strong>developer documentation homepage</strong>. I chose this because this page is the most critical entry point for converting website visitors into Twitch developers. You only get one chance to make a first impression—we need to make sure the developer documentation homepage fulfills several goals. Clear, clean, consistent, welcoming, and directed. (I was also able to apply the wealth of knowledge I've gained from my day job at Microsoft Docs to this problem!)
+                            </p>
+                        </div>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">User Interviews</h3>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                            <p>
+                                The first step in understanding how to improve the state of Twitch's documentation is to understand how people view it today. I spoke to 3 technology professionals of varying backgrounds. Of the 3:
+
+                                <ul>
+                                    <li>2 had never written a Twitch extension before.</li>
+                                    <li>2 are professional developers; 1 is a systems administrator.</li>
+                                    <li>Insert some other summary here.</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Personas</h3>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                            <p>
+                                Based on my discussions with users and prior knowledge of the problem space, I created 3 personas to focus on. These personas capture both devs and non-devs, as well as a range of experience.
+                            </p>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <img class="article-image" src="images/Personas.png" border="0" alt="">
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                            <p>
+                                Now, with these personas in mind, let's get to redesigning!
+                            </p>
+                        </div>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Redesign Principles</h3>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                            <p>
+                                Don't forget to add a link to Figma!
+                            </p>
+                        </div>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Final Concept</h3>
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <img class="article-image" src="images/portfolio-example-05.jpg" border="0" alt="">
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <img class="article-image" src="images/portfolio-example-06.jpg" border="0" alt="">
+                        </div>
+                        <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+                            <p>
+                                Excepteur reprehenderit sint exercitation ipsum consequat qui sit id velit elit. Velit anim eiusmod labore sit amet. Voluptate voluptate irure occaecat deserunt incididunt esse in. Sunt velit aliquip sunt elit ex nulla reprehenderit qui ut eiusmod ipsum do. Duis veniam reprehenderit laborum occaecat id proident nulla veniam. Duis enim deserunt voluptate aute veniam sint pariatur exercitation. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure.
+                            </p>
+                        </div>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Gaps, Flaws, & Other Disclaimers</h3>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                            <p>
+                                This was a time-constrained redesign done as someone completely external to the Twitch organization. While I'm proud of this work and think it has real benefits to offer, I'm of course not partial to Twitch's internal dialogue or decision-making process. Chesterton's fence always applies—don't tear down a fence until you know why it's built. I wasn't able to work off any significant amount of data to drive these design decisions; so many things in here are driven by my opinion and prior background knowledge on the subject.
+
+                                Additionally, due to the (self-imposed) time constraints for this project, I was only able to conduct 3 user interivews.
+
+                                If I were working on seriously implementing this, I would significantly increase the number of user interviews, A/B test designs, collect data on before results, collaborate with other stakeholders.
+
+                                I'm also not a designer, so I'd want to loop in one of those too. And ideally a dedicated user researcher...
+
+                                This is also one small facet of many improvements that could be made to this experience. This is one change that I think may have a high impact but there are so many other places we could look at! X, Y, and Z...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">© Shir Goldberg</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="mailto:shirgoldbird@gmail.com?subject=Twitch Case Study">Contact</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+
+</html>
