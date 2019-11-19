@@ -1,0 +1,137 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A portfolio template that uses Material Design Lite.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Twitch Dev Docs Case Study</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-pink.min.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <main class="mdl-layout__content">
+            <div class="mdl-grid portfolio-max-width">
+                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__title title">
+                        <h2 class="mdl-card__title-text">Redesigning Twitch's Developer Docs Homepage</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <strong>user research notes</strong>
+                        <span>by shir goldberg</span>
+                    </div>
+                    <div class="mdl-card__media">
+                        <img class="article-image" src="../images/twitch-homepage.png" border="0"
+                            alt="The top of Twitch's homepage.">
+                    </div>
+                    <div class="mdl-grid portfolio-copy">
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Interview #1</h3>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
+                            <p>
+                                <strong>Name:</strong> Jason S.<br />
+                                <strong>Age:</strong> 22<br />
+                                <strong>YOE:</strong> 6<br />
+                            </p>
+
+                            <br />
+                            <p>
+                                <strong>Background:</strong>
+                                <br />
+                                <ul>
+                                    <li>DevOps engineer, makes sure code is production ready</li>
+                                    <li>Was a programmer for 3 years prior to this</li>
+                                    <li>Primarily a Java + PHP developer, currently works heavily with Python</li>
+                                    <li>Familiar with Twitch, occasionally watches streams</li>
+                                </ul>                             
+                                
+                                <strong>Chatbot task:</strong>
+                                <br />
+                                <ul>
+                                    <li>Tried to find APIs</li>
+                                    <li>"None of their menus have dropdowns"</li>
+                                    <li>Thought he was looking for a Twitch extension</li>
+                                    <li>Gravitated towards "API" language but discarded it as unhelpful</li>
+                                    <li>Felt "Extensions" was closest to what he wanted</li>
+                                    <li>Ignored video content</li>
+                                    <li>Went to marketing site for extensions</li>
+                                    <li>Opened up documentation and design guidelines in a new tab</li>
+                                    <li>Hit a log-in screen, hit another disabled screen (down for maintanence)</li>
+                                    <li>Clicked through authorization screen</li>
+                                    <li>Found "Getting Started with Extensions" documentation page</li>
+                                    <li>Said he was overwhelmed by acronyms and information</li>
+                                    <li>"I don't even know if I'm looking for an extension anymore—none of these are chatbots"</li>
+                                    <li>Ctrl+f for "chatbot", found it in TOC</li>
+                                    <li>"I guess Extensions are totally useless"</li>
+                                    <li>Closed all tabs</li>
+                                    <li>Found Glitch but didn't know what it was</li>
+                                </ul>
+
+                                <strong>Extension task:</strong>
+                                <br />
+                                
+                                <ul>
+                                    <li>"Going back to extensions", clicked first link and got to Extensions layout</li>
+                                    <li>Normally would be looking for APIs—doesn't care about high level concepts, only interested in APIs</li>
+                                    <li>Confused by Developer Rig–"this isn't an SDK, it's like Xcode or something"</li>
+                                    <li>Compared it to Chromecast apps—specifying an endpoint and then embedding content into their UI</li>
+                                    <li>Was able to quickly orient after drawing that comparison</li>
+                                    <li>Went back to Dev Console to start actually building an extension</li>
+                                    <li>Found API documentation. "This is actually useful!"</li>
+                                </ul>
+                                
+                                <strong>Ratings:</strong>
+                                <br /><br />
+                                <i>On a scale of 1-5, how easy was it to find the information you were looking for?</i> <strong>2</strong><br /><br />
+                                
+                                <i>On a scale of 1-5, how helpful did you think the content you found was?</i> As a first time user, a <strong>3</strong>. If I was someone who
+                                was new to the idea of making extensions for existing platforms, I think this would have been a lot more useful. But as
+                                someone who knows how to make extensions for applications, the information immediately presented to me was not useful as
+                                it started too basic. I would much rather jump to the API docs immediately.<br /><br />
+                                
+                                <i>On a scale of 1-5, how visually appealing did you find this website to be?</i> <strong>3</strong>. Needs way more diagrams. <br /><br />
+
+                                <i>Any other feedback or thoughts?</i> Nope.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">© Shir Goldberg</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="mailto:shirgoldbird@gmail.com?subject=Twitch Case Study">Contact</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+
+</html>

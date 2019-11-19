@@ -25,7 +25,7 @@
     <title>Twitch Dev Docs Case Study</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-pink.min.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../styles.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
@@ -42,7 +42,7 @@
                         <span>by shir goldberg</span>
                     </div>
                     <div class="mdl-card__media">
-                        <img class="article-image" src="images/twitch-homepage.png" border="0" alt="The top of Twitch's homepage.">
+                        <img class="article-image" src="../images/twitch-homepage.png" border="0" alt="The top of Twitch's homepage.">
                     </div>
                     <div class="mdl-grid portfolio-copy">
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Introduction</h3>
@@ -65,7 +65,7 @@
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Initial Review</h3>
                         <div class="mdl-cell mdl-cell--12-col">
-                            <img class="article-image" src="images/twitch-dev-header.png" border="0" alt="">
+                            <img class="article-image" src="../images/twitch-dev-header.png" border="0" alt="">
                         </div>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
@@ -95,13 +95,13 @@
                             </p>
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">User Interviews</h3>
-                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
                                 The first step in understanding how to improve the state of Twitch's documentation is to understand how people view it today. I spoke to 3 technology professionals of varying backgrounds. Of the 3:
 
                                 <ul>
                                     <li>2 had never written a Twitch extension before.</li>
-                                    <li>2 are professional developers; 1 is a systems administrator.</li>
+                                    <li>2 are professional developers; 1 is a DevOps engineer.</li>
                                     <li>Insert some other summary here.</li>
                                 </ul>
 
@@ -122,42 +122,55 @@
                                 </ol>
 
                                 Summarize insights here.
+
+                                You can also read the <a href="user-research-notes.html" target="_blank">raw notes</a> from these interviews.
                             </p>
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Personas</h3>
-                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
                                 Based on my discussions with users and prior knowledge of the problem space, I created 3 personas to focus on. These personas capture both devs and non-devs, as well as a range of experience.
                             </p>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col">
-                            <img class="article-image" src="images/Personas.png" border="0" alt="">
+                            <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=3%3A43&scaling=scale-down-width"><img class="article-image" src="../images/Personas.png" border="0" alt=""></a>                            
                         </div>
-                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
+                            <span class="mdl-typography--caption">A list of our personas (click to enlarge)</span>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
                                 Now, with these personas in mind, let's get to redesigning!
                             </p>
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Redesign Principles</h3>
-                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
                                 Don't forget to add a link to Figma!
                             </p>
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Final Concept</h3>
                         <div class="mdl-cell mdl-cell--6-col">
-                            <img class="article-image" src="images/portfolio-example-05.jpg" border="0" alt="">
+                            <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=1%3A2&scaling=scale-down-width"><img class="article-image" src="../images/old-homepage.png" border="0" alt=""></a>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col">
-                            <img class="article-image" src="images/portfolio-example-06.jpg" border="0" alt="">
+                            <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=2%3A2&scaling=scale-down-width"><img class="article-image" src="../images/new-homepage.png" border="0" alt=""></a>
                         </div>
-                        <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
+                            <span class="mdl-typography--caption">Current vs redesigned homepage (click to enlarge, then use arrow keys to navigate between the two)</span>
+                            <br /><br />
                             <p>
-                                Excepteur reprehenderit sint exercitation ipsum consequat qui sit id velit elit. Velit anim eiusmod labore sit amet. Voluptate voluptate irure occaecat deserunt incididunt esse in. Sunt velit aliquip sunt elit ex nulla reprehenderit qui ut eiusmod ipsum do. Duis veniam reprehenderit laborum occaecat id proident nulla veniam. Duis enim deserunt voluptate aute veniam sint pariatur exercitation. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure.
+                                - page now highlights extensions, placing clear visual priority on it and guiding new developers where Twitch wants them
+                                to go
+                                - “Get started” button links to interactive, step-by-step tutorial using Glitch—designed to get beginners up and running
+                                quickly
+                                - “Read the docs” links to Extensions overview page, targeted at more experienced developers
+                                - “More Solutions” offers a taste of Twitch’s capabilities while not overwhelming the reader
+                                - two column layout condenses information for better scanning
                             </p>
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Gaps, Flaws, & Other Disclaimers</h3>
-                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
                                 This was a time-constrained redesign done as someone completely external to the Twitch organization. While I'm proud of this work and think it has real benefits to offer, I'm of course not partial to Twitch's internal dialogue or decision-making process. Chesterton's fence always applies—don't tear down a fence until you know why it's built. I wasn't able to work off any significant amount of data to drive these design decisions; so many things in here are driven by my opinion and prior background knowledge on the subject.
 
