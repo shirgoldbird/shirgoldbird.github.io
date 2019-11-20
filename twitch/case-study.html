@@ -45,7 +45,27 @@
                         <img class="article-image" src="../images/twitch-homepage.png" border="0" alt="The top of Twitch's homepage.">
                     </div>
                     <div class="mdl-grid portfolio-copy">
-                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Introduction</h3>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline toc" id="toc">Table of Contents</h3>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding toc">
+                            <ol>
+                                <li><a href="#introduction">Introduction</a></li>
+                                <li><a href="#thesis">Thesis</a></li>
+                                <li><a href="#initialreview">Initial Review</a></li>
+                                <li><a href="#userresearch">User Research</a></li>
+                                <ol>
+                                    <li><a href="#researchsummary">Research Summary</a></li>
+                                </ol>
+                                <li><a href="#redesignprocess">Redesign Process</a></li>
+                                <ol>
+                                    <li><a href="#principles">Principles</a></li>
+                                    <li><a href="#personas">Personas</a></li>
+                                    <li><a href="#execution">Execution</a></li>
+                                </ol>
+                                <li><a href="#finalconcept">Final Concept</a></li>
+                                <li><a href="#wrapup">Wrap-Up</a></li>
+                            </ol>
+                        </div>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="introduction">Introduction</h3>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
                                 If you have even a casual interest in video games, you've probably heard of Twitch. Founded in 2011, the streaming site has seen an immense rise in popularity over its lifetime, driven largely by its decision to focus on video games and e-sports. 
@@ -55,7 +75,7 @@
                                 In order to prevent a gradual exodus to other sites, Twitch needs to create and focus on key differentiators. So why not let others help in this mission? Twitch has begun developing a rich ecosystem of tools allowing third-party developers access to modify the viewing experience. For example, Twitch Extensions allow viewers to be more than a passive part of the stream. Extensions can be used to provide information about the game, such as what equipment an on-screen character has; direct the stream via voting on things like what game the streamer plays next; or even manipulating the game being streamed itself.
                             </p>
                         </div>
-                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Thesis</h3>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="thesis">Thesis</h3>
                             <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
                                 I believe a world-class developer experience is Twitch's best shot at maintaining market share and creating a stellar user experience, and the first step in creating that is amazing documentation. Giving developers a great documentation experience acts as a multiplier. If you enable them to build things quickly and easily, they will—and then, they will passionately evangelize your documentation and platform to others.
@@ -63,38 +83,43 @@
                                 Finally, the core of any streaming site is its community. Helping developers create innovative, interactive experiences is a critical component of supporting the currently vibrant community on Twitch. Let's see what we can do to enable that!
                             </p>
                         </div>
-                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Initial Review</h3>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="intialreview">Initial Review</h3>
                         <div class="mdl-cell mdl-cell--12-col">
                             <img class="article-image" src="../images/twitch-dev-header.png" border="0" alt="">
                         </div>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
-                                I started out by reviewing the information architecture (IA) of <a href="https://dev.twitch.tv/" target="_blank">Twitch's Developer Hub</a>.
-
-                                Without solid IA, users can't easily form a mental map of your site and won't know where to find information. Especially for larger sites that span a variety of topics, like the Developer Hub, it's critical to get users to the right content fast. I quickly discovered that the IA of the Developer Hub has significant room for improvement.
+                                I started out by reviewing the information architecture (IA) of <a href="https://dev.twitch.tv/" target="_blank">Twitch's Developer Hub</a>. Without solid IA, users can't easily form a mental map of your site and won't know where to find information. Especially for larger sites that span a variety of topics, like the Developer Hub, it's critical to get users to the right content fast. After reviewing that, I moved on to an analysis of the overall user experience.
+                                
+                                <br /><br />
+                                
+                                I quickly discovered that the Developer Hub has significant room for improvement.
                                 
                                 <ul>
-                                    <li><strong>Developer content and marketing content co-exist on the site, but not peacefully.</strong> Developers hate marketing content. Marketing folks don't understand developer content. Twitch provides ample information for both parties, but buries it.</li>
-                                    <li><strong>Content is hard to find.</strong> Tying into the first point. See "User Interviews" section below.</li>
-                                    <li><strong>Content and links are duplicated, but not consistent.</strong> For example, "Support".</li>
-                                    <li><strong>No clear funnel or direction is presented for new users.</strong> The Developer Hub homepage tries to cater to too wide a population, and instead winds up catering to nobody. Marketers or producers won't benefit from the numerous links to API documentation, but developers are likely to ignore the page entirely and head straight to the docs. The "Create an Extension" CTA on the Developer Hub homepage leads to the screen to actually create a new extension, rather than documentation or more information about how to build an extension.</li>
+                                    <li><strong>The top level navigation is not well designed.</strong> There are just a few (5) navigation options, and they're all broad and vaguely described. The first 2 (Products and Showcase) give minimal information to users as to what information might lie there. Additionally, the navigation is not prioritized or organized in any way.</li>
+                                    <li><strong>Developer content and marketing content co-exist on the page, but not peacefully.</strong> Marketers or producers won't benefit from the numerous links to API documentation, but developers are likely to get lost in the flash of the page and bounce away. Twitch provides ample information for both parties, but intertwines them without providing a way to distinguish between the two. (This came up as a recurring theme during my <a href="#userresearch">user research</a>.)</li>
+                                    <li><strong>Content is hard to find.</strong> Top tasks were not made readily apparent or appropriately represented in top spots. The page feels very vague on the whole.</li>
+                                    <li><strong>Links do not align with common user expectations.</strong> For example, the "Create an Extension" CTA on the Developer Hub homepage leads to the screen to set up a brand-new extension, rather than documentation about what extensions are or why you might want to create one at all. While this link text is technically correct, it is not in keeping with user expectations—the chances that anyone on an introductory page will be ready to jump in without documentation are very low. This hurts user trust and may lead to increased bounces.</li>
                                 </ul>
                             </p>
                             <p>
-                                After reviewing the Developer Hub, I zoomed in on <a href="https://dev.twitch.tv/docs/" target="_blank">Twitch's developer documentation</a>. (There were other subsections of the site I could have reviewed instead, but as my background is in programming and the documentation is one of the more important areas on the site, it was a natural choice.) Here again, I saw lots of low-hanging fruit, as well as many opportunities to make more drastic changes.
+                                After reviewing the Developer Hub, I zoomed in on Twitch's <a href="https://dev.twitch.tv/docs/" target="_blank">developer documentation landing page</a>. (There were other areas of the site I could have reviewed instead, but as my background is in programming and the documentation is very important, it was a natural choice.) Here again, I saw similar issues as to the Developer Hub.
 
                                 <ul>
-                                    <li>“Explore Twitch” feels like a waste of homepage space as it just reiterates the TOC</li>
-                                    <li>TOC feels poorly and unituitively structured (need more data)</li>
-                                    <li>homepage doesn’t have clear structure/funnel, errs too heavily on letting users choose own path without guiding them strongly to that path</li>
-                                    <li>support link is only at bottom of homepage</li>
-                                    <li>Quick Links also don’t feel useful</li>
+                                    <li><strong>The page lacks strong direction for new users.</strong> Several different paths are immediately presented, with equal importance placed on all of them. Although this is helpful for users who are return visitors or know what they want, it may not help those who are new to the ecosystem and looking for more guidance.</li>
+                                    <li><strong>Space on the page is not well used.</strong> The second section on the landing page ("Quick Links") consists of 4 eye-catching purple buttons. 2 of those buttons go to the same <a href="https://dev.twitch.tv/docs/authentication">docs page</a>, which is already the second item in the page table of contents (TOC) and therefore quite prominent to begin with; 1 goes to the changelog for the documentation, which is an odd and minimally useful choice; and 1 goes to a code sample gallery that's on another part of the site entirely. None of these links deserve the visual prominence afforded to them. Similarly...</li>
+                                    <li>The third section on the page, “Explore Twitch”, is a particularly bad use of space. This section reiterates the TOC headers with a short description of each. This effectively creates a second TOC that would be entirely unnecessary if the TOC was better-structured. Similarly...</li>
+                                    <li><strong>The TOC is poorly structured and hard to use.</strong> Many of the category names are vague, and there's no way to preview more information about the documentation in a category without clicking on it.</li>
+                                    <li><strong>Content and links are needlessly duplicated.</strong> For example, a "Support" link appears 3 times in the page chrome (header, banner above footer, and footer), in addition to a "Getting Help" section on the page itself. 1 discoverable link would suffice.</li>
                                 </ul>
+
+                                Of course, there are many things Twitch did right on both of these pages. They're visually appealing, with a clean design and snappy UI elements, and they do contain a lot of useful information if you take the time to investigate and click on <i>everything</i>. But for purposes of this study, we're going to instead focus on what they did wrong. :)
                         
-                                So we have plenty of areas we can focus on. But where should we start? To find out, let's do some user research!
+                                <br /><br />
+                                We have plenty of areas we can focus on. But where should we start? To find out, let's do some user research!
                             </p>
                         </div>
-                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">User Research</h3>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="userresearch">User Research</h3>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
                                 The first step in understanding how to improve the state of Twitch's documentation is to understand how people view and interact with it today. To that end, I interviewed 3 prospective users.
@@ -123,7 +148,7 @@
                                 </ol>
                             </p>
                         </div>
-                        <h4 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Research Summary</h4>
+                        <h4 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="researchsummary">Research Summary</h4>
                         <div class="mdl-cell mdl-cell--12-col">
                             <img class="article-image" src="../images/sticky-notes.jpg" border="0" alt="">
                         </div>
@@ -163,46 +188,56 @@
                                 
                                 Based on these user interviews and my prior knowledge of the problem space, I chose to focus on improving the
                                 <strong><a href="https://dev.twitch.tv/docs" target="_blank">developer documentation homepage</a></strong>. I chose this page because it's a critical entry point for casual converting website visitors into devoted Twitch developers. You only get one chance to make a first impression that wows developers with your platform and documentation!
-                                
-                                <br /><br />
-                                
-                                I focused my redesign on the principles of clarity, cleanness, consistency, and direction. Text should be <strong>clearly</strong> written, the design should be <strong>clean</strong> and easy to skim, links should lead to <strong>consistent</strong> types of pages, and the overall structure should be <strong>directed</strong> and guiding users to the best available content.
 
-                                <br /><br />
-                                
-                                Ideally, this page redesign would be rolled out in conjunction with a redesign of the <a href="https://dev.twitch.tv" target="_blank">main Twitch Developers homepage</a> that immediately redirects developers to it.
-                                
                                 <br />
                             </p>
                         </div>
-                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Personas</h3>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="redesignprocess">Redesign Process</h3>
+                        <h4 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="principles">Design Principles</h3>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
+                            <p>                                
+                                I focused my redesign on the principles of clarity, cleanness, consistency, and direction. Text should be <strong>clearly</strong> written, the design should be <strong>clean</strong> and easy to skim, links should lead to <strong>consistent</strong> types of pages, and the overall structure should be <strong>directed</strong> and focused on guiding users to the best available content.
+                            </p>
+                        </div>
+                        <h4 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="personas">Personas</h3>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
                                 I created 3 personas to refer back to during the redesign process. They capture both devs and non-devs with a range of experience and goals.
                             </p>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col">
-                            <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=3%3A43&scaling=scale-down-width" target="_blank"><img class="article-image" src="../images/Personas.png" border="0" alt=""></a>                            
+                            <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=3%3A43&scaling=scale-down-width"
+                                target="_blank"><img class="article-image" src="../images/Personas.png" border="0" alt=""></a>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <span class="mdl-typography--caption">A list of our personas (click to enlarge)</span>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
-                                Now, with these personas and principles in mind, let's get to redesigning!
+                                Now, with these personas and principles in mind, let's get to executing!
                             </p>
                         </div>
-                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Redesign Principles</h3>
+                        <h4 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="execution">Execution</h4>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
-                                For the redesign, I was inspired by card-based navigation. This model is gaining popularity on various sites like X. It breaks down content into small, digestible chunks; provides structure for people creating pages; and allows users to quickly scan pages.
+                                My redesign was inspired by a card-based structure. This model has been a popular design choice for several years for a number of reasons which I felt aligned nicely with my goals for this work.
                                 
-                                Cards do have some downsides. They may lead to visually monotonous pages. So I made different styles of cards, some to represent highlighted content or work in icons or other ways to break up the page a little.
+                                <ul>
+                                    <li>Cards break down content into small, digestible chunks, providing structure for people creating pages, and structure for
+                                    users to quickly scan those pages.</li>
+                                    <li>Cards are visually appealing, and can be modified to fit a variety of content.</li> 
+                                    <li>Cards avoid walls of text, which is important on introductory pages.</li> 
+                                    <li>Cards play nicely with grid layouts and are easy to make responsive (though I didn't create a responsive page as part of this work, it's always good to keep mobile users in mind).</li>
+                                </ul>
 
-                                I chose to focus on content that aimed to get users started quickly.
+                                Cards do have some downsides. If too many are used, the page will become visually monotonous and <i>harder</i> to scan. To combat this, I created a few different styles of cards, representing highlighted content, allowing the use of icons, or integrating other design changes to keep the page feeling fresh. (Not all of the card styles I developed are represented on the final page—you can view the <a href="https://www.figma.com/file/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=0%3A1" target="_blank">Figma file</a> to see them all.)
+                                
+                                <br /><br />
+
+                                I chose to focus on content that aimed to get developers started quickly. Ideally, this page redesign would be rolled out in conjunction with a redesign of <a href="https://dev.twitch.tv" target="_blank">Twitch's Developer Hub</a> that immediately redirects developers to it.
                             </p>
                         </div>
-                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Final Concept</h3>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="finalconcept">Final Concept</h3>
                         <div class="mdl-cell mdl-cell--6-col">
                             <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=1%3A2&scaling=scale-down-width"><img class="article-image" src="../images/old-homepage.png" border="0" alt=""></a>
                         </div>
@@ -213,33 +248,44 @@
                             <span class="mdl-typography--caption">Current vs redesigned homepage (click to enlarge, then use arrow keys to navigate between the two)</span>
                             <br /><br />
                             <p>
-                                - page now highlights extensions, placing clear visual priority on it and guiding new developers where Twitch wants them
-                                to go
-                                - “Get started” button links to interactive, step-by-step tutorial using Glitch—designed to get beginners up and running
-                                quickly
-                                - “Read the docs” links to Extensions overview page, targeted at more experienced developers
-                                - “More Solutions” offers a taste of Twitch’s capabilities while not overwhelming the reader
-                                - two column layout condenses information for better scanning
+                                Highlights:
 
-                                Next steps:
+                                <ul>
+                                    <li>Content has been rewritten throughout the page to orient users and explain Twitch lingo when it's introduced</li>
+                                    <li>Clear guidance and visual priority is placed on Extensions, which seems to be Twitch's top developer task</li>
+                                    <li>The primary “Get started” CTA links to an interactive, step-by-step tutorial targeted at beginners that requires no downloads (and says so upfront!)</li>
+                                    <li>“Read the docs” links to an Extensions overview page, targeted at more experienced developers</li>
+                                    <li>“More Solutions” offers a taste of Twitch’s capabilities while not overwhelming the user with choices</li>
+                                    <li>A 2 column layout condenses information for better scanning</li>
+                                    <li>Content is broken down into logical categories</li>
+                                    <li>Links are reorganized, de-duplicated, and reworked to surface more relevant and interesting apges</li>
+                                </ul>
 
-                                - rework TOC
-                                - rework IA of marketing site
-                                - clearly differentiate between marketing and dev content
+                                There were several other areas I wanted to tackle but ultimately decided were out of scope:
+
+                                <ul>
+                                    <li>Reworking the documentation TOC structure</li>
+                                    <li>Reworking the IA and top nav of the overall Twitch Developer Hub</li>
+                                    <li>Designing a way to distinguish between marketing and developer content</li>
+                                    <li>Creating more engaging "Get Started" tutorials</li>
+                                </ul>
+                                and much more...
                             </p>
                         </div>
-                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Gaps, Flaws, & Other Disclaimers</h3>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline" id="wrapup">Wrap-Up</h3>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
-                                This was a time-constrained redesign done as someone completely external to the Twitch organization. While I'm proud of this work and think it has real benefits to offer, I'm of course not partial to Twitch's internal dialogue or decision-making process. Chesterton's fence always applies—don't tear down a fence until you know why it's built. I wasn't able to work off any significant amount of data to drive these design decisions; so many things in here are driven by my opinion and prior background knowledge on the subject.
+                                Many caveats apply to this work! This was a time-constrained redesign done as someone completely external to the Twitch organization. While I'm proud of this work and think it has real benefits to offer, I'm of course not partial to Twitch's internal dialogue or decision-making process. Chesterton's fence always applies—don't tear down a fence until you know why it was built.
+                                
+                                <br /><br />
+                                
+                                I also wasn't able to work off any significant amount of data to drive these design choices, so many things in here are driven by my opinion and prior background knowledge on the subject. I was only able to conduct 3 user interviews, and of course, did not have access to any of Twitch's internal metrics. If I were working on actually building this, I would significantly increase the number of user interviews, do usability studies and/or A/B tests on various designs, and deeply engage with the business stakeholders to build consensus on what problems we're facing and how we want to approach them. (And of course, loop in a trained designer!)
+                                <br /><br />
 
-                                Additionally, due to the (self-imposed) time constraints for this project, I was only able to conduct 3 user interivews.
-
-                                If I were working on seriously implementing this, I would significantly increase the number of user interviews, A/B test designs, collect data on before results, collaborate with other stakeholders.
-
-                                I'm also not a designer, so I'd want to loop in one of those too. And ideally a dedicated user researcher...
-
-                                This is also one small facet of many improvements that could be made to this experience. This is one change that I think may have a high impact but there are so many other places we could look at! X, Y, and Z...
+                                Finally, this is one of many improvements that could be made to Twitch's developer experience. Although I believe this would have a noticeable impact, there are so many other places we could investigate (like overhauling the main Developer Hub, or creating a community outreach program, or building a set of tutorials, or...). I look forward to seeing what the folks at Twitch decide to focus their efforts on in the future.
+                                <br /><br />
+                                <a href="#toc">Return to top ↵</a>
+                                <br /><br />
                             </p>
                         </div>
                     </div>

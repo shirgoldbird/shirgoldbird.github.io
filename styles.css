@@ -7,6 +7,16 @@ p {
   margin: 0;
 }
 
+h3.toc {
+  color: rgba(0,0,0,.54);
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+div.toc {
+  margin-top: 0;
+}
+
 h4.mdl-typography--headline {
   font-size: 20px;
 }
