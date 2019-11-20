@@ -91,18 +91,19 @@
                                     <li>Quick Links also don’t feel useful</li>
                                 </ul>
                         
-                                Out of the available areas, I chose to focus on improving the <strong>developer documentation homepage</strong>. I chose it because this page is the most critical entry point for converting website visitors into Twitch developers. You only get one chance to make a first impression—we need to make sure the developer documentation homepage fulfills several goals. Clear, clean, consistent, welcoming, and directed. (I was also able to apply the wealth of knowledge I've gained from my day job at Microsoft Docs to this problem!)
+                                So we have plenty of areas we can focus on. But where should we start? To find out, let's do some user research!
                             </p>
                         </div>
-                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">User Interviews</h3>
+                        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">User Research</h3>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
-                                The first step in understanding how to improve the state of Twitch's documentation is to understand how people view it today. I spoke to 3 technology professionals of varying backgrounds. Of the 3:
+                                The first step in understanding how to improve the state of Twitch's documentation is to understand how people view and interact with it today. To that end, I interviewed 3 prospective users.
 
                                 <ul>
-                                    <li>2 had never written a Twitch extension before.</li>
-                                    <li>2 are professional developers; 1 is a DevOps engineer.</li>
-                                    <li>Insert some other summary here.</li>
+                                    <li>All were technology professionals.</li>
+                                    <li>2 were developers; 1 was a DevOps engineer.</li>
+                                    <li>2 were casual viewers of Twitch; 1 was a former streamer and stream engineer.</li>
+                                    <li>Nobody had previously programmed anything on Twitch's developer platform.</li>
                                 </ul>
 
                                 The interviews started with a quick discussion to assess technological background and prior Twitch usage. After establishing that context, we moved on to 2 tasks.
@@ -112,7 +113,7 @@
                                     <li>Starting on <a href="https://dev.twitch.tv/docs" target="_blank">dev.twitch.tv/docs</a>, I asked users to pretend they had come to this site looking for information on how to build a Twitch Extension and observed their behavior.</li>
                                 </ol>
 
-                                After completing these 2 tasks, I asked users:
+                                After completing these 2 tasks, I asked:
 
                                 <ol>
                                     <li>On a scale of 1-5, how easy was it to find the information you were looking for?</li>
@@ -120,33 +121,85 @@
                                     <li>On a scale of 1-5, how visually appealing did you find this website to be?</li>
                                     <li>Any other feedback or thoughts?</li>
                                 </ol>
+                            </p>
+                        </div>
+                        <h4 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Research Summary</h4>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <img class="article-image" src="../images/sticky-notes.jpg" border="0" alt="">
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
+                            <p>
+                                After the interviews, while the content was still fresh in my mind, I summarized and grouped recurring themes via sticky notes. Of the 3 interviews I did, 2/3 completed the chatbot task, while 3/3 completed the extension task. However, all experienced friction using the site, and struggled to navigate the intermingled marketing and developer content.
 
-                                Summarize insights here.
+                                <br /><br />
 
+                                Recurring themes:
+
+                                <ul>
+                                    <li>"Extensions" is an overloaded word; nobody understood its meaning and Twitch's materials did a poor job defining it</li>
+                                    <li>Site structure is obtuse; though developer content is not deeply buried, it is also not immediately discoverable which presents a poor starting experience for new devs</li>
+                                    <li>APIs are universally understood among devs and are often the first place a dev will look for context</li>
+                                    <li>The desire to get up and running quickly outweighs the desire to have a lot of background information—code first, ask questions later (or as the questions arise)</li>
+                                    <li>Most devs are willing to install a new tool to get a basic "Hello World" example running, but need to be somewhat invested in the project first</li>
+                                    <li>Devs gravitate towards code samples and "Hello World" projects over long paragraphs of text</li>
+                                    <li>Devs often try to orient themselves by relating new programming concepts to ones they're already familiar with</li>
+                                </ul>
+
+                                (Some of these points are not developer-specific or particularly novel insights, but are still worth explicitly calling out as they occured across all 3 interviews.)
+                                <br />
+                                <br />
+
+                                The ratings users provided for the questions were:
+                                
+                                <ol>
+                                    <li><strong>On a scale of 1-5, how easy was it to find the information you were looking for?</strong> 2, 4, 5 (average = 3.6)</li>
+                                    <li><strong>On a scale of 1-5, how helpful did you think the content you found was?</strong> 3, 4, 4 (average = 3.6)</li>
+                                    <li><strong>On a scale of 1-5, how visually appealing did you find this website to be?</strong> 3, 3, 5 (average = 3.6)</li>
+                                </ol>
+                                
                                 You can also read the <a href="user-research-notes.html" target="_blank">raw notes</a> from these interviews.
+
+                                <br /><br />
+                                
+                                Based on these user interviews and my prior knowledge of the problem space, I chose to focus on improving the
+                                <strong><a href="https://dev.twitch.tv/docs" target="_blank">developer documentation homepage</a></strong>. I chose this page because it's a critical entry point for casual converting website visitors into devoted Twitch developers. You only get one chance to make a first impression that wows developers with your platform and documentation!
+                                
+                                <br /><br />
+                                
+                                I focused my redesign on the principles of clarity, cleanness, consistency, and direction. Text should be <strong>clearly</strong> written, the design should be <strong>clean</strong> and easy to skim, links should lead to <strong>consistent</strong> types of pages, and the overall structure should be <strong>directed</strong> and guiding users to the best available content.
+
+                                <br /><br />
+                                
+                                Ideally, this page redesign would be rolled out in conjunction with a redesign of the <a href="https://dev.twitch.tv" target="_blank">main Twitch Developers homepage</a> that immediately redirects developers to it.
+                                
+                                <br />
                             </p>
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Personas</h3>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
-                                Based on my discussions with users and prior knowledge of the problem space, I created 3 personas to focus on. These personas capture both devs and non-devs, as well as a range of experience.
+                                I created 3 personas to refer back to during the redesign process. They capture both devs and non-devs with a range of experience and goals.
                             </p>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col">
-                            <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=3%3A43&scaling=scale-down-width"><img class="article-image" src="../images/Personas.png" border="0" alt=""></a>                            
+                            <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=3%3A43&scaling=scale-down-width" target="_blank"><img class="article-image" src="../images/Personas.png" border="0" alt=""></a>                            
                         </div>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <span class="mdl-typography--caption">A list of our personas (click to enlarge)</span>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
-                                Now, with these personas in mind, let's get to redesigning!
+                                Now, with these personas and principles in mind, let's get to redesigning!
                             </p>
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Redesign Principles</h3>
                         <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
                             <p>
-                                Don't forget to add a link to Figma!
+                                For the redesign, I was inspired by card-based navigation. This model is gaining popularity on various sites like X. It breaks down content into small, digestible chunks; provides structure for people creating pages; and allows users to quickly scan pages.
+                                
+                                Cards do have some downsides. They may lead to visually monotonous pages. So I made different styles of cards, some to represent highlighted content or work in icons or other ways to break up the page a little.
+
+                                I chose to focus on content that aimed to get users started quickly.
                             </p>
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Final Concept</h3>
@@ -167,6 +220,12 @@
                                 - “Read the docs” links to Extensions overview page, targeted at more experienced developers
                                 - “More Solutions” offers a taste of Twitch’s capabilities while not overwhelming the reader
                                 - two column layout condenses information for better scanning
+
+                                Next steps:
+
+                                - rework TOC
+                                - rework IA of marketing site
+                                - clearly differentiate between marketing and dev content
                             </p>
                         </div>
                         <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Gaps, Flaws, & Other Disclaimers</h3>

@@ -7,6 +7,10 @@ p {
   margin: 0;
 }
 
+h4.mdl-typography--headline {
+  font-size: 20px;
+}
+
 .portfolio-header {
   position: relative;
   background-image: url(images/header-bg.jpg);
