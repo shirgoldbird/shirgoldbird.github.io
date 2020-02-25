@@ -83,6 +83,15 @@ h1 a:hover {
   padding-bottom: 0;
   padding-top: 10px;
   margin: 0;
+  word-spacing: -1px;
+}
+
+.header p strong {
+  word-spacing: normal;
+}
+
+.header p a {
+  word-spacing: normal;
 }
 
 .footer {
