@@ -23,6 +23,11 @@
   <div class="page">
     {% block body %}{% endblock %}
   </div>
+  {% if this.resume_iframe %}
+  <div class="resume">
+    {{ this.resume_iframe }}
+  </div>
+  {% endif %}
   <footer>
     &copy; Copyright 2020 by Shir Goldberg.
   </footer>
