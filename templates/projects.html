@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% from "macros/blog.html" import render_blog_post %}
+{% from "macros/child.html" import render_child %}
 {% block title %}{{ this.title }} -{% endblock %}
 {% block body %}
   <h1>{{ this.title }}</h1>
@@ -7,7 +7,7 @@
 
   <h2>Case Studies</h2>
   {% for child in this.pagination.items %}
-    {{ render_blog_post(child, from_index=true) }}
+    {{ render_child(child, "project", from_index=true) }}
   {% endfor %}
 
   <h2>Other Work</h2>

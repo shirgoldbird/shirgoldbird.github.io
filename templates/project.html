@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
-{% from "macros/blog.html" import render_blog_post %}
+{% from "macros/child.html" import render_child %}
 {% block title %}{% if this.title %}{{ this.title }} -{% endif %}{% endblock %}
 {% block body %}
-  {{ render_blog_post(this) }}
+  {{ render_blog_post(this, "project") }}
 {% endblock %}
