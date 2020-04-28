@@ -18,10 +18,9 @@ a:hover {
   text-decoration: underline;
 }
 
-header, footer, div.page {
+header, footer, .page {
   width: 550px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 header {
@@ -51,7 +50,7 @@ header nav ul li a {
   font-size: 1.7em;
 }
 
-div.page {
+.page {
   padding-top: 50px;
 }
 
@@ -120,17 +119,14 @@ h1 a:hover {
   display: none;
 }
 
-@media screen and (device-width: 600px) {
-  header nav ul li a {
-    font-size: 2.7em;
+@media screen and (max-width: 600px) {
+  header, footer, .page {
+  	width: 90%;
+    padding: 10px;
   }
 
-  div.page {
-  	width: 90%;
-  }
-
-  .footer {
-  	width: 90%;
+  .page {
+    padding: 15px;
   }
 }
 
