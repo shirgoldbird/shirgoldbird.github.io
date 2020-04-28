@@ -79,6 +79,15 @@ h1 {
   font-size: 28px;
 }
 
+h2 {
+  padding-bottom: 23px;
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 17px;
+}
+
 h1 a {
   color: #333;
   text-decoration: none;
