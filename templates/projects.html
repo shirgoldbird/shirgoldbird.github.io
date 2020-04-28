@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% from "macros/blog.html" import render_blog_post %}
+{% block title %}{{ this.title }} -{% endblock %}
+{% block body %}
+  <h1>{{ this.title }}</h1>
+  {{ this.body }}
+
+  <h2>Case Studies</h2>
+  {% for child in this.pagination.items %}
+    {{ render_blog_post(child, from_index=true) }}
+  {% endfor %}
+
+  <h2>Other Work</h2>
+  {{ this.other_work }}
+{% endblock %}
