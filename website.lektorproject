@@ -1,0 +1,5 @@
+[project]
+name = Shir Goldberg
+
+[servers.ghpages]
+target = ghpages://shirgoldbird/shirgoldbird.github.io?cname=shirgoldbird.com
