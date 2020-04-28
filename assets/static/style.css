@@ -22,7 +22,10 @@ header, footer, div.page {
   width: 550px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 140px;
+}
+
+header {
+  padding-top: 100px;
 }
 
 header h1 {
@@ -40,8 +43,16 @@ header nav ul {
 
 header nav ul li {
     display: inline;
-    margin: 0 8px 0 0;
+    margin: 0 15px 0 0;
     padding: 0;
+}
+
+header nav ul li a {
+  font-size: 1.7em;
+}
+
+div.page {
+  padding-top: 50px;
 }
 
 /** PRIOR SITE CSS **/
@@ -109,8 +120,12 @@ h1 a:hover {
   display: none;
 }
 
-@media screen and (max-width: 570px) {
-  .page {
+@media screen and (device-width: 600px) {
+  header nav ul li a {
+    font-size: 2.7em;
+  }
+
+  div.page {
   	width: 90%;
   }
 
