@@ -61,6 +61,7 @@ h1 {
 h2 {
   padding-bottom: 1rem;
   font-size: 1.5rem;
+  margin-top: 1em;
 }
 
 h3 {
@@ -86,6 +87,10 @@ p {
 
 .page ul li {
   font-size: 1.7em;
+}
+
+.index p {
+    margin-bottom: 10px;
 }
 
 .footer {
