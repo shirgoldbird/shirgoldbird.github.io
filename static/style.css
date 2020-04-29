@@ -61,10 +61,11 @@ h1 {
 h2 {
   padding-bottom: 1rem;
   font-size: 1.5rem;
+  margin-top: 1em;
 }
 
 h3 {
-  font-size: 1.7em;
+  font-size: 1.9em;
 }
 
 h1 a {
@@ -80,12 +81,53 @@ p {
   text-align: justify;
   margin-bottom: 1.7em;
   font-size: 1.7em;
-  line-height: 1.5em;
+  line-height: 1.5rem;
   color: #333;
 }
 
+/** TODO: recall where this is used aside from project **/
 .page ul li {
   font-size: 1.7em;
+  line-height: 1.5em;
+  margin-bottom: 1rem;
+}
+
+.page ul li p {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.page ol li {
+  font-size: 1.7em;
+  line-height: 1.5em;
+  margin-bottom: 1rem;
+}
+
+.page .toc-container {
+  margin-bottom: 1rem;
+}
+
+.page .toc-container p {
+  margin-bottom: 0;
+}
+
+.toc-container ol li {
+  font-size: 1rem;
+  line-height: normal;
+  margin-bottom: 0;
+}
+
+img {
+  width: 100%;
+}
+
+.index p {
+  margin-bottom: 10px;
+}
+
+.pagination {
+  margin-top: 1rem;
+  font-size: 1rem;
 }
 
 .footer {
@@ -106,6 +148,11 @@ p {
 .resume iframe {
   margin: 0 auto;
   display: block;
+}
+
+.meta {
+  font-size: .7rem;
+  font-style: italic;
 }
 
 .mobile {
