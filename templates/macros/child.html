@@ -26,6 +26,21 @@
     </div>
     {% endif %}
 
+    {% if post.body.toc %}
+    <div class="toc-container" id="toc">
+      <p><strong>Table of Contents</strong></p>
+      <ol class="toc">
+        {% for item in post.body.toc recursive %}
+        <li><a href="#{{ item.anchor }}">{{ item.title }}</a>
+          {%if item.children %}
+          <ol>{{ loop(item.children) }}</ol>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+    {% endif %}
+
     {{ post.body }}
   </div>
   {% endif %}
