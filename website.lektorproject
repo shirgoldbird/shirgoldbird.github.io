@@ -3,3 +3,6 @@ name = Shir Goldberg
 
 [servers.ghpages]
 target = ghpages://shirgoldbird/shirgoldbird.github.io?cname=shirgoldbird.com
+
+[packages]
+lektor-markdown-excerpt = 0.1
