@@ -8,5 +8,7 @@
     {{ render_child(child, "blog-post", from_index=true) }}
   {% endfor %}
 
-  {{ render_pagination(this.pagination) }}
+  {% if this.pagination.pages > 1 %}
+    {{ render_pagination(this.pagination) }}
+  {% endif %}
 {% endblock %}
