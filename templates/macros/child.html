@@ -8,7 +8,7 @@
   {% else %}
     <h1>{{ post.title }}</h1>
   {% endif %}
-  {% if type == "blog-post" %}
+  {% if type == "blog-post" and from_index %}
     {{ post.body|excerpt }}
     <i><a href="{{ post|url }}">read more</a></i>
   {% else %}
