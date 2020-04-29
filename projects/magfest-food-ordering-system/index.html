@@ -1,0 +1,304 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="description" content="Shir Goldberg is a product manager and developer based in Seattle. Learn more about their methods and past projects on their website.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="../../static/style.css">
+<title>MAGFest Food Ordering System - Shir Goldberg</title>
+<body>
+  <header>
+    <nav>
+      <ul class="nav navbar-nav">
+        <li><a href="../../">Welcome</a></li>
+        
+          <li><a href="../../blog/">Blog</a></li>
+        
+          <li class="active"><a href="../../projects/">Projects</a></li>
+        
+          <li><a href="../../resume/">Resume</a></li>
+        
+          <li><a href="../../pronouns/">Pronouns</a></li>
+        
+      </ul>
+    </nav>
+  </header>
+  <div class="page">
+    
+  
+  
+  <div class="project">
+    <h1>MAGFest Food Ordering System</h1>
+
+    
+      <p><strong>a case study</strong> <em>by shir goldberg</em></p>
+    
+
+    
+
+    
+
+    
+    <div class="toc-container" id="toc">
+      <p><strong>Table of Contents</strong></p>
+      <ol class="toc">
+        
+        <li><a href="#introduction">Introduction</a>
+          
+        </li>
+        
+        <li><a href="#project-overview">Project Overview</a>
+          
+        </li>
+        
+        <li><a href="#prd">PRD</a>
+          
+          <ol>
+        <li><a href="#stakeholders">Stakeholders</a>
+          
+        </li>
+        
+        <li><a href="#goals">Goals</a>
+          
+        </li>
+        
+        <li><a href="#non-goals">Non-goals</a>
+          
+        </li>
+        
+        <li><a href="#user-stories">User Stories</a>
+          
+        </li>
+        
+        <li><a href="#high-level-workflow">High Level Workflow</a>
+          
+        </li>
+        
+        <li><a href="#key-features">Key Features</a>
+          
+        </li>
+        
+        <li><a href="#business-logic">Business Logic</a>
+          
+        </li>
+        
+        <li><a href="#open-questions">Open Questions</a>
+          
+        </li>
+        </ol>
+          
+        </li>
+        
+        <li><a href="#wireframes">Wireframes</a>
+          
+        </li>
+        
+      </ol>
+    </div>
+    
+
+    <h2 id="introduction">Introduction</h2><p><a href="https://super.magfest.org">Super MAGFest</a>, MAGFest Inc's flagship event, is a yearly festival devoted to video games, music, and video game music. Each January, 25,000 people congregate in the halls of the Gaylord National Harbor Convention Center for their favorite long weekend of the year. Between an arcade with hundreds of cabinets, around-the-clock concerts, tons of panels, and attendees in fantastic costumes, it's always an incredible time.</p>
+<p>I've been working with MAGFest since 2014, most of that time spent running their Registration department. However, one of my favorite things about MAGFest is its open structure. Across the entire organization, people have a huge degree of freedom for finding (or starting) projects that interest them and solve real problems, and are empowered to build teams and execute on those projects. In 2019, I led one of those projects.</p>
+<h2 id="project-overview">Project Overview</h2><p>In 2019, I acted as product/project manager for an effort to redesign a long-broken internal MAGFest workflow.</p>
+<p>During MAGFest's yearly event, staffers have access to a staff suite. The staff suite serves 3 meals a day and will package meals for carryout if staffers don't have time to eat in the suite. In prior years, carryout orders were submitted via paper forms. These forms were filled out by department staffers each meal and then carried up to staff suite. Staff suite workers would then find some way to notify the department head when the food was ready, and someone would be sent to carry the food back down.</p>
+<p>This workflow posed a number of problems. The paper forms were easy to lose or forget about. There was no unified notification system for letting the right parties know when their food was ready. And often by the time the food arrived, the people who had ordered it had already left.</p>
+<p>I started the project by creating a list of stakeholders and a draft of a product requirements doc based on my knowledge of the problem space. I worked with the stakeholders to flesh the document out and create all necessary user stories. After requirements had been locked down, I created a diagram outlining the high level workflow, then drilled into more specifics by creating wireframes in Balsamiq.</p>
+<p>Once that work was completed, I worked with a developer to implement it. Throughout the process, I held check-ins and offered support to team members as needed.</p>
+<p>The system launched in time for Super MAGFest 2020 and was greatly successful!</p>
+<h2 id="prd">PRD</h2><p>Below is a slightly modified version of the PRD I created for this work.</p>
+<h3 id="stakeholders">Stakeholders</h3><p>[list redacted]</p>
+<h3 id="goals">Goals</h3><p>Our goal is to replace Staff Suite's current paper ordering system with a more robust, easy-to-use, and less failure-prone electronic method.</p>
+<p>This work is expected to greatly simplify Staff Suite's operations and provide them with better data to inform their decisions about resource allocation and time management, as well as creating an easy experience for staff and department heads to get their food.</p>
+<h3 id="non-goals">Non-goals</h3><p>We are not looking to change the overall workflow or carryout process Staff Suite has in place.</p>
+<p>We are not looking to reimplement Staff Suite's informational website (though this work will supplement it).</p>
+<h3 id="user-stories">User Stories</h3><p><em>As a staffer...</em></p>
+<ul>
+<li><p>I want to make sure I get food when I'm on shift.</p>
+</li>
+<li><p>I want to have control over submitting my food order.</p>
+</li>
+<li><p>I want my order to be bundled with the correct department</p>
+</li>
+<li><p>I want to be able to place my order ahead of time.</p>
+</li>
+<li><p>I want to make sure my dietary restrictions are clearly listed.</p>
+</li>
+<li><p>I want to know what is in the food I am ordering (allergens).</p>
+</li>
+<li><p>I want to know what my food choices are.</p>
+</li>
+<li><p>I want to be appropriately notified when my order is ready.</p>
+</li>
+<li><p>I want to know approximately when my order will be ready.</p>
+</li>
+</ul>
+<p><em>As a department head...</em></p>
+<ul>
+<li><p>I want to make sure all of my staffers get fed.</p>
+</li>
+<li><p>I want to take care of meal ordering ahead of time.</p>
+</li>
+<li><p>I want to do the least amount of work possible to feed my staff.</p>
+</li>
+<li><p>I want to be appropriately notified when my order is ready.</p>
+</li>
+<li><p>I want to know approximately when my order will be ready.</p>
+</li>
+<li><p>I want to submit orders by a more durable medium than paper.</p>
+</li>
+<li><p>I want to be able to send a message to staff suite with our order</p>
+</li>
+</ul>
+<p><em>As a Staff Suite staffer...</em></p>
+<ul>
+<li><p>I want to know how many orders we're expecting.</p>
+</li>
+<li><p>I want to get my orders submitted as early as possible</p>
+</li>
+<li><p>I want to start filling orders as early as possible (~1 hr before service)</p>
+</li>
+<li><p>I want to have orders submitted by a more durable medium than paper.</p>
+</li>
+<li><p>I want to know which orders go to which department.</p>
+</li>
+<li><p>I want to know how to notify departments when their order is ready.</p>
+</li>
+<li><p>I want to know when the department was notified</p>
+</li>
+<li><p>I want to know which ingredients to put in each order.</p>
+</li>
+<li><p>I want to know which carryout orders have deadlines (musicians, stagehands, etc).</p>
+</li>
+<li><p>I want to only fill carryout orders for staffers on shift during meal times.</p>
+</li>
+<li><p>I want to only fill carryout orders for eligible volunteers.</p>
+</li>
+</ul>
+<h3 id="high-level-workflow">High Level Workflow</h3><ul>
+<li><p>Orders are submitted.</p>
+</li>
+<li><p>Orders are fulfilled.</p>
+</li>
+<li><p>Orders are picked up.</p>
+</li>
+</ul>
+<h3 id="key-features">Key Features</h3><p>Features are broken down by workflow step. Features that I (Shir) am not sure are required are in italics, along with notes on things that need clarification. Features will need to be broken down into critical/non-critical, and prioritized. This list should be reviewed thoroughly before development starts.</p>
+<p>Order Submission:</p>
+<ul>
+<li><p>Staffers can view meal information, including allergens, for a given meal.</p>
+</li>
+<li><p>Staffers can submit dietary information with their order.</p>
+</li>
+<li><p>Staffers should only need to submit their dietary restrictions once.</p>
+</li>
+<li><p>Orders are tied to specific departments.</p>
+</li>
+<li><p>Staffers may only submit orders within a department 'bundle'</p>
+</li>
+<li><p>Staffers can specify which department their order should be bundled with for pickup.</p>
+</li>
+<li><p>Department Heads review and approve bundled orders on behalf of their staffers.</p>
+</li>
+<li><p>Department Heads can submit special instructions with their department's order.</p>
+</li>
+<li><p>Department Heads can submit Slack contact information.</p>
+</li>
+<li><p>Department Heads can submit their department's overall order.</p>
+</li>
+<li><p><em>Department Heads can submit contact information  on an overall or per-meal basis (for example if different managers are on shift for different meals).</em></p>
+</li>
+<li><p><em>Department Heads can submit contact information outside of Slack for meal notifications (e.g. phone, email).</em></p>
+</li>
+<li><p>Orders can be submitted ahead of time.</p>
+</li>
+<li><p>Orders are validated against shifts to make sure nobody is submitting an order who can come to suite. (Department Heads may override this on a case-by-case basis)</p>
+</li>
+<li><p>Ordering for a meal can be closed once the meal time has passed.</p>
+</li>
+<li><p>Orders should be changeable after submission if and only if the order has not started being fulfilled.</p>
+</li>
+</ul>
+<p><strong>Order Fulfillment:</strong></p>
+<ul>
+<li><p>Staff Suite receives a tidy and cohesive report of orders requested that updates in real time.</p>
+</li>
+<li><p>Orders are printed on stickers with badge number, department bundle, and details</p>
+</li>
+<li><p>Order sticker contains information as <a href="https://drive.google.com/file/d/1ijOPnjVHFb834rQh8TXTjEXw8lvEq4QR/view?usp=sharing">mocked up here</a>.</p>
+</li>
+<li><p>Order sticker contains:</p>
+<ul>
+<li><p>First preferred name (not first legal name)</p>
+</li>
+<li><p>Badge number</p>
+</li>
+<li><p>Order date and time</p>
+</li>
+<li><p>Food restrictions</p>
+</li>
+<li><p>Contents of order</p>
+</li>
+</ul>
+</li>
+<li><p>Staff Suite receives contact information for each department.</p>
+</li>
+<li><p>Staff Suite receives any special notes submitted for each department.</p>
+</li>
+<li><p>Staff Suite sets a time after which submitted orders cannot be modified.</p>
+</li>
+<li><p>Staff Suite can mark department orders as in progress, which prevents further changes to the order.</p>
+</li>
+<li><p>Staff Suite can mark department orders as ready for pickup.</p>
+</li>
+</ul>
+<p><strong>Order Delivery:</strong></p>
+<ul>
+<li><p>Staff Suite can automatically notify departments through their preferred mechanism when their order is marked as complete.</p>
+</li>
+<li><p>Staff Suite can manually follow up with departments if food is not picked up.</p>
+</li>
+</ul>
+<p><strong>Nice-to-haves:</strong></p>
+<ul>
+<li><p>Alert DHs when staffers haven't requested a meal for which they are eligible</p>
+</li>
+<li><p>Provide estimated pickup times to staffers and/or DHs. (this is probably an easier one to build)</p>
+</li>
+<li><p>Departments can acknowledge their receipt of the message and that they are sending someone to get the order.</p>
+</li>
+<li><p>Have system automatically check person's selected allergies against foods in their order and warn them if they have something on an order that contains an allergen they selected (added by Wombat3)</p>
+</li>
+<li><p>Add option to allow DH to mark an order as time-sensitive.  This will highlight the order in the department orders list so that orders for a department such as perhaps Concerts can request food to be ready at a specific time and Staff Suite can take that into account as they build orders. (Wombat3)(useful? Bad idea? Dunno lol)</p>
+</li>
+</ul>
+<h3 id="business-logic">Business Logic</h3><p>Is eligible for staff suite:</p>
+<ul>
+<li><p>is staff</p>
+</li>
+<li><p>is guest</p>
+</li>
+<li><p>is volunteer but is signed up for more than 10 hours and has worked first shift</p>
+</li>
+</ul>
+<p>Is eligible for staff suite carryout:</p>
+<ul>
+<li><p>is eligible for staff suite</p>
+</li>
+<li><p>is working during the entirety of the meal period</p>
+</li>
+</ul>
+<p>More business logic is outlined in the wireframes.</p>
+<h3 id="open-questions">Open Questions</h3><ul>
+<li>What would a band/guest carryout workflow look like?</li>
+</ul>
+<h2 id="wireframes">Wireframes</h2><p><img src="../../static/images/staff-suite-homepage-mockup.png" alt="The Staff Suite ordering homepage mockup."></p>
+<p>Wireframes were created in Balsamiq. You can view the <a href="../../static/documents/magfest_food_ordering_mockups.pdf">exported PDF</a>.</p>
+
+  </div>
+  
+
+
+  </div>
+  
+  <footer>
+    &copy; Copyright 2020 by Shir Goldberg.
+  </footer>
+</body>
