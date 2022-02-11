@@ -8,11 +8,12 @@
 body {
   font-size: 10px;
   font-family: palatino, "times new roman", serif;
-  background-color: #fff;
+  background-color: rgb(38, 38, 38);
+  color: rgb(244, 244, 244);
 }
 
 a {
-  color: #d94f40;
+  color: #ff7363;
   text-decoration: none;
 }
 
@@ -74,8 +75,7 @@ h4 {
 }
 
 h1 a {
-  color: #333;
-  text-decoration: none;
+  /* text-decoration: none; */
 }
 
 strong {
@@ -86,7 +86,6 @@ p {
   margin-bottom: 1rem;
   font-size: 1.7em;
   line-height: 1.5rem;
-  color: #333;
 }
 
 /** TODO: recall where this is used aside from project **/
