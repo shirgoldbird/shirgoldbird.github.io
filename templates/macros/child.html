@@ -6,7 +6,9 @@
     <p class="meta">
       {% if post.pub_date %} published {{ post.pub_date }} {% endif %}
     </p>
+  {% endif %}
     <p>{{ post.body|excerpt }}</p>
+  {% if type == "blog-post" %}
     <i><a href="{{ post|url }}">read more</a></i>
   {% endif %}
   </div>
