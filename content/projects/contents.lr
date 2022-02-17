@@ -6,8 +6,31 @@ body:
 
 I'm just as passionate about what I do at work as I am about what I do outside of it. Below, you can find some of my favorite "extracurricular" projects.
 
+## Tech Projects
+
+### [Google Forms Storefront](https://github.com/shirgoldbird/google-to-paypal-invoicing)
+
+
+A free, easy-to-use online storefront build on Google Forms, Google Apps Script, and the PayPal API. Built for independent artists making the transition to online sales for the first time. Used for processing $5k+ in sales.
+
+### [Decidim Seattle](https://github.com/King-County-Equity-Now/decidim-seattle)
+
+A proof-of-concept site for managing a participatory budgeting process for the City of Seattle. Built with the Decidim framework for the non-profit organization King County Equity Now.
+
 ---
 other_work:
+
+### Web Development · Miscellaneous
+*2012 to Present*
+
+I built the websites for:
+
+- [NW IdolFest](https://nwidolfest.com) (GatsbyJS)
+- [Glitch Kibbitz](https://glitchkibbitz.com/) (GatsbyJS)
+- [Pacific Noiseworks](https://pacificnoiseworks.com/) (Lektor)
+- [shirgoldberg.com](https://shirgoldberg.com) (Lektor)
+
+Additional projects on my [GitHub](https://github.com/shirgoldbird).
 
 ### Co-Founder & Board Trustee · The Nijiiro Foundation
 *June 2021 to Present*
@@ -22,31 +45,4 @@ I led a team of 5 devs and 1 designer to build a proof of concept site for the C
 ### Board Vice President · Lunar Solis Foundation
 *October 2017 to Present*
 
-I've served on the Lunar Solis board since 2017, and stepped up as vice president in 2021. I help manage the foundation's operations, including building out a grant program to support inclusive events.
-
-### Double Bassist · [Glitch Kibbitz](https://glitchkibbitz.com/)
-*June 2019 to Present*
-
-I started a band that does klezmer-style covers of video game music. Pre-pandemic, we performed at PAX West and MAGFest. Post-pandemic, we've been recording and [releasing music](https://glitchkibbitz.bandcamp.com/) from home.
-
-### Event Chair · Miscellaneous
-*2015 to Present*
-
-I'm extremely passionate about organizing fan conventions. I ran the following events:
-
-- NW IdolFest 2021 (100 attendees)
-- BronyCon 2018 & 2019 (11,000 attendees)
-- MAGWest 2017 & 2018 (1500 attendees)
-- MAGLabs 2016 (1500 attendees)
-
-### Web Development · Miscellaneous
-*2012 to Present*
-
-I built the websites for:
-
-- [NW IdolFest](https://nwidolfest.com)
-- [Glitch Kibbitz](https://glitchkibbitz.com/)
-- [Pacific Noiseworks](https://pacificnoiseworks.com/)
-- [shirgoldberg.com](https://shirgoldberg.com)
-
-Additional projects on my [GitHub](https://github.com/shirgoldbird).
+I manage the operations of a multi-million dollar foundation, including building out a grant program to support inclusive events. I've served on the Lunar Solis board since 2017, and stepped up as vice president in 2021.
