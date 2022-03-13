@@ -14,15 +14,18 @@ header a {
     color: #dc322f;
 }
 
-a {
-    /* color: #dc322f; */
+a, a:visited {
+    color: #dc322f;
     /* color: #268bd2; */
-    color: #888df5;
-    text-decoration: none;
+    /* color: #888df5; */
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+h3, h3 a, h3 a:visited {
+    color: #888df5;
 }
 
 header, footer, .page {
