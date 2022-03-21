@@ -7,3 +7,4 @@ target = ghpages://shirgoldbird/shirgoldbird.github.io?cname=shirgoldberg.com
 [packages]
 lektor-markdown-excerpt = 0.1
 lektor-markdown-header-anchors = 0.3.1
+lektor-scss = 1.4.1

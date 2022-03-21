@@ -1,0 +1,116 @@
+$base-color: #5E3A98; 
+$font-color: #f1f1f1;
+$header-color: #FFC75F;
+$contrast-link-color: #FFAD8F;
+$link-color: #FF9671;
+$body-font-weight: 300;
+$tall-margin: 25px;
+
+$font-dark: rgba($font-color, 0.88);
+$header-dark: rgba($header-color, 0.88);
+
+$base-size: 1.5em;
+$header-size: 2.5em;
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500&family=Patua+One&family=Shrikhand&display=swap');
+
+* {
+    font-size: 1em;
+    margin: 0;
+}
+
+body {
+    //font-family: 'Patua One', sans-serif;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: $body-font-weight;
+    background-color: $base-color;
+    font-size: $base-size;
+    color: $font-color;
+    max-width: 1000px !important;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1em 0;
+    display: flex;
+}
+
+header {
+    padding: 2em;
+    line-height: 1.5;
+
+    nav ul {
+        list-style: none;
+    }
+
+    li a {
+        min-width: 50px;
+    }
+
+    li.active a {
+        color: $header-color;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: $header-color;
+    }
+}
+
+h1 {
+    color: $header-color;
+    font-family: 'Shrikhand', cursive;
+    font-size: $header-size;
+    font-weight: 100;
+}
+
+h5 {
+    font-size: $header-size / 1.5;
+    margin-top: $tall-margin;
+}
+
+h6 {
+    margin-top: $tall-margin;
+    color: $header-dark;
+}
+
+a, a:visited {
+    color: $link-color;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a[target="_blank"]:after {
+    font-family: 'FontAwesome';
+    content: " \f08e";
+}
+
+
+p {
+    margin-top: $tall-margin / 2;
+}
+
+.pronunciation {
+    font-style: italic;
+    margin-top: $tall-margin * 1.5;
+    font-size: $base-size / 2.5;
+}
+
+.project {
+    margin-top: $tall-margin / 2;
+}
+
+.project p {
+    margin-top: $tall-margin / 2;
+}
+
+img {
+    width: 100%;
+}
+
+
