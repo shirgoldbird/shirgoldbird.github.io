@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="description" content="Shir Goldberg is a technical consultant based in Seattle, WA. Learn more about Shir's methods and past work on their website.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="../../static/solarized_dark_styles.css">
+  <link rel="stylesheet" href="../../css/theme.css?h=bfab7d59">
   <title>Redesigning Twitch&#39;s Developer Docs Homepage - Shir Goldberg</title>
   <link rel="apple-touch-icon" sizes="180x180" href="../../static/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../../static/favicon/favicon-32x32.png">
@@ -101,12 +101,12 @@
 
     <p>A redesign of Twitch's developer docs homepage—backed by user research!</p>
 <p><img src="../../static/images/twitch-homepage.png" alt="The top of Twitch&#39;s homepage."></p>
-<h2 id="introduction">Introduction</h2><p>Almost every gamer, from competitive to casual, has heard of Twitch. Founded in 2011, the streaming site has seen an immense rise in popularity over its lifetime, driven largely by its decision to focus on video games and e-sports.</p>
+<h5 id="introduction">Introduction</h5><p>Almost every gamer, from competitive to casual, has heard of Twitch. Founded in 2011, the streaming site has seen an immense rise in popularity over its lifetime, driven largely by its decision to focus on video games and e-sports.</p>
 <p>Twitch's explosion, and subsequent 2014 acquisition by Amazon, has inspired a slew of competing products from other major companies, including YouTube Live, Facebook Gaming, and Microsoft's Mixer. Twitch's head start and lineup of star streamers has kept them in a lead by a <a href="https://techcrunch.com/2019/07/12/twitch-continues-to-dominate-live-streaming-with-its-second-biggest-quarter-to-date/">wide margin</a>. As time goes on though, competing services will lure streamers and viewers to their own platforms, and Twitch may find themselves losing market share.</p>
 <p>In order to prevent a gradual exodus, Twitch needs to create and focus on key differentiators. What could make them stand out more than a passionate community of contributors? Twitch has begun developing a rich ecosystem of tools allowing third-party developers access to modify the viewing experience. For example, Twitch Extensions allow viewers to be more than a passive part of the stream. Extensions can be used to provide information about the game, such as what equipment an on-screen character has; direct the stream via voting on things like what game the streamer plays next; or even manipulating the game being streamed itself.</p>
-<h2 id="thesis">Thesis</h2><p>I believe a world-class developer experience is Twitch's best shot at maintaining market share and creating a stellar user experience, and the first step in creating that is amazing documentation. Giving developers a great documentation experience acts as a multiplier. If you enable them to build innovative experiences quickly and easily, they will—and then, they will passionately evangelize your documentation and platform to others.</p>
+<h5 id="thesis">Thesis</h5><p>I believe a world-class developer experience is Twitch's best shot at maintaining market share and creating a stellar user experience, and the first step in creating that is amazing documentation. Giving developers a great documentation experience acts as a multiplier. If you enable them to build innovative experiences quickly and easily, they will—and then, they will passionately evangelize your documentation and platform to others.</p>
 <p>Finally, the core of any streaming site is its community. Helping developers create unique and interactive experiences is a critical component of supporting the currently vibrant community on Twitch. Let's see what we can do to enable that!</p>
-<h2 id="initial-review">Initial Review</h2><p><img src="../../static/images/twitch-dev-header.png" alt=""></p>
+<h5 id="initial-review">Initial Review</h5><p><img src="../../static/images/twitch-dev-header.png" alt=""></p>
 <p>I started out by reviewing the information architecture (IA) of <a href="https://dev.twitch.tv/">Twitch's Developer Hub</a>. A solid IA will allow users to easily form a mental map of your site and find the information they need with minimal fuss. Especially for larger sites that cater to a variety of topics and personas, like the Developer Hub, it's critical to get users to the right content fast. I did this by creating a site map laying out how pages were linked together, and marking which pages were marketing content vs technical content. After reviewing that, I moved on to an analysis of the overall user experience.</p>
 <p>Although the Developer Hub does many things right, I quickly discovered that there are also many areas with room for improvement.</p>
 <ul>
@@ -128,7 +128,7 @@
 </ul>
 <p>Of course, there are many things Twitch did right on both of these pages. They're visually appealing, with a clean design and snappy UI elements, and they contain a lot of useful information if you take the time to investigate. But for purposes of this study, we're going to instead focus on what they did wrong. :)</p>
 <p>We have plenty of areas we can dive into. But where should we start? To find out, let's do some user research!</p>
-<h2 id="user-research">User Research</h2><p>The first step in understanding how to improve the state of Twitch's documentation is to understand how people view and interact with it today. To that end, I interviewed 3 prospective users.</p>
+<h5 id="user-research">User Research</h5><p>The first step in understanding how to improve the state of Twitch's documentation is to understand how people view and interact with it today. To that end, I interviewed 3 prospective users.</p>
 <ul>
 <li>All were technology professionals.</li>
 <li>2 were developers; 1 was a DevOps engineer.</li>
@@ -147,7 +147,7 @@
 <li>On a scale of 1-5, how visually appealing did you find this website to be?</li>
 <li>Any other feedback or thoughts?</li>
 </ol>
-<h3 id="research-summary">Research Summary</h3><p><img src="../../static/images/sticky-notes.jpg" alt=""></p>
+<h6 id="research-summary">Research Summary</h6><p><img src="../../static/images/sticky-notes.jpg" alt=""></p>
 <p>After the interviews, while the content was still fresh in my mind, I summarized and grouped recurring themes via sticky notes. Of the 3 interviews I did, 2/3 completed the chatbot task, while 3/3 completed the extension task. However, all experienced friction using the site, and struggled to navigate the intermingled marketing and developer content.</p>
 <p>Recurring themes:</p>
 <ul>
@@ -168,12 +168,12 @@
 </ol>
 <p>You can also read the <a href="user-research-notes">raw notes</a> from these interviews.</p>
 <p>Based on these user interviews and my prior knowledge of the problem space, I chose to focus on improving the <strong><a href="https://dev.twitch.tv/docs">developer documentation homepage</a></strong>. I chose this page because it's a critical entry point for casual converting website visitors into devoted Twitch developers. You only get one chance to make a first impression that wows developers with your platform and documentation!</p>
-<h2 id="redesign-process">Redesign Process</h2><h3 id="design-principles">Design Principles</h3><p>I focused my redesign on the principles of clarity, cleanness, consistency, and direction. Text should be <strong>clearly</strong> written, the design should be <strong>clean</strong> and easy to skim, links should lead to <strong>consistent</strong> types of pages, and the overall structure should be <strong>directed</strong> and focused on guiding users to the best available content.</p>
-<h3 id="personas">Personas</h3><p>I created 3 personas to refer back to during the redesign process. They capture both devs and non-devs with a range of experience and goals.</p>
+<h5 id="redesign-process">Redesign Process</h5><h6 id="design-principles">Design Principles</h6><p>I focused my redesign on the principles of clarity, cleanness, consistency, and direction. Text should be <strong>clearly</strong> written, the design should be <strong>clean</strong> and easy to skim, links should lead to <strong>consistent</strong> types of pages, and the overall structure should be <strong>directed</strong> and focused on guiding users to the best available content.</p>
+<h6 id="personas">Personas</h6><p>I created 3 personas to refer back to during the redesign process. They capture both devs and non-devs with a range of experience and goals.</p>
 <p><a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=3%3A43&amp;scaling=scale-down-width"><img src="../../static/images/Personas.png" alt=""></a></p>
 <p><em>a list of our personas (click to view on Figma)</em></p>
 <p>Now, with these personas and principles in mind, let's get to executing!</p>
-<h3 id="execution">Execution</h3><p>My redesign was inspired by a card-based structure. This model has been a popular design choice for several years for a number of reasons which I felt aligned nicely with my goals for this work.</p>
+<h6 id="execution">Execution</h6><p>My redesign was inspired by a card-based structure. This model has been a popular design choice for several years for a number of reasons which I felt aligned nicely with my goals for this work.</p>
 <ul>
 <li>Cards break down content into small, digestible chunks, providing structure for people creating pages, and structure for users to quickly scan those pages.</li>
 <li>Cards are visually appealing, and can be modified to fit a variety of content.</li>
@@ -182,7 +182,7 @@
 </ul>
 <p>Cards do have some downsides. If too many are used, the page will become visually monotonous and <em>harder</em> to scan. To combat this, I created a few different styles of cards, representing highlighted content, allowing the use of icons, or integrating other design changes to keep the page feeling fresh. (Not all of the card styles I developed are represented on the final page—you can view the <a href="https://www.figma.com/file/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=0%3A1">Figma file</a> to see them all.)</p>
 <p>I chose to focus on content that aimed to get developers started quickly. Ideally, this page redesign would be rolled out in conjunction with a redesign of <a href="https://dev.twitch.tv">Twitch's Developer Hub</a> that immediately redirects developers to it.</p>
-<h2 id="final-concept">Final Concept</h2><p><em>Redesigned</em>
+<h5 id="final-concept">Final Concept</h5><p><em>Redesigned</em>
 <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=2%3A2&amp;scaling=scale-down-width"><img src="../../static/images/new-homepage.png" alt=""></a></p>
 <p><em>Current</em>
 <a href="https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=1%3A2&amp;scaling=scale-down-width"><img src="../../static/images/old-homepage.png" alt=""></a></p>
@@ -206,7 +206,7 @@
 <li>Creating more engaging "Get Started" tutorials</li>
 </ul>
 <p>and much more...</p>
-<h2 id="wrap-up">Wrap-Up</h2><p>Many caveats apply to this work! This was a time-constrained redesign done as someone completely external to the Twitch organization. While I'm proud of this work and think it has real benefits to offer, I'm of course not partial to Twitch's internal dialogue or decision-making process. Chesterton's fence always applies—don't tear down a fence until you know why it was built.</p>
+<h5 id="wrap-up">Wrap-Up</h5><p>Many caveats apply to this work! This was a time-constrained redesign done as someone completely external to the Twitch organization. While I'm proud of this work and think it has real benefits to offer, I'm of course not partial to Twitch's internal dialogue or decision-making process. Chesterton's fence always applies—don't tear down a fence until you know why it was built.</p>
 <p>I also wasn't able to work off any significant amount of data to drive these design choices, so many things in here are driven by my opinion and prior background knowledge on the subject. I was only able to conduct 3 user interviews, and of course, did not have access to any of Twitch's internal metrics. If I were working on actually building this, I would significantly increase the number of user interviews, do usability studies and/or A/B tests on various designs, and deeply engage with the business stakeholders to build consensus on what problems we're facing and how we want to approach them. (And of course, loop in a trained designer!)</p>
 <p>Finally, this is one of many improvements that could be made to Twitch's developer experience. Although I believe this would have a noticeable impact, there are so many other places we could investigate (like overhauling the main Developer Hub, or creating a community outreach program, or building a set of tutorials, or...). I look forward to seeing what the folks at Twitch decide to focus their efforts on in the future.</p>
 
