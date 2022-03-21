@@ -10,7 +10,7 @@ body:
 
 A product requirements doc put together to guide a non-profit organization in redesigning some operational processes.
 
-## Introduction
+##### Introduction
 
 [Super MAGFest](https://super.magfest.org), MAGFest Inc's flagship event, is a yearly festival devoted to video games, music, and video game music. Each January, 25,000 people congregate in the halls of the Gaylord National Harbor Convention Center for their favorite long weekend of the year. Between an arcade with hundreds of cabinets, around-the-clock concerts, tons of panels, and attendees in fantastic costumes, it's always an incredible time.
 
@@ -22,7 +22,7 @@ As MAGFest's attendance grows, so does the need for a simple and clear setup aro
 
 This is a product requirements document I put together to assist MAGFest in solving their current challenges around this issue. As of this writing (4/29/20), internal discussions are still underway to determine the appropriate solutions. Therefore, this document is currently limited only to setting up the problem and providing the necessary information to come to a solution. I will update it after discussions conclude.
 
-## Background
+##### Background
 
 The event currently uses ribbons for a variety of purposes:
 
@@ -50,7 +50,7 @@ Over the years, the number of MAGFest-utilized ribbons has crept up and of cours
 
 Let's figure out a better way.
 
-## Problems
+##### Problems
 
 In order to figure out a solution, first we have to clearly define the problem. Ribbons present a significant number of issues.
 
@@ -82,11 +82,11 @@ In summary:
 
 -   Ribbons are bad at their most important MAG duty, access control
 
-## Current Usage
+##### Current Usage
 
 If ribbons are so much trouble, who needs them anyway?! Turns out, quite a few people.
 
-### User Stories
+###### User Stories
 
 -   As an attendee, I want to figure out who's "important" when I need help.
 
@@ -98,9 +98,9 @@ If ribbons are so much trouble, who needs them anyway?! Turns out, quite a few p
 
 -   As someone at MAGFest, I want to have my badge look cool.
 
-### Use Cases
+##### Use Cases
 
-#### Access Control
+###### Access Control
 
 Types of ribbons: 
 
@@ -130,7 +130,7 @@ Privileges granted:
 
 -   Staff suite access
 
-#### Informational/Status
+###### Informational/Status
 
 Types of ribbons: 
 
@@ -158,7 +158,7 @@ Privileges granted:
 
 -   Potential decrease in misgendering (sigh)
 
-#### Swag
+###### Swag
 
 Types of ribbons:
 
@@ -168,7 +168,7 @@ Privileges granted:
 
 -   none
 
-## Alternatives
+##### Alternatives
 
 Different events handle these problems differently. Broadly, there are 5 approaches:
 
@@ -192,31 +192,30 @@ Different events handle these problems differently. Broadly, there are 5 approac
 
 -   Doing nothing ¯\_(ツ)_/¯ (it's probably fine, right?) (totally fine, let's do this, done!)
 
-### Examples
 
-#### Boston Marathon
+###### Boston Marathon
 
 This is how the Boston Marathon handles badges-as-nuanced-access-control (thanks Zebranky). Access is a second smaller badge that hangs in front of the identity badge. Areas where the bearer doesn't have access are punched out (with a few templates printed so they don't have to punch as many holes). It's worn on two hooks instead of one swivel hook so it doesn't flip around easily.
 
 ![](https://lh3.googleusercontent.com/nJlpKIA63jX2BljjW58vGw1odxWleABkIhBHeumpEHgJ97clgo9lsDw1e8WfqNwRmNkR3KKNyf1qvwUBmRTVu6hKqmiTyijg0sL4MgDXc62umZ8tcEtuE9rWP5Lk4drHtQ)
 
-#### BronyCon
+###### BronyCon
 
 BronyCon did hangars behind the badge to control for 3 areas to control for (green room, backstage, accessibility); they went down far enough that they were always visible behind the badge. There was also a special wristband for people who got a line privilege.  Previously, BC also used special metal pins to denote people who had "sudo access" and could request things from the venue.
 
-#### BlizzCon
+###### BlizzCon
 
 Blizzcon did a combination of a generic badge around the neck + differently colored RFID wristbands for access levels this year. (I believe Vidcon does this as well--seems to be a popular opinion for large, well-funded expos.)
 
-#### Otakon
+###### Otakon
 
 Badges are printed with your name, face, and department. Volunteers (gophers) have regular attendee badges with a bright orange hangar. Disadvantage: small possibility of being copied by others to gain access to places they shouldn't be.
 
-#### PAX
+###### PAX
 
 Badges were previously printed with name and face but that stopped because cost and time. No tiers of volunteers, no walk-on volunteers. 1k volunteers for East/West. Badge types for show staff are either Enforcer (black badge, mostly full access) or Show Management (purple badges, full access, make venue decisions, Reed Expo/PA employees). No special ribbon or token for DHs. Enforcers are fairly exclusive (and also non-volunteer, technically); staff is screened pretty hard. Medical badges available at Will Call--2 physical badges, for person and +1.
 
-### Bad Examples
+###### Bad Examples
 
 * ID cards with tiny privileges printed on them (cf furry cons). Advantage: hard to lose.
 * Cons that don't handle this at all. Very big/very small events tend to have just a few, big levels of permission.

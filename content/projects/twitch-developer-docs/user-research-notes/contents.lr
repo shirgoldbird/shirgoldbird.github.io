@@ -2,9 +2,11 @@ _model: project
 ---
 title: User Research Notes
 ---
+type: user research study
+---
 body:
 
-## Interview #1
+##### Interview #1
 
 **Name:** Jason
 **Age:** 22
@@ -57,7 +59,7 @@ _On a scale of 1-5, how visually appealing did you find this website
 
 _Any other feedback or thoughts?_ Nope.
 
-## Interview #2
+##### Interview #2
 
 **Name:** Bish
 **Age:** 24
@@ -103,7 +105,7 @@ _On a scale of 1-5, how visually appealing did you find this website
 
 _Any other feedback or thoughts?_ That first page I landed on had a lot of links but I wasn't sure where any of them would take me. It wasn't clear whether it would be documentation or examples or something else. But once I was in the actual documentation, it's way easier to navigate—maybe because I've had more experience with developer documentation pages like this and can understand how to navigate. I didn't understand how that other page was supposed to help me get here.
 
-## Interview #3
+##### Interview #3
 
 **Name:** Dare
 **Age:** 24

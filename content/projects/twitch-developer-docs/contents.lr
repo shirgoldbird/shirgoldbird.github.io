@@ -12,7 +12,7 @@ A redesign of Twitch's developer docs homepage—backed by user research!
 
 ![The top of Twitch's homepage.](/static/images/twitch-homepage.png)
 
-## Introduction
+##### Introduction
 
 Almost every gamer, from competitive to casual, has heard of Twitch. Founded in 2011, the streaming site has seen an immense rise in popularity over its lifetime, driven largely by its decision to focus on video games and e-sports.
 
@@ -20,13 +20,13 @@ Twitch's explosion, and subsequent 2014 acquisition by Amazon, has inspired a sl
 
 In order to prevent a gradual exodus, Twitch needs to create and focus on key differentiators. What could make them stand out more than a passionate community of contributors? Twitch has begun developing a rich ecosystem of tools allowing third-party developers access to modify the viewing experience. For example, Twitch Extensions allow viewers to be more than a passive part of the stream. Extensions can be used to provide information about the game, such as what equipment an on-screen character has; direct the stream via voting on things like what game the streamer plays next; or even manipulating the game being streamed itself.
 
-## Thesis
+##### Thesis
 
 I believe a world-class developer experience is Twitch's best shot at maintaining market share and creating a stellar user experience, and the first step in creating that is amazing documentation. Giving developers a great documentation experience acts as a multiplier. If you enable them to build innovative experiences quickly and easily, they will—and then, they will passionately evangelize your documentation and platform to others.
 
 Finally, the core of any streaming site is its community. Helping developers create unique and interactive experiences is a critical component of supporting the currently vibrant community on Twitch. Let's see what we can do to enable that!
 
-## Initial Review
+##### Initial Review
 
 ![](/static/images/twitch-dev-header.png)
 
@@ -53,8 +53,7 @@ Of course, there are many things Twitch did right on both of these pages. They'r
 
 We have plenty of areas we can dive into. But where should we start? To find out, let's do some user research!
 
-## User Research
-
+##### User Research
 
 The first step in understanding how to improve the state of Twitch's documentation is to understand how people view and interact with it today. To that end, I interviewed 3 prospective users.
 
@@ -75,7 +74,7 @@ After completing these 2 tasks, I asked:
 3.  On a scale of 1-5, how visually appealing did you find this website to be?
 4.  Any other feedback or thoughts?
 
-### Research Summary
+###### Research Summary
 
 ![](/static/images/sticky-notes.jpg)
 
@@ -99,17 +98,17 @@ The ratings users provided for the questions were:
 2.  **On a scale of 1-5, how helpful did you think the content you found was?** 3, 4, 4 (average = 3.6)
 3.  **On a scale of 1-5, how visually appealing did you find this website to be?** 3, 3, 5 (average = 3.6)
 
-You can also read the [raw notes](./user-research-notes) from these interviews.
+You can also read the [raw notes](user-research-notes) from these interviews.
 
 Based on these user interviews and my prior knowledge of the problem space, I chose to focus on improving the **[developer documentation homepage](https://dev.twitch.tv/docs)**. I chose this page because it's a critical entry point for casual converting website visitors into devoted Twitch developers. You only get one chance to make a first impression that wows developers with your platform and documentation!
 
-## Redesign Process
+##### Redesign Process
 
-### Design Principles
+###### Design Principles
 
 I focused my redesign on the principles of clarity, cleanness, consistency, and direction. Text should be **clearly** written, the design should be **clean** and easy to skim, links should lead to **consistent** types of pages, and the overall structure should be **directed** and focused on guiding users to the best available content.
 
-### Personas
+###### Personas
 
 I created 3 personas to refer back to during the redesign process. They capture both devs and non-devs with a range of experience and goals.
 
@@ -120,7 +119,7 @@ _a list of our personas (click to view on Figma)_
 
 Now, with these personas and principles in mind, let's get to executing!
 
-### Execution
+###### Execution
 
 My redesign was inspired by a card-based structure. This model has been a popular design choice for several years for a number of reasons which I felt aligned nicely with my goals for this work.
 
@@ -133,7 +132,7 @@ Cards do have some downsides. If too many are used, the page will become visuall
 
 I chose to focus on content that aimed to get developers started quickly. Ideally, this page redesign would be rolled out in conjunction with a redesign of [Twitch's Developer Hub](https://dev.twitch.tv) that immediately redirects developers to it.
 
-## Final Concept
+##### Final Concept
 
 _Redesigned_
 [![](/static/images/new-homepage.png)](https://www.figma.com/proto/lykRu0KIP6wsdh07DYS648/Twitch-Homepage-Breakdown?node-id=2%3A2&scaling=scale-down-width)
@@ -163,7 +162,7 @@ There were several other areas I wanted to tackle but ultimately decided were ou
 
 and much more...
 
-## Wrap-Up
+##### Wrap-Up
 
 Many caveats apply to this work! This was a time-constrained redesign done as someone completely external to the Twitch organization. While I'm proud of this work and think it has real benefits to offer, I'm of course not partial to Twitch's internal dialogue or decision-making process. Chesterton's fence always applies—don't tear down a fence until you know why it was built.
 
