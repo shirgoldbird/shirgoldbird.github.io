@@ -3,13 +3,15 @@
 {% block title %}{{ this.title }} -{% endblock %}
 {% block body %}
   <h1>{{ this.title }}</h1>
-  {{ this.body }}
+  <div class="project">
+    {{ this.body }}
+  </div>
 
-  <h2>Case Studies</h2>
+  <h5>Case Studies</h5>
   {% for child in this.pagination.items %}
     {{ render_child(child, "project", from_index=true) }}
   {% endfor %}
 
-  <h2>Other Work</h2>
+  <h5>Other Work</h5>
   {{ this.other_work }}
 {% endblock %}

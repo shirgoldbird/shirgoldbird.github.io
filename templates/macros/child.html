@@ -1,7 +1,7 @@
 {% macro render_child(post, type, from_index=false) %}
   {% if from_index %}
   <div class="{{ type }} index">
-    <h3><a href="{{ post|url }}">{{ post.title }}</a></h3>
+    <h6>{{ post.title }} <a href="{{ post|url }}">(link)</a></h6>
   {% if type == "blog-post" %}
     <p class="meta">
       {% if post.pub_date %} published {{ post.pub_date }} {% endif %}
