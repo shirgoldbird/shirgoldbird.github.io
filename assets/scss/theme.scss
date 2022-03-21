@@ -113,4 +113,18 @@ img {
     width: 100%;
 }
 
+@media only screen and (max-width: 878px) {
+  body {
+      flex-direction: column;
+  }
+
+  header {
+      padding: 0.5em 0;
+
+      nav li {
+          display: inline;
+          padding: 0 0.5em;
+      }
+  }
+}
 
