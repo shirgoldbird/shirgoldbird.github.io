@@ -122,6 +122,12 @@ img {
     width: 100%;
 }
 
+.bio {
+    width: 25%;
+    float: left;
+    padding-right: 1em;
+}
+
 @media only screen {
   body {
       flex-direction: column;
@@ -129,6 +135,10 @@ img {
 
   .page {
     min-width: unset;
+  }
+
+  .bio {
+    width: 50%;
   }
 
   header {
