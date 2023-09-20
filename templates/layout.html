@@ -12,31 +12,31 @@
   <script src="https://kit.fontawesome.com/07af19e0f4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul class="nav navbar-nav">
-        <li{% if this._path == '/' %} class="active"{% endif
-          %}><a href="{{ '/'|url }}">Welcome</a></li>
-        {% for href, title in [
-          ['/career', 'Career'],
-          ['/projects', 'Projects'],
-          ['/pronouns', 'Pronouns'],
-          ['/contact', 'Contact']
-        ] %}
-          <li{% if this.is_child_of(href) %} class="active"{% endif
-            %}><a href="{{ href|url }}">{{ title }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
-  </header>
   <div class="page">
-    {% block body %}{% endblock %}
+    <header>
+      <nav>
+        <ul class="nav navbar-nav">
+          <li{% if this._path == '/' %} class="active"{% endif
+            %}><a href="{{ '/'|url }}">Welcome</a></li>
+          {% for href, title in [
+            ['/career', 'Career'],
+            ['/projects', 'Projects'],
+            ['/pronouns', 'Pronouns'],
+            ['/contact', 'Contact']
+          ] %}
+            <li{% if this.is_child_of(href) %} class="active"{% endif
+              %}><a href="{{ href|url }}">{{ title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </header>
+    <div class="content">
+      {% block body %}{% endblock %}
+    </div>
+    {% if this.resume_iframe %}
+    <div class="resume">
+      {{ this.resume_iframe }}
+    </div>
+    {% endif %}
   </div>
-  {% if this.resume_iframe %}
-  <div class="resume">
-    {{ this.resume_iframe }}
-  </div>
-  {% endif %}
-  <footer>
-  </footer>
 </body>

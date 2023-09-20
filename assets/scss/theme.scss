@@ -19,6 +19,10 @@ $header-size: 2.5em;
     margin: 0;
 }
 
+html {
+    min-height: 100vh;
+}
+
 body {
     //font-family: 'Patua One', sans-serif;
     font-family: 'Fredoka', sans-serif;
@@ -26,16 +30,22 @@ body {
     background-color: $base-color;
     font-size: $base-size;
     color: $font-color;
-    max-width: 1000px !important;
-    width: 90%;
-    margin: 0 auto;
-    padding: 1em 0;
     display: flex;
+    min-height: 100vh;
+}
+
+.page {
+    min-width: 1000px;
+    max-width: 1000px;
+    padding: 1em;
+    margin: 0 auto;
 }
 
 header {
     padding: 2em;
     line-height: 1.5;
+    float: left;
+    min-height: 100vh;
 
     nav ul {
         list-style: none;
@@ -118,8 +128,13 @@ img {
       flex-direction: column;
   }
 
+  .page {
+    min-width: unset;
+  }
+
   header {
       padding: 0.5em 0;
+      min-height: unset;
 
       nav li {
           display: inline;
