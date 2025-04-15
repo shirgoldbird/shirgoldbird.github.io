@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="description" content="I'm a senior product manager based in NYC. I focus on building delightful developer experiences with teams of all sizes.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="../../css/theme.css?h=60a71fe0">
+  <link rel="stylesheet" href="../../css/theme.css?h=692eccab">
   <title>MAGFest Ribbon Redesign - Shir Goldberg</title>
   <link rel="apple-touch-icon" sizes="180x180" href="../../static/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../../static/favicon/favicon-32x32.png">
@@ -12,6 +12,17 @@
   <script src="https://kit.fontawesome.com/07af19e0f4.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  <!-- Geometric Background -->
+  <div class="geometric-bg">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="line line-1"></div>
+    <div class="line line-2"></div>
+  </div>
+  
   <header>
     <nav>
       <ul class="nav navbar-nav">
@@ -125,12 +136,12 @@
     
 
     <p>A product requirements doc put together to guide a non-profit organization in redesigning some operational processes.</p>
-<h5 id="introduction">Introduction</h5><p><a href="https://super.magfest.org">Super MAGFest</a>, MAGFest Inc's flagship event, is a yearly festival devoted to video games, music, and video game music. Each January, 25,000 people congregate in the halls of the Gaylord National Harbor Convention Center for their favorite long weekend of the year. Between an arcade with hundreds of cabinets, around-the-clock concerts, tons of panels, and attendees in fantastic costumes, it's always an incredible time.</p>
+<h2 id="introduction">Introduction</h2><p><a href="https://super.magfest.org">Super MAGFest</a>, MAGFest Inc's flagship event, is a yearly festival devoted to video games, music, and video game music. Each January, 25,000 people congregate in the halls of the Gaylord National Harbor Convention Center for their favorite long weekend of the year. Between an arcade with hundreds of cabinets, around-the-clock concerts, tons of panels, and attendees in fantastic costumes, it's always an incredible time.</p>
 <p>I've been working with MAGFest since 2014, most of that time spent running their Registration department. A casual observer might guess that Registration's job is simply to hand out badges to event attendees but there's a huge amount of complexity going into that "simple" process.</p>
 <p>One of the biggest and most complex areas is around festival badges. All events have similar needs around permissions and access controls. It's important to ensure that only people who are supposed to be at your event are permitted into it, and that restricted areas (such as backstage or back hallways) are limited to a well-defined list of approved parties.</p>
 <p>As MAGFest's attendance grows, so does the need for a simple and clear setup around badges and access-control items—most importantly, badge ribbons. These are small strips of fabric with an adhesive side, meant to adhere to an external badge.</p>
 <p>This is a product requirements document I put together to assist MAGFest in solving their current challenges around this issue. As of this writing (4/29/20), internal discussions are still underway to determine the appropriate solutions. Therefore, this document is currently limited only to setting up the problem and providing the necessary information to come to a solution. I will update it after discussions conclude.</p>
-<h5 id="background">Background</h5><p>The event currently uses ribbons for a variety of purposes:</p>
+<h2 id="background">Background</h2><p>The event currently uses ribbons for a variety of purposes:</p>
 <ul>
 <li><p>access control ("I can go into this area")</p>
 </li>
@@ -155,7 +166,7 @@
 </ul>
 <p>Over the years, the number of MAGFest-utilized ribbons has crept up and of course, lots of people wear extra ribbons on their badge that aren't from MAG at all. This has decreased ribbon effectiveness significantly, and ribbons weren't necessarily that good at all of these jobs to begin with. Ribbons weren't built to serve this many purposes—or really, any purpose beyond swag.</p>
 <p>Let's figure out a better way.</p>
-<h5 id="problems">Problems</h5><p>In order to figure out a solution, first we have to clearly define the problem. Ribbons present a significant number of issues.</p>
+<h2 id="problems">Problems</h2><p>In order to figure out a solution, first we have to clearly define the problem. Ribbons present a significant number of issues.</p>
 <ul>
 <li><p>It's hard to remember what each type of ribbon means.</p>
 </li>
@@ -187,8 +198,8 @@
 <li><p>Ribbons are bad at their most important MAG duty, access control</p>
 </li>
 </ul>
-<h5 id="current-usage">Current Usage</h5><p>If ribbons are so much trouble, who needs them anyway?! Turns out, quite a few people.</p>
-<h6 id="user-stories">User Stories</h6><ul>
+<h2 id="current-usage">Current Usage</h2><p>If ribbons are so much trouble, who needs them anyway?! Turns out, quite a few people.</p>
+<h3 id="user-stories">User Stories</h3><ul>
 <li><p>As an attendee, I want to figure out who's "important" when I need help.</p>
 </li>
 <li><p>As a staff suite staffer, I want to figure out if this person is eligible for food.</p>
@@ -200,7 +211,7 @@
 <li><p>As someone at MAGFest, I want to have my badge look cool.</p>
 </li>
 </ul>
-<h5 id="use-cases">Use Cases</h5><h6 id="access-control">Access Control</h6><p>Types of ribbons: </p>
+<h2 id="use-cases">Use Cases</h2><h3 id="access-control">Access Control</h3><p>Types of ribbons: </p>
 <ul>
 <li><p>Shopkeep</p>
 </li>
@@ -230,7 +241,7 @@
 <li><p>Staff suite access</p>
 </li>
 </ul>
-<h6 id="informational/status">Informational/Status</h6><p>Types of ribbons: </p>
+<h3 id="informational/status">Informational/Status</h3><p>Types of ribbons: </p>
 <ul>
 <li><p>Department Head</p>
 </li>
@@ -258,7 +269,7 @@
 <li><p>Potential decrease in misgendering (sigh)</p>
 </li>
 </ul>
-<h6 id="swag">Swag</h6><p>Types of ribbons:</p>
+<h3 id="swag">Swag</h3><p>Types of ribbons:</p>
 <ul>
 <li>Eye Heart MAG</li>
 </ul>
@@ -266,7 +277,7 @@
 <ul>
 <li>none</li>
 </ul>
-<h5 id="alternatives">Alternatives</h5><p>Different events handle these problems differently. Broadly, there are 5 approaches:</p>
+<h2 id="alternatives">Alternatives</h2><p>Different events handle these problems differently. Broadly, there are 5 approaches:</p>
 <ul>
 <li><p>Ribbons—what MAG currently does</p>
 </li>
@@ -289,19 +300,19 @@
 <li><p>Doing nothing ¯_(ツ)_/¯ (it's probably fine, right?) (totally fine, let's do this, done!)</p>
 </li>
 </ul>
-<h6 id="boston-marathon">Boston Marathon</h6><p>This is how the Boston Marathon handles badges-as-nuanced-access-control (thanks Zebranky). Access is a second smaller badge that hangs in front of the identity badge. Areas where the bearer doesn't have access are punched out (with a few templates printed so they don't have to punch as many holes). It's worn on two hooks instead of one swivel hook so it doesn't flip around easily.</p>
+<h3 id="boston-marathon">Boston Marathon</h3><p>This is how the Boston Marathon handles badges-as-nuanced-access-control (thanks Zebranky). Access is a second smaller badge that hangs in front of the identity badge. Areas where the bearer doesn't have access are punched out (with a few templates printed so they don't have to punch as many holes). It's worn on two hooks instead of one swivel hook so it doesn't flip around easily.</p>
 <p><img src="https://lh3.googleusercontent.com/nJlpKIA63jX2BljjW58vGw1odxWleABkIhBHeumpEHgJ97clgo9lsDw1e8WfqNwRmNkR3KKNyf1qvwUBmRTVu6hKqmiTyijg0sL4MgDXc62umZ8tcEtuE9rWP5Lk4drHtQ" alt=""></p>
-<h6 id="bronycon">BronyCon</h6><p>BronyCon did hangars behind the badge to control for 3 areas to control for (green room, backstage, accessibility); they went down far enough that they were always visible behind the badge. There was also a special wristband for people who got a line privilege.  Previously, BC also used special metal pins to denote people who had "sudo access" and could request things from the venue.</p>
-<h6 id="blizzcon">BlizzCon</h6><p>Blizzcon did a combination of a generic badge around the neck + differently colored RFID wristbands for access levels this year. (I believe Vidcon does this as well--seems to be a popular opinion for large, well-funded expos.)</p>
-<h6 id="otakon">Otakon</h6><p>Badges are printed with your name, face, and department. Volunteers (gophers) have regular attendee badges with a bright orange hangar. Disadvantage: small possibility of being copied by others to gain access to places they shouldn't be.</p>
-<h6 id="pax">PAX</h6><p>Badges were previously printed with name and face but that stopped because cost and time. No tiers of volunteers, no walk-on volunteers. 1k volunteers for East/West. Badge types for show staff are either Enforcer (black badge, mostly full access) or Show Management (purple badges, full access, make venue decisions, Reed Expo/PA employees). No special ribbon or token for DHs. Enforcers are fairly exclusive (and also non-volunteer, technically); staff is screened pretty hard. Medical badges available at Will Call--2 physical badges, for person and +1.</p>
-<h6 id="bad-examples">Bad Examples</h6><ul>
+<h3 id="bronycon">BronyCon</h3><p>BronyCon did hangars behind the badge to control for 3 areas to control for (green room, backstage, accessibility); they went down far enough that they were always visible behind the badge. There was also a special wristband for people who got a line privilege.  Previously, BC also used special metal pins to denote people who had "sudo access" and could request things from the venue.</p>
+<h3 id="blizzcon">BlizzCon</h3><p>Blizzcon did a combination of a generic badge around the neck + differently colored RFID wristbands for access levels this year. (I believe Vidcon does this as well--seems to be a popular opinion for large, well-funded expos.)</p>
+<h3 id="otakon">Otakon</h3><p>Badges are printed with your name, face, and department. Volunteers (gophers) have regular attendee badges with a bright orange hangar. Disadvantage: small possibility of being copied by others to gain access to places they shouldn't be.</p>
+<h3 id="pax">PAX</h3><p>Badges were previously printed with name and face but that stopped because cost and time. No tiers of volunteers, no walk-on volunteers. 1k volunteers for East/West. Badge types for show staff are either Enforcer (black badge, mostly full access) or Show Management (purple badges, full access, make venue decisions, Reed Expo/PA employees). No special ribbon or token for DHs. Enforcers are fairly exclusive (and also non-volunteer, technically); staff is screened pretty hard. Medical badges available at Will Call--2 physical badges, for person and +1.</p>
+<h3 id="bad-examples">Bad Examples</h3><ul>
 <li>ID cards with tiny privileges printed on them (cf furry cons). Advantage: hard to lose.</li>
 <li>Cons that don't handle this at all. Very big/very small events tend to have just a few, big levels of permission.</li>
 </ul>
 
 
-    <a href="#title">Return to top ↵</a>
+    <a href="#title" class="back-to-top">Return to top ↵</a>
   </div>
   
 
@@ -309,4 +320,20 @@
     </div>
     
   </div>
+  
+  <footer>
+    <div class="footer-shape footer-shape-1"></div>
+    <div class="footer-shape footer-shape-2"></div>
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2025 Shir Goldberg</p>
+        <div class="footer-links">
+          <a href="https://github.com/shirgoldbird">GitHub</a>
+          <a href="https://www.linkedin.com/in/shir-goldberg/">LinkedIn</a>
+          <a href="mailto:contact@shirgoldberg.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
+</html>
