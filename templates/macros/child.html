@@ -23,10 +23,10 @@
     {% set images = post.attachments.images %}
 
     {% if images %}
-    <div>
+    <div class="project-images">
       {% for image in images %}
-        <div>
-          <img src="{{ image.thumbnail(400, 400)|url }}" alt="Photo of {{ post.title }}">
+        <div class="project-image">
+          <img src="{{ image.thumbnail(800, 800)|url }}" alt="Photo of {{ post.title }}">
         </div>
        {% endfor %}
     </div>
@@ -49,7 +49,7 @@
 
     {{ post.body }}
 
-    <a href="#title">Return to top ↵</a>
+    <a href="#title" class="back-to-top">Return to top ↵</a>
   </div>
   {% endif %}
 {% endmacro %}

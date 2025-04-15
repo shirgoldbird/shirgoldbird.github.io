@@ -7,11 +7,11 @@
     {{ this.body }}
   </div>
 
-  <h5>Case Studies</h5>
+  <h2>Case Studies</h2>
   {% for child in this.pagination.items %}
     {{ render_child(child, "project", from_index=true) }}
   {% endfor %}
 
-  <h5>Other Work</h5>
+  <h2>Other Work</h2>
   {{ this.other_work }}
 {% endblock %}

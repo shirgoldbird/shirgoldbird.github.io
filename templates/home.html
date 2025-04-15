@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}{% if this.title %}{{ this.title }} -{% endif %}{% endblock %}
+{% block body %}
+  <div class="home-hero">
+    <div class="hero-text">
+      <h1>{{ this.title }}</h1>
+      {{ this.body }}
+      
+      {% if this.current_role %}
+      <div class="current-role">
+        {{ this.current_role }}
+      </div>
+      {% endif %}
+    </div>
+    
+    <div class="bio-container">
+      <img class="bio" src="{{ '/static/images/bio_pic.png'|url }}" alt="Shir Goldberg">
+    </div>
+  </div>
+{% endblock %}

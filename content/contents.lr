@@ -1,13 +1,19 @@
-title:  Shir here.
+title: Shir here.
+---
+_model: page
+---
+_template: home.html
 ---
 body:
 
-<img class="bio" src="/static/images/bio_pic.png"></img>
+<div class="role">I'm a <span class="highlight">senior product manager</span> based in <span class="highlight">NYC</span>.</div>
 
-I'm a **senior product manager** based in **NYC**. I'm on a mission to create **exceptional developer experiences** that delight technical and non-technical users alike. 🚀
+I'm on a mission to create <span class="accent">exceptional developer experiences</span> that delight technical and non-technical users alike. 🚀
 
-I've worked everywhere from **Microsoft** to **YC startups**. No matter the company, I bring a leadership mindset, collaborative approach, and multidisciplinary background that creates winning products and strong teams.
-
-Right now, I'm leading product at [Rutter](https://www.rutter.com/). Want to learn more? [Reach out](/contact).
+I've worked everywhere from <span class="highlight">Microsoft</span> to <span class="highlight">YC startups</span>. No matter the company, I bring a leadership mindset, collaborative approach, and multidisciplinary background that creates winning products and strong teams.
 
 <p class="pronunciation">it's pronounced "sheer"</p>
+---
+current_role:
+
+Right now, I'm leading product at <a href="https://www.rutter.com/">Rutter</a>. Want to learn more? <a href="/contact">Reach out</a>.
