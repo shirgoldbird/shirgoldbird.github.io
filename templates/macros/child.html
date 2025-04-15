@@ -1,17 +1,19 @@
 {% macro render_child(post, type, from_index=false) %}
   {% if from_index %}
-  <div class="{{ type }} index">
-    <h6>{{ post.title }} <a href="{{ post|url }}">(link)</a></h6>
-  {% if type == "blog-post" %}
-    <p class="meta">
-      {% if post.pub_date %} published {{ post.pub_date }} {% endif %}
-    </p>
-  {% endif %}
-    <p>{{ post.body|excerpt }}</p>
-  {% if type == "blog-post" %}
-    <i><a href="{{ post|url }}">read more</a></i>
-  {% endif %}
-  </div>
+  <a href="{{ post|url }}" class="{{ type }}">
+    <div class="{{ type }} index card">
+      <h3>{{ post.title }}</h3>
+    {% if type == "blog-post" %}
+      <p class="meta">
+        {% if post.pub_date %} published {{ post.pub_date }} {% endif %}
+      </p>
+    {% endif %}
+      <p>{{ post.body|excerpt }}</p>
+    {% if type == "blog-post" %}
+      <i><a href="{{ post|url }}">read more</a></i>
+    {% endif %}
+    </div>
+  </a>
   {% else %}
   <div class="{{ type }}">
     <h1 id="title">{{ post.title }}</h1>
