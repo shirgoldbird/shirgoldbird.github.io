@@ -129,6 +129,7 @@ body {
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    flex: 1;
 }
 
 .content {
@@ -486,6 +487,7 @@ footer {
     margin-top: 5rem;
     position: relative;
     overflow: hidden;
+    margin-top: auto;
     
     .container {
         max-width: 1000px;
