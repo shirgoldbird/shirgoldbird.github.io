@@ -8,21 +8,21 @@ I'm just as passionate about what I do at work as I am about what I do outside o
 
 ## Tech Projects
 
-### Google Forms Storefront <a href="https://github.com/shirgoldbird/google-to-paypal-invoicing" target="_blank">(link)</a>
+### <a href="https://github.com/shirgoldbird/personal_budget" target="_blank">✨ Personal Budget</a>
+
+A personal budgeting tool that connects to your bank accounts through the Teller API, gives you an easy-to-manage categorization UI, and then exports data to Google Sheets. Vibe coded with Claude (and actually works!).
+
+### <a href="https://github.com/Rutter/bank-feeds-demo" target="_blank">✨ Rutter Bank Feeds Demo</a>
+
+An interactive demo that guides users through the process of getting started with Rutter's Bank Feeds product. Used as an extremely customer success tool for a product I manage. Vibe coded with Claude (and actually works!).
+
+### <a href="https://github.com/shirgoldbird/google-to-paypal-invoicing" target="_blank">Google Forms Storefront </a>
 
 A free, easy-to-use online storefront built on Google Forms, Google Apps Script, and the PayPal API. Built for independent artists making the transition to online sales for the first time, and used for processing $5k+ in sales.
-
-### Decidim Seattle <a href="https://github.com/King-County-Equity-Now/decidim-seattle" target="_blank">(link)</a>
-
-A proof-of-concept site for managing a participatory budgeting process for the City of Seattle. Built with the Decidim framework for the non-profit organization King County Equity Now.
 
 ---
 other_work:
 
-### The Nijiiro Foundation
+### Glitch Kibbitz
 
-I co-founded a non-profit dedicated to promoting Japanese art and culture. I handle many aspects of the non-profit's operation, including hiring volunteers, budgeting, and fundraising. I also manage our flagship Seattle area event, <a href="https://nwidolfest.com" target="_blank">NW IdolFest</a>.
-
-### Lunar Solis Foundation
-
-I manage the operations of a multi-million dollar foundation, including building out a grant program to support inclusive events. I've served on the Lunar Solis board since 2017, and stepped up as vice president in 2021.
+I play upright bass in <a href="https://glitchkibbitz.com/" target="_blank">Glitch Kibbitz</a>, a one-of-a-kind band that performs klezmer-style covers of classic video game tunes. I also designed and developed our website.
