@@ -1,6 +1,10 @@
+_model: blog-post
+---
 title: Gender Exploration Resources
 ---
 pub_date: 2020-09-14
+---
+draft: true
 ---
 body:
 
