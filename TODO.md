@@ -21,7 +21,7 @@
 
 ## Quick Fixes
 - [x] Auto-update year in footer (currently hardcoded)
-- [ ] Remove overly large top padding on homepage
+- [x] Remove overly large top padding on homepage
 
 ## Content
 - [ ] Rewrite copy to highlight problems/solutions
