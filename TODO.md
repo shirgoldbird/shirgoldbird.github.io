@@ -20,7 +20,7 @@
 - [ ] Dark mode
 
 ## Quick Fixes
-- [ ] Auto-update year in footer (currently hardcoded)
+- [x] Auto-update year in footer (currently hardcoded)
 - [ ] Remove overly large top padding on homepage
 
 ## Content
