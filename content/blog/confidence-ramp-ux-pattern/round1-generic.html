@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Action Confidence Ramp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .bulk-action-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #cbd5e1;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #3b82f6;
+        }
+
+        .toggle-switch .slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active .slider {
+            transform: translateX(30px);
+        }
+
+        .confidence-settings {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #eff6ff;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .confidence-settings.active {
+            display: block;
+        }
+
+        .sample-size-input {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .sample-size-input input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .progress-bar {
+            background: #e5e7eb;
+            border-radius: 8px;
+            height: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            transition: width 0.3s ease;
+        }
+
+        .candidate-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .candidate-item.approved {
+            background: #f0fdf4;
+            border-color: #22c55e;
+        }
+
+        .candidate-item.bulk-processed {
+            background: #f8fafc;
+            border-color: #64748b;
+            opacity: 0.7;
+        }
+
+        .candidate-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .candidate-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .candidate-details h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .candidate-details p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .btn-approve {
+            background: #22c55e;
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background: #16a34a;
+        }
+
+        .btn-skip {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .btn-skip:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-bulk {
+            background: #3b82f6;
+            color: white;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-bulk:hover {
+            background: #2563eb;
+        }
+
+        .btn-bulk:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .status-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .status-message.success {
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            display: block;
+        }
+
+        .status-message.info {
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            display: block;
+        }
+
+        .confidence-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+
+        .confidence-score {
+            font-weight: 600;
+            color: #059669;
+        }
+
+        .bulk-summary {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bulk Action Confidence Ramp</h1>
+            <p>A new UX pattern for safely executing bulk actions by building confidence through selective sampling</p>
+        </div>
+
+        <div class="bulk-action-card">
+            <h2>Send Auto-Reject Emails</h2>
+            <p>You're about to email 237 candidates who applied for the Senior Developer position</p>
+
+            <div class="mode-toggle">
+                <div class="toggle-switch" id="confidenceToggle">
+                    <div class="slider"></div>
+                </div>
+                <label>
+                    <strong>Confidence Ramp Mode</strong>
+                    <span style="color: #6b7280; font-size: 0.875rem;">Review a sample before bulk processing</span>
+                </label>
+            </div>
+
+            <div class="confidence-settings" id="confidenceSettings">
+                <div class="sample-size-input">
+                    <label>Review sample size:</label>
+                    <input type="number" id="sampleSize" value="5" min="1" max="20">
+                    <span style="color: #6b7280; font-size: 0.875rem;">candidates (recommended: 3-8)</span>
+                </div>
+                <p style="color: #6b7280; font-size: 0.875rem;">
+                    We'll show you a representative sample to review manually, then offer bulk processing for the rest.
+                </p>
+            </div>
+
+            <div class="status-message info" id="statusMessage">
+                <strong>Confidence Ramp Active:</strong> Review your sample of 5 candidates, then decide whether to proceed with bulk processing.
+            </div>
+
+            <div class="confidence-indicator" id="confidenceIndicator" style="display: none;">
+                <span>Confidence Score: <span class="confidence-score" id="confidenceScore">0/5</span></span>
+                <span style="color: #6b7280;">approved in sample</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+
+            <div id="candidateList">
+                <!-- Candidates will be populated here -->
+            </div>
+
+            <button class="btn btn-bulk" id="bulkProcessBtn" disabled>
+                Process Remaining 232 Candidates
+            </button>
+
+            <div class="bulk-summary" id="bulkSummary" style="display: none;">
+                <h3>Bulk Processing Complete</h3>
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalProcessed">0</div>
+                        <div class="stat-label">Total Processed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="manuallyApproved">0</div>
+                        <div class="stat-label">Manually Approved</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="bulkProcessed">0</div>
+                        <div class="stat-label">Bulk Processed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample candidate data
+        const candidates = [
+            { name: "Sarah Chen", email: "sarah.chen@email.com", applied: "2 days ago", role: "Senior Developer" },
+            { name: "Michael Rodriguez", email: "m.rodriguez@email.com", applied: "3 days ago", role: "Senior Developer" },
+            { name: "Emma Thompson", email: "emma.t@email.com", applied: "1 week ago", role: "Senior Developer" },
+            { name: "David Kim", email: "david.kim@email.com", applied: "5 days ago", role: "Senior Developer" },
+            { name: "Jessica Walsh", email: "j.walsh@email.com", applied: "4 days ago", role: "Senior Developer" },
+            { name: "Alex Johnson", email: "alex.j@email.com", applied: "6 days ago", role: "Senior Developer" },
+            { name: "Maria Garcia", email: "m.garcia@email.com", applied: "1 week ago", role: "Senior Developer" },
+            { name: "Tom Wilson", email: "tom.w@email.com", applied: "3 days ago", role: "Senior Developer" }
+        ];
+
+        let currentMode = 'confidence';
+        let approvedCount = 0;
+        let sampleSize = 5;
+        let currentCandidateIndex = 0;
+        let bulkProcessed = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            renderCandidates();
+            updateUI();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('confidenceToggle').addEventListener('click', toggleConfidenceMode);
+            document.getElementById('sampleSize').addEventListener('input', updateSampleSize);
+            document.getElementById('bulkProcessBtn').addEventListener('click', processBulk);
+        }
+
+        function toggleConfidenceMode() {
+            const toggle = document.getElementById('confidenceToggle');
+            const settings = document.getElementById('confidenceSettings');
+            
+            if (currentMode === 'confidence') {
+                currentMode = 'direct';
+                toggle.classList.remove('active');
+                settings.classList.remove('active');
+            } else {
+                currentMode = 'confidence';
+                toggle.classList.add('active');
+                settings.classList.add('active');
+            }
+            
+            resetDemo();
+            updateUI();
+        }
+
+        function updateSampleSize() {
+            sampleSize = parseInt(document.getElementById('sampleSize').value);
+            resetDemo();
+            updateUI();
+        }
+
+        function renderCandidates() {
+            const candidateList = document.getElementById('candidateList');
+            candidateList.innerHTML = '';
+            
+            const candidatesToShow = currentMode === 'confidence' ? 
+                candidates.slice(0, Math.min(sampleSize, candidates.length)) : 
+                candidates;
+            
+            candidatesToShow.forEach((candidate, index) => {
+                const candidateElement = document.createElement('div');
+                candidateElement.className = 'candidate-item';
+                candidateElement.id = `candidate-${index}`;
+                
+                candidateElement.innerHTML = `
+                    <div class="candidate-info">
+                        <div class="candidate-avatar">${candidate.name.split(' ').map(n => n[0]).join('')}</div>
+                        <div class="candidate-details">
+                            <h4>${candidate.name}</h4>
+                            <p>${candidate.email} • Applied ${candidate.applied}</p>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-approve" onclick="approveCandidate(${index})">
+                            Send Rejection
+                        </button>
+                        <button class="btn btn-skip" onclick="skipCandidate(${index})">
+                            Skip
+                        </button>
+                    </div>
+                `;
+                
+                candidateList.appendChild(candidateElement);
+            });
+        }
+
+        function approveCandidate(index) {
+            const candidateElement = document.getElementById(`candidate-${index}`);
+            candidateElement.classList.add('approved');
+            candidateElement.querySelector('.action-buttons').innerHTML = '<span style="color: #22c55e; font-weight: 500;">✓ Approved</span>';
+            
+            approvedCount++;
+            updateUI();
+        }
+
+        function skipCandidate(index) {
+            const candidateElement = document.getElementById(`candidate-${index}`);
+            candidateElement.style.opacity = '0.5';
+            candidateElement.querySelector('.action-buttons').innerHTML = '<span style="color: #6b7280; font-weight: 500;">Skipped</span>';
+            
+            updateUI();
+        }
+
+        function processBulk() {
+            const remainingCount = 237 - sampleSize;
+            
+            // Simulate bulk processing
+            const candidateList = document.getElementById('candidateList');
+            
+            // Add visual representation of bulk processed items
+            for (let i = 0; i < Math.min(8, remainingCount); i++) {
+                const bulkItem = document.createElement('div');
+                bulkItem.className = 'candidate-item bulk-processed';
+                bulkItem.innerHTML = `
+                    <div class="candidate-info">
+                        <div class="candidate-avatar">?</div>
+                        <div class="candidate-details">
+                            <h4>Bulk Processed Candidate ${i + 1}</h4>
+                            <p>Processed automatically based on sample approval pattern</p>
+                        </div>
+                    </div>
+                    <div style="color: #6b7280; font-weight: 500;">✓ Auto-processed</div>
+                `;
+                candidateList.appendChild(bulkItem);
+            }
+            
+            if (remainingCount > 8) {
+                const moreItem = document.createElement('div');
+                moreItem.className = 'candidate-item bulk-processed';
+                moreItem.innerHTML = `
+                    <div class="candidate-info">
+                        <div class="candidate-details">
+                            <h4>+ ${remainingCount - 8} more candidates</h4>
+                            <p>All processed successfully using the same pattern</p>
+                        </div>
+                    </div>
+                    <div style="color: #6b7280; font-weight: 500;">✓ Auto-processed</div>
+                `;
+                candidateList.appendChild(moreItem);
+            }
+            
+            bulkProcessed = true;
+            updateUI();
+            showBulkSummary();
+        }
+
+        function showBulkSummary() {
+            const summary = document.getElementById('bulkSummary');
+            summary.style.display = 'block';
+            
+            document.getElementById('totalProcessed').textContent = 237;
+            document.getElementById('manuallyApproved').textContent = approvedCount;
+            document.getElementById('bulkProcessed').textContent = 237 - approvedCount;
+        }
+
+        function updateUI() {
+            // Update progress bar
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = currentMode === 'confidence' ? 
+                (approvedCount / sampleSize) * 100 : 
+                (approvedCount / candidates.length) * 100;
+            progressFill.style.width = `${progressPercent}%`;
+            
+            // Update confidence indicator
+            const confidenceIndicator = document.getElementById('confidenceIndicator');
+            const confidenceScore = document.getElementById('confidenceScore');
+            
+            if (currentMode === 'confidence') {
+                confidenceIndicator.style.display = 'flex';
+                confidenceScore.textContent = `${approvedCount}/${sampleSize}`;
+            } else {
+                confidenceIndicator.style.display = 'none';
+            }
+            
+            // Update bulk process button
+            const bulkBtn = document.getElementById('bulkProcessBtn');
+            if (currentMode === 'confidence') {
+                bulkBtn.style.display = 'block';
+                bulkBtn.disabled = approvedCount === 0;
+                bulkBtn.textContent = `Process Remaining ${237 - sampleSize} Candidates`;
+                
+                if (bulkProcessed) {
+                    bulkBtn.style.display = 'none';
+                }
+            } else {
+                bulkBtn.style.display = 'none';
+            }
+            
+            // Update status message
+            const statusMessage = document.getElementById('statusMessage');
+            if (currentMode === 'confidence' && !bulkProcessed) {
+                statusMessage.className = 'status-message info';
+                statusMessage.style.display = 'block';
+                statusMessage.innerHTML = `<strong>Confidence Ramp Active:</strong> Review your sample of ${sampleSize} candidates, then decide whether to proceed with bulk processing.`;
+            } else if (bulkProcessed) {
+                statusMessage.className = 'status-message success';
+                statusMessage.style.display = 'block';
+                statusMessage.innerHTML = `<strong>Bulk Processing Complete:</strong> Successfully processed all 237 candidates with ${approvedCount} manual approvals and ${237 - approvedCount} auto-processed.`;
+            } else {
+                statusMessage.style.display = 'none';
+            }
+        }
+
+        function resetDemo() {
+            approvedCount = 0;
+            currentCandidateIndex = 0;
+            bulkProcessed = false;
+            document.getElementById('bulkSummary').style.display = 'none';
+            renderCandidates();
+        }
+    </script>
+</body>
+</html>

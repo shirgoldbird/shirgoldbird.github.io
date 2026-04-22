@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidence Ramp Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: #cbd5e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle-switch.active {
+            background: #6b46c1;
+        }
+
+        .toggle-switch .slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-switch.active .slider {
+            transform: translateX(20px);
+        }
+
+        .progress-fill {
+            transition: width 0.3s ease;
+        }
+
+        .candidate-item {
+            transition: all 0.2s;
+        }
+
+        .candidate-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .candidate-item.approved {
+            background-color: #f0fff4;
+            border-left: 3px solid #22c55e;
+        }
+
+        .candidate-item.skipped {
+            background-color: #fffbf0;
+            border-left: 3px solid #f59e0b;
+        }
+
+        .candidate-item.bulk-processed {
+            background-color: #f8fafc;
+            border-left: 3px solid #3b82f6;
+            opacity: 0.8;
+        }
+
+        .reset-btn {
+            background: none;
+            border: 1px solid #dadce4;
+            color: #6e6d78;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .reset-btn:hover {
+            background: #f6f7f9;
+            color: #45444b;
+        }
+
+        .email-preview {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .email-preview.open {
+            max-height: 300px;
+            padding: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex flex-col bg-white border border-[#dadce4] rounded-xl text-[13px] leading-[19.5px] text-[#45444b] shadow-sm overflow-hidden" style="max-width: 100%;">
+
+        <!-- Header -->
+        <header class="flex-none bg-[#f6f7f9] border-b border-[#dadce4] p-3 flex items-center justify-between">
+            <div class="min-w-0">
+                <h2 class="m-0 text-[18px] font-semibold leading-[25px] tracking-[-0.3px] text-[#1b1b1d]">
+                    Bulk Action: Archive 235 Candidates
+                </h2>
+                <p class="text-[12px] text-[#6e6d78] mt-1 mb-0">Interactive demo. Try approving a candidate to see the email preview.</p>
+            </div>
+            <button class="reset-btn" onclick="resetDemo()">Reset</button>
+        </header>
+
+        <!-- Body -->
+        <div class="flex-1 relative overflow-auto p-4">
+            <div class="flex flex-col gap-y-[10px]">
+
+                <!-- Info Box -->
+                <div>
+                    <div class="flex items-center text-[13px] leading-[19.5px] bg-[#f6f7f9] text-[#45444b] rounded-md p-[10px]">
+                        <div class="flex-shrink-0 flex items-center justify-center aspect-square h-[24px] mr-[10px] bg-[#dfdefc] rounded-full">
+                            <svg class="h-[12px] w-[12px]" viewBox="0 0 24 24" fill="none" stroke="#6b46c1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m9 12 2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        Archive position and send the rejection email below to all remaining candidates.
+                    </div>
+                </div>
+
+                <!-- Confidence Ramp Section -->
+                <div class="pb-3">
+                    <div class="flex items-center text-[13px] leading-[19.5px] bg-[#f0f4ff] text-[#3730a3] rounded-md p-[10px] mb-4 border border-[#c7d2fe]">
+                        <div class="flex-shrink-0 flex items-center justify-center aspect-square h-[24px] mr-[10px] bg-[#6b46c1] rounded-full">
+                            <span class="text-white text-[11px] font-bold">CR</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium">Confidence Ramp</span>
+                                    <span class="bg-[#6b46c1] text-white px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase">Beta</span>
+                                </div>
+                                <div class="toggle-switch active" id="confidenceToggle">
+                                    <div class="slider"></div>
+                                </div>
+                            </div>
+                            <p class="text-[12px] text-[#4c51bf] mb-0">
+                                Review a sample before bulk processing. Catch mistakes early.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Sample Settings -->
+                    <div class="bg-white border border-[#c7d2fe] rounded-md p-3 mb-4" id="sampleSettings">
+                        <div class="flex items-center gap-3">
+                            <label class="font-medium text-[13px] text-[#6e6d78]">Sample size:</label>
+                            <input
+                                type="number"
+                                value="5"
+                                min="1"
+                                max="10"
+                                id="sampleSize"
+                                class="w-14 px-2 py-1 border border-[#a8a6bd] rounded text-[13px] text-center"
+                            />
+                            <span class="text-[12px] text-[#6e6d78]">of 235 candidates (recommended: 3-8)</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Section -->
+                    <div class="mb-3" id="progressSection">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-medium text-[13px] text-[#6e6d78]">Review Progress</span>
+                            <span class="text-[12px] text-[#6e6d78]" id="progressCount">0 of 5 reviewed</span>
+                        </div>
+                        <div class="h-1.5 bg-[#f3f4f6] rounded-full overflow-hidden">
+                            <div
+                                class="h-full bg-gradient-to-r from-[#6b46c1] to-[#8b5cf6] progress-fill"
+                                id="progressFill"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="mt-2 text-[12px] text-[#6b7280]" id="confidenceIndicator">
+                            Review the sample below to enable bulk processing
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Review Section -->
+                <div class="pb-3" id="sampleReviewSection">
+                    <h3 class="font-medium m-0 text-[14px]">Sample Review</h3>
+                    <div class="mt-2 mb-3 border-t-[1.5px] border-[#f0f0f4]"></div>
+
+                    <div class="border border-[#dadce4] rounded-md overflow-hidden">
+                        <div class="bg-[#f6f7f9] border-b border-[#dadce4] p-3 text-[11px] font-medium text-[#6e6d78] uppercase tracking-wide grid grid-cols-[2fr_1fr_90px] gap-3">
+                            <span>Candidate</span>
+                            <span>Reason</span>
+                            <span>Action</span>
+                        </div>
+
+                        <div id="candidateList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success Summary -->
+                <div class="bg-[#f0fdf4] border border-[#bbf7d0] rounded-md p-4 hidden" id="successSummary">
+                    <div class="font-semibold text-[#166534] mb-2">Bulk Action Complete</div>
+                    <p class="text-[#16a34a] text-[13px] mb-3">All 235 candidates archived based on your review pattern.</p>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-[20px] font-bold text-[#166534]" id="totalProcessedStat">235</div>
+                            <div class="text-[11px] text-[#16a34a]">Total Processed</div>
+                        </div>
+                        <div>
+                            <div class="text-[20px] font-bold text-[#166534]" id="manualReviewedStat">5</div>
+                            <div class="text-[11px] text-[#16a34a]">Manually Reviewed</div>
+                        </div>
+                        <div>
+                            <div class="text-[20px] font-bold text-[#166534]" id="bulkProcessedStat">230</div>
+                            <div class="text-[11px] text-[#16a34a]">Auto-Processed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="flex-none bg-[#f6f7f9] border-t border-[#dadce4] p-3">
+            <div class="flex items-center justify-between">
+                <span class="text-[12px] text-[#6e6d78]" id="statusText">Approve or skip sample candidates, then process the rest in bulk.</span>
+                <button
+                    type="button"
+                    id="bulkProcessBtn"
+                    class="appearance-none font-medium text-[13px] leading-[15.6px] outline-none flex justify-center items-center h-[36px] rounded-md px-[14px] py-0 transition-all duration-100 bg-[#f1f3f5] text-[#89879d] cursor-not-allowed border border-[#d1d2dd]"
+                >
+                    Archive remaining <span id="remainingCount" class="font-bold ml-1">230</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const candidates = [
+            { name: "Jordan Rivera", email: "j.rivera@acmecorp.com", company: "Acme Corp", role: "Senior Engineer", reason: "Position filled", time: "1m ago" },
+            { name: "Sam Chen", email: "sam.chen@horizonlabs.io", company: "Horizon Labs", role: "Staff Engineer", reason: "Position filled", time: "5m ago" },
+            { name: "Alex Morgan", email: "alex.m@northstar.com", company: "Northstar Inc", role: "Engineering Manager", reason: "Lacks qualifications", time: "1d ago" },
+            { name: "Taylor Kim", email: "tkim@bloomhealth.co", company: "Bloom Health", role: "Backend Engineer", reason: "Accepted other offer", time: "1d ago" },
+            { name: "Casey Novak", email: "c.novak@redwood.dev", company: "Redwood Systems", role: "Full Stack Developer", reason: "Position filled", time: "2w ago" },
+            { name: "Riley Patel", email: "riley@signalanalytics.com", company: "Signal Analytics", role: "Platform Engineer", reason: "Position filled", time: "2w ago" },
+            { name: "Drew Santos", email: "drew.s@vantageai.co", company: "Vantage AI", role: "ML Engineer", reason: "Withdrew application", time: "3w ago" },
+            { name: "Jamie Torres", email: "jamie@cedarstudios.io", company: "Cedar Studios", role: "DevOps Engineer", reason: "Position filled", time: "3w ago" },
+            { name: "Quinn Foster", email: "qfoster@atlasdigital.com", company: "Atlas Digital", role: "SRE", reason: "Lacks qualifications", time: "1mo ago" },
+            { name: "Avery Liu", email: "avery.liu@pinnacle.co", company: "Pinnacle Group", role: "Software Engineer", reason: "Position filled", time: "1mo ago" }
+        ];
+
+        const jobTitle = "Senior Software Engineer";
+        const companyName = "Wanderlust Travel";
+
+        let confidenceMode = true;
+        let sampleSize = 5;
+        let approvedCount = 0;
+        let skippedCount = 0;
+        let bulkProcessed = false;
+        let candidateStates = {};
+        let expandedPreview = null;
+        const totalCandidates = 235;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('confidenceToggle').addEventListener('click', toggleConfidenceMode);
+            document.getElementById('sampleSize').addEventListener('input', updateSampleSize);
+            document.getElementById('bulkProcessBtn').addEventListener('click', processBulk);
+            renderCandidates();
+            updateUI();
+        });
+
+        function toggleConfidenceMode() {
+            const toggle = document.getElementById('confidenceToggle');
+            confidenceMode = !confidenceMode;
+
+            if (confidenceMode) {
+                toggle.classList.add('active');
+                document.getElementById('sampleSettings').style.display = 'block';
+                document.getElementById('sampleReviewSection').style.display = 'block';
+                document.getElementById('progressSection').style.display = 'block';
+            } else {
+                toggle.classList.remove('active');
+                document.getElementById('sampleSettings').style.display = 'none';
+                document.getElementById('sampleReviewSection').style.display = 'none';
+                document.getElementById('progressSection').style.display = 'none';
+            }
+            resetDemo();
+        }
+
+        function updateSampleSize() {
+            sampleSize = Math.max(1, Math.min(10, parseInt(document.getElementById('sampleSize').value) || 5));
+            resetDemo();
+        }
+
+        function getEmailPreviewHTML(candidate, index) {
+            const state = candidateStates[index];
+            const showButtons = !state;
+            return `
+                <div class="bg-[#fafbfc] border border-[#e2e8f0] rounded-md text-[12px] leading-[18px] text-[#374151]">
+                    <div class="px-3 py-2 border-b border-[#e2e8f0] bg-[#f1f5f9] rounded-t-md">
+                        <div class="flex items-center gap-2 mb-1">
+                            <svg class="w-3 h-3 text-[#6b7280] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <span class="font-medium text-[#4b5563]">Rejection email that will be sent:</span>
+                        </div>
+                        <div class="text-[11px] text-[#6b7280]">
+                            To: ${candidate.name} &lt;${candidate.email}&gt;
+                        </div>
+                    </div>
+                    <div class="px-3 py-2">
+                        <div class="font-medium text-[#1f2937] mb-2">Subject: Update on your application for ${jobTitle} at ${companyName}</div>
+                        <div class="text-[#4b5563] space-y-1.5">
+                            <p class="m-0">Hi ${candidate.name.split(' ')[0]},</p>
+                            <p class="m-0">Thank you for your interest in the <strong>${jobTitle}</strong> position at ${companyName} and for taking the time to apply.</p>
+                            <p class="m-0">After careful consideration, we've decided to move forward with other candidates whose experience more closely aligns with our current needs.</p>
+                            <p class="m-0">We encourage you to apply for future openings. We'll keep your information on file.</p>
+                            <p class="m-0">Best regards,<br/>The ${companyName} Hiring Team</p>
+                        </div>
+                    </div>
+                    ${showButtons ? `
+                    <div class="px-3 py-2 border-t border-[#e2e8f0] bg-[#f8fafc] rounded-b-md flex items-center justify-between">
+                        <span class="text-[11px] text-[#6b7280]">Send this email to ${candidate.name.split(' ')[0]}?</span>
+                        <div class="flex gap-2">
+                            <button onclick="approveCandidate(${index})" class="bg-[#22c55e] hover:bg-[#16a34a] text-white text-[11px] px-3 py-1.5 rounded font-medium transition-colors">Approve &amp; send</button>
+                            <button onclick="skipCandidate(${index})" class="bg-[#f3f4f6] hover:bg-[#e5e7eb] text-[#6b7280] text-[11px] px-3 py-1.5 rounded font-medium transition-colors">Skip this one</button>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function renderCandidates() {
+            const list = document.getElementById('candidateList');
+            list.innerHTML = '';
+
+            const toShow = confidenceMode ?
+                candidates.slice(0, Math.min(sampleSize, candidates.length)) :
+                candidates;
+
+            toShow.forEach((c, i) => {
+                const state = candidateStates[i];
+                const isExpanded = expandedPreview === i;
+                const wrapper = document.createElement('div');
+
+                // Main row
+                const el = document.createElement('div');
+                el.className = `candidate-item border-b border-[#f1f5f9] last:border-b-0 p-3 grid grid-cols-[2fr_1fr_90px] gap-3 items-center bg-white ${state || ''}`;
+
+                let actionHTML;
+                if (!state) {
+                    actionHTML = `<button onclick="togglePreview(${i})" class="bg-[#6b46c1] hover:bg-[#553c9a] text-white text-[11px] px-2.5 py-1 rounded font-medium transition-colors">${isExpanded ? 'Collapse' : 'Review'}</button>`;
+                } else if (state === 'approved') {
+                    actionHTML = '<span class="text-[11px] text-[#059669] font-medium">Approved</span>';
+                } else if (state === 'skipped') {
+                    actionHTML = '<span class="text-[11px] text-[#d97706] font-medium">Skipped</span>';
+                } else {
+                    actionHTML = '<span class="text-[11px] text-[#0369a1] font-medium">Auto</span>';
+                }
+
+                el.innerHTML = `
+                    <div>
+                        <div class="font-medium text-[13px] text-[#2d3748]">${c.name}</div>
+                        <div class="text-[11px] text-[#6b7280]">${c.role} at ${c.company} &middot; ${c.time}</div>
+                    </div>
+                    <div class="text-[12px] text-[#6b7280]">${c.reason}</div>
+                    <div class="flex gap-1 justify-end">${actionHTML}</div>
+                `;
+                wrapper.appendChild(el);
+
+                // Email preview (shown on Review click, before decision)
+                if (isExpanded || state === 'approved') {
+                    const preview = document.createElement('div');
+                    const bgColor = state === 'approved' ? 'bg-[#f0fff4]' : 'bg-white';
+                    preview.className = `email-preview open border-b border-[#f1f5f9] ${bgColor}`;
+                    preview.innerHTML = getEmailPreviewHTML(c, i);
+                    wrapper.appendChild(preview);
+                }
+
+                list.appendChild(wrapper);
+            });
+        }
+
+        function togglePreview(i) {
+            expandedPreview = expandedPreview === i ? null : i;
+            renderCandidates();
+        }
+
+        function approveCandidate(i) {
+            if (candidateStates[i]) return;
+            candidateStates[i] = 'approved';
+            approvedCount++;
+            expandedPreview = null;
+            renderCandidates();
+            updateUI();
+        }
+
+        function skipCandidate(i) {
+            if (candidateStates[i]) return;
+            candidateStates[i] = 'skipped';
+            skippedCount++;
+            expandedPreview = null;
+            renderCandidates();
+            updateUI();
+        }
+
+        function processBulk() {
+            if (confidenceMode && approvedCount === 0) return;
+
+            expandedPreview = null;
+            const list = document.getElementById('candidateList');
+            const remaining = totalCandidates - sampleSize;
+
+            // Re-render without expanded previews
+            renderCandidates();
+
+            for (let i = 0; i < Math.min(4, remaining); i++) {
+                const el = document.createElement('div');
+                el.className = 'candidate-item bulk-processed border-b border-[#f1f5f9] last:border-b-0 p-3 grid grid-cols-[2fr_1fr_90px] gap-3 items-center';
+                el.innerHTML = `
+                    <div>
+                        <div class="font-medium text-[13px] text-[#2d3748]">Candidate ${sampleSize + i + 1}</div>
+                        <div class="text-[11px] text-[#6b7280]">Rejection email sent just now</div>
+                    </div>
+                    <div class="text-[12px] text-[#6b7280]">Position filled</div>
+                    <span class="text-[11px] text-[#0369a1] font-medium">Auto</span>
+                `;
+                list.appendChild(el);
+            }
+
+            if (remaining > 4) {
+                const more = document.createElement('div');
+                more.className = 'candidate-item bulk-processed border-b border-[#f1f5f9] p-3 grid grid-cols-[2fr_1fr_90px] gap-3 items-center';
+                more.innerHTML = `
+                    <div>
+                        <div class="font-medium text-[13px] text-[#64748b]">+ ${remaining - 4} more candidates</div>
+                        <div class="text-[11px] text-[#6b7280]">Rejection emails sent successfully</div>
+                    </div>
+                    <div></div>
+                    <span class="text-[11px] text-[#0369a1] font-medium">Auto</span>
+                `;
+                list.appendChild(more);
+            }
+
+            bulkProcessed = true;
+            updateUI();
+            document.getElementById('successSummary').classList.remove('hidden');
+            document.getElementById('totalProcessedStat').textContent = totalCandidates;
+            document.getElementById('manualReviewedStat').textContent = sampleSize;
+            document.getElementById('bulkProcessedStat').textContent = totalCandidates - sampleSize;
+        }
+
+        function updateUI() {
+            const reviewed = approvedCount + skippedCount;
+            const fill = document.getElementById('progressFill');
+            const count = document.getElementById('progressCount');
+            const indicator = document.getElementById('confidenceIndicator');
+            const btn = document.getElementById('bulkProcessBtn');
+            const remaining = document.getElementById('remainingCount');
+            const status = document.getElementById('statusText');
+
+            if (confidenceMode) {
+                fill.style.width = `${(reviewed / sampleSize) * 100}%`;
+                count.textContent = `${reviewed} of ${sampleSize} reviewed`;
+            }
+
+            if (approvedCount > 0 && !bulkProcessed) {
+                indicator.textContent = `${approvedCount} approved, ${skippedCount} skipped. Ready to process the rest.`;
+                indicator.className = 'mt-2 text-[12px] text-[#059669]';
+            } else if (!bulkProcessed) {
+                indicator.textContent = 'Review the sample below to enable bulk processing';
+                indicator.className = 'mt-2 text-[12px] text-[#6b7280]';
+            }
+
+            remaining.textContent = confidenceMode ? (totalCandidates - sampleSize) : totalCandidates;
+
+            if (bulkProcessed) {
+                btn.style.display = 'none';
+                status.textContent = 'Done! All candidates archived and rejection emails sent.';
+            } else if (!confidenceMode || approvedCount > 0) {
+                btn.className = 'appearance-none font-medium text-[13px] leading-[15.6px] outline-none flex justify-center items-center h-[36px] rounded-md px-[14px] py-0 transition-all duration-100 bg-[#6b46c1] text-white cursor-pointer border border-[#6b46c1] hover:bg-[#553c9a]';
+            } else {
+                btn.className = 'appearance-none font-medium text-[13px] leading-[15.6px] outline-none flex justify-center items-center h-[36px] rounded-md px-[14px] py-0 transition-all duration-100 bg-[#f1f3f5] text-[#89879d] cursor-not-allowed border border-[#d1d2dd]';
+            }
+        }
+
+        function resetDemo() {
+            approvedCount = 0;
+            skippedCount = 0;
+            bulkProcessed = false;
+            candidateStates = {};
+            expandedPreview = null;
+            document.getElementById('successSummary').classList.add('hidden');
+            document.getElementById('bulkProcessBtn').style.display = 'flex';
+            document.getElementById('statusText').textContent = 'Approve or skip sample candidates, then process the rest in bulk.';
+            renderCandidates();
+            updateUI();
+        }
+    </script>
+</body>
+</html>

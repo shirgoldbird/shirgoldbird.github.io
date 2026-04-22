@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashby - Bulk Action with Confidence Ramp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #2d3748;
+            line-height: 1.5;
+            font-size: 14px;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Ashby Header */
+        .header {
+            background: #6b46c1;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            color: white;
+            position: relative;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .ashby-logo {
+            background: white;
+            color: #6b46c1;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .header-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .user-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #4c1d95;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        /* Main Content */
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 56px);
+        }
+
+        .sidebar {
+            width: 240px;
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 20px 0;
+        }
+
+        .sidebar-section {
+            margin-bottom: 24px;
+        }
+
+        .sidebar-title {
+            color: #718096;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            padding: 0 20px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 20px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .sidebar-item.active {
+            background: #edf2f7;
+            color: #2d3748;
+            border-right: 3px solid #6b46c1;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #718096;
+        }
+
+        .breadcrumb a {
+            color: #6b46c1;
+            text-decoration: none;
+        }
+
+        /* Job Header */
+        .job-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .job-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .job-status {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Pipeline */
+        .pipeline {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+
+        .pipeline-stages {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px;
+        }
+
+        .stage {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            position: relative;
+        }
+
+        .stage-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-size: 16px;
+        }
+
+        .stage.active .stage-icon {
+            background: #6b46c1;
+            border-color: #6b46c1;
+            color: white;
+        }
+
+        .stage-title {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 4px;
+        }
+
+        .stage.active .stage-title {
+            color: #6b46c1;
+        }
+
+        .stage-count {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .stage-arrow {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #cbd5e0;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 2rem;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 900px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-header {
+            padding: 24px 24px 0;
+            border-bottom: none;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        /* Confidence Ramp Section */
+        .confidence-section {
+            background: #f0f4ff;
+            border: 1px solid #c7d2fe;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .confidence-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .confidence-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #3730a3;
+        }
+
+        .beta-badge {
+            background: #6b46c1;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: #cbd5e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle-switch.active {
+            background: #6b46c1;
+        }
+
+        .toggle-switch .slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-switch.active .slider {
+            transform: translateX(20px);
+        }
+
+        .confidence-description {
+            color: #4c51bf;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .sample-settings {
+            display: none;
+            background: white;
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 16px;
+        }
+
+        .sample-settings.active {
+            display: block;
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .setting-label {
+            font-weight: 500;
+            color: #374151;
+            min-width: 120px;
+        }
+
+        .setting-input {
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 6px 8px;
+            width: 80px;
+            font-size: 14px;
+        }
+
+        .setting-description {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            margin-bottom: 24px;
+        }
+
+        .progress-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .progress-title {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .progress-count {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #f3f4f6;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6b46c1, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        /* Candidate List */
+        .candidate-list-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e2e8f0;
+            font-weight: 500;
+            color: #4a5568;
+            font-size: 12px;
+        }
+
+        .candidate-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .candidate-item:hover {
+            background: #f8f9fa;
+        }
+
+        .candidate-item.approved {
+            background: #f0fff4;
+            border-left: 3px solid #48bb78;
+        }
+
+        .candidate-item.skipped {
+            background: #fffbf0;
+            border-left: 3px solid #ed8936;
+        }
+
+        .candidate-item.bulk-processed {
+            background: #f7fafc;
+            border-left: 3px solid #4299e1;
+            opacity: 0.8;
+        }
+
+        .candidate-checkbox {
+            margin-right: 12px;
+        }
+
+        .candidate-info {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 200px 150px 120px 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .candidate-name {
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .candidate-company {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .candidate-source {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #4a5568;
+            font-size: 13px;
+        }
+
+        .linkedin-icon {
+            color: #0077b5;
+        }
+
+        .candidate-reason {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .candidate-time {
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-left: 16px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: 1px solid;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-primary {
+            background: #6b46c1;
+            border-color: #6b46c1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #553c9a;
+        }
+
+        .btn-secondary {
+            background: white;
+            border-color: #d1d5db;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+        }
+
+        .btn-success {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .action-status {
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .action-status.approved {
+            color: #059669;
+        }
+
+        .action-status.skipped {
+            color: #d97706;
+        }
+
+        .action-status.bulk {
+            color: #0369a1;
+        }
+
+        /* Modal Footer */
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9fafb;
+        }
+
+        .bulk-btn {
+            background: #6b46c1;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bulk-btn:hover {
+            background: #553c9a;
+        }
+
+        .bulk-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .cancel-btn {
+            background: white;
+            border: 1px solid #d1d5db;
+            color: #374151;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cancel-btn:hover {
+            background: #f9fafb;
+        }
+
+        /* Success State */
+        .success-summary {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .success-summary.show {
+            display: block;
+        }
+
+        .success-title {
+            font-weight: 600;
+            color: #166534;
+            margin-bottom: 8px;
+        }
+
+        .success-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #166534;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #16a34a;
+        }
+
+        .icon {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ashby Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="ashby-logo">A</div>
+            <a href="#" class="nav-item">🏠</a>
+            <a href="#" class="nav-item">Pipeline</a>
+            <a href="#" class="nav-item active">Candidates</a>
+            <a href="#" class="nav-item">Jobs</a>
+            <a href="#" class="nav-item">Sourcing</a>
+            <a href="#" class="nav-item">Reports</a>
+            <a href="#" class="nav-item">Dashboards</a>
+            <a href="#" class="nav-item">Admin</a>
+        </div>
+        <div class="header-right">
+            <span>🔔 Notifications</span>
+            <span>+ Add</span>
+            <span>🔍 Search ⌘K</span>
+            <div class="user-info">
+                <div class="user-avatar">JD</div>
+                <span>Jane Doe<br><small>Wanderlust Travel</small></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Activity</div>
+                <a href="#" class="sidebar-item active">Candidate Pipeline</a>
+                <a href="#" class="sidebar-item">Dashboard</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Admin</div>
+                <a href="#" class="sidebar-item">Settings</a>
+                <a href="#" class="sidebar-item">Interview Plan</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="#">📧 Email Templates</a> •
+                <a href="#">Candidate Pipeline</a> •
+                <a href="#">Job Dashboard</a> •
+                <span>Associate Product Manager</span>
+            </div>
+
+            <!-- Job Header -->
+            <div class="job-header">
+                <h1 class="job-title">Associate Product Manager</h1>
+                <span class="job-status">🔴 Closed</span>
+            </div>
+
+            <!-- Pipeline -->
+            <div class="pipeline">
+                <div class="pipeline-stages">
+                    <div class="stage">
+                        <div class="stage-icon">👥</div>
+                        <div class="stage-title">Leads</div>
+                        <div class="stage-count">0 candidates</div>
+                        <div class="stage-arrow">→</div>
+                    </div>
+                    <div class="stage active">
+                        <div class="stage-icon">📋</div>
+                        <div class="stage-title">Application Review</div>
+                        <div class="stage-count">235 applications</div>
+                        <div class="stage-arrow">→</div>
+                    </div>
+                    <div class="stage">
+                        <div class="stage-icon">📁</div>
+                        <div class="stage-title">Archive</div>
+                        <div class="stage-count">0 candidates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Action Modal -->
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Bulk Action</h2>
+                <p class="modal-subtitle">Archive candidates from Application Review stage</p>
+            </div>
+
+            <div class="modal-body">
+                <!-- Confidence Ramp Section -->
+                <div class="confidence-section">
+                    <div class="confidence-header">
+                        <div class="confidence-title">
+                            <span>🎯</span>
+                            Confidence Ramp
+                            <span class="beta-badge">Beta</span>
+                        </div>
+                        <div class="toggle-switch active" id="confidenceToggle">
+                            <div class="slider"></div>
+                        </div>
+                    </div>
+                    <p class="confidence-description">
+                        Review a sample before bulk processing to build confidence and catch edge cases early.
+                    </p>
+                    
+                    <div class="sample-settings active" id="sampleSettings">
+                        <div class="setting-row">
+                            <div class="setting-label">Sample size:</div>
+                            <input type="number" class="setting-input" id="sampleSize" value="5" min="1" max="20">
+                            <div class="setting-description">candidates (recommended: 3-8 for this action)</div>
+                        </div>
+                        <div class="setting-row">
+                            <div class="setting-label">Strategy:</div>
+                            <select class="setting-input" style="width: 150px;">
+                                <option>Representative sample</option>
+                                <option>Recent applications</option>
+                                <option>Random selection</option>
+                            </select>
+                            <div class="setting-description">How to select candidates for review</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <div class="progress-title">Review Progress</div>
+                        <div class="progress-count" id="progressCount">0 of 5 reviewed</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Success Summary (hidden initially) -->
+                <div class="success-summary" id="successSummary">
+                    <div class="success-title">✅ Bulk Action Complete</div>
+                    <p>Successfully processed all 235 candidates based on your review pattern.</p>
+                    <div class="success-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalProcessedStat">235</div>
+                            <div class="stat-label">Total Processed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="manualReviewedStat">5</div>
+                            <div class="stat-label">Manually Reviewed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="bulkProcessedStat">230</div>
+                            <div class="stat-label">Auto-Processed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Candidate List -->
+                <div class="candidate-list">
+                    <div class="candidate-list-header">
+                        <div style="flex: 1; display: grid; grid-template-columns: 40px 200px 150px 120px 1fr; gap: 16px;">
+                            <span></span>
+                            <span>Name / Last Company</span>
+                            <span>Source</span>
+                            <span>Archive Reason</span>
+                            <span>Timing</span>
+                        </div>
+                        <div style="width: 140px; text-align: center;">Actions</div>
+                    </div>
+                    
+                    <div id="candidateList">
+                        <!-- Candidates will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div id="confidenceIndicator" style="font-size: 12px; color: #6b7280;">
+                        <span id="confidenceText">Review sample to enable bulk processing</span>
+                    </div>
+                    <button class="bulk-btn" id="bulkProcessBtn" disabled>
+                        <span>🚀</span>
+                        Start 'Archive' on <span id="remainingCount">230</span> records
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample candidate data matching Ashby's structure
+        const candidates = [
+            { name: "Jordan Rivera", company: "Acme Corp", source: "LinkedIn", reason: "Position filled", time: "1min ago" },
+            { name: "Sam Chen", company: "Horizon Labs", source: "LinkedIn", reason: "Position filled", time: "1min ago" },
+            { name: "Alex Morgan", company: "Northstar Inc", source: "LinkedIn", reason: "Lacks Skills/Qualifications", time: "1d ago" },
+            { name: "Taylor Kim", company: "Bloom Health", source: "LinkedIn", reason: "Accepted Other Offer", time: "1d ago" },
+            { name: "Casey Novak", company: "Redwood Systems", source: "LinkedIn", reason: "Position filled", time: "2w ago" },
+            { name: "Riley Patel", company: "Signal Analytics", source: "Indeed", reason: "Position filled", time: "3d ago" },
+            { name: "Drew Santos", company: "Vantage AI", source: "LinkedIn", reason: "Overqualified", time: "1w ago" },
+            { name: "Jamie Torres", company: "Cedar Studios", source: "Referral", reason: "Position filled", time: "5d ago" }
+        ];
+
+        let approvedCount = 0;
+        let skippedCount = 0;
+        let sampleSize = 5;
+        let confidenceMode = true;
+        let bulkProcessed = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            renderCandidates();
+            updateUI();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('confidenceToggle').addEventListener('click', toggleConfidenceMode);
+            document.getElementById('sampleSize').addEventListener('input', updateSampleSize);
+            document.getElementById('bulkProcessBtn').addEventListener('click', processBulk);
+        }
+
+        function toggleConfidenceMode() {
+            const toggle = document.getElementById('confidenceToggle');
+            const settings = document.getElementById('sampleSettings');
+            
+            confidenceMode = !confidenceMode;
+            
+            if (confidenceMode) {
+                toggle.classList.add('active');
+                settings.classList.add('active');
+            } else {
+                toggle.classList.remove('active');
+                settings.classList.remove('active');
+            }
+            
+            resetDemo();
+        }
+
+        function updateSampleSize() {
+            sampleSize = parseInt(document.getElementById('sampleSize').value);
+            resetDemo();
+        }
+
+        function renderCandidates() {
+            const candidateList = document.getElementById('candidateList');
+            candidateList.innerHTML = '';
+            
+            const candidatesToShow = confidenceMode ? 
+                candidates.slice(0, Math.min(sampleSize, candidates.length)) : 
+                candidates;
+            
+            candidatesToShow.forEach((candidate, index) => {
+                const candidateElement = document.createElement('div');
+                candidateElement.className = 'candidate-item';
+                candidateElement.id = `candidate-${index}`;
+                
+                candidateElement.innerHTML = `
+                    <input type="checkbox" class="candidate-checkbox">
+                    <div class="candidate-info">
+                        <div>
+                            <div class="candidate-name">${candidate.name}</div>
+                            <div class="candidate-company">${candidate.company}</div>
+                        </div>
+                        <div class="candidate-source">
+                            <span class="linkedin-icon">in</span>
+                            ${candidate.source}
+                        </div>
+                        <div class="candidate-reason">${candidate.reason}</div>
+                        <div class="candidate-time">${candidate.time}</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-success" onclick="approveCandidate(${index})">
+                            ✓ Archive
+                        </button>
+                        <button class="btn btn-secondary" onclick="skipCandidate(${index})">
+                            Skip
+                        </button>
+                    </div>
+                `;
+                
+                candidateList.appendChild(candidateElement);
+            });
+        }
+
+        function approveCandidate(index) {
+            const candidateElement = document.getElementById(`candidate-${index}`);
+            candidateElement.classList.add('approved');
+            candidateElement.querySelector('.action-buttons').innerHTML = 
+                '<div class="action-status approved">✓ Approved for archive</div>';
+            
+            approvedCount++;
+            updateUI();
+        }
+
+        function skipCandidate(index) {
+            const candidateElement = document.getElementById(`candidate-${index}`);
+            candidateElement.classList.add('skipped');
+            candidateElement.querySelector('.action-buttons').innerHTML = 
+                '<div class="action-status skipped">⊘ Skipped</div>';
+            
+            skippedCount++;
+            updateUI();
+        }
+
+        function processBulk() {
+            const remainingCount = 235 - sampleSize;
+            
+            // Simulate bulk processing by adding visual representations
+            const candidateList = document.getElementById('candidateList');
+            
+            // Add some bulk processed items for demo
+            for (let i = 0; i < Math.min(6, remainingCount); i++) {
+                const bulkItem = document.createElement('div');
+                bulkItem.className = 'candidate-item bulk-processed';
+                bulkItem.innerHTML = `
+                    <input type="checkbox" class="candidate-checkbox" checked disabled>
+                    <div class="candidate-info">
+                        <div>
+                            <div class="candidate-name">Auto-processed Candidate ${i + 1}</div>
+                            <div class="candidate-company">Various Companies</div>
+                        </div>
+                        <div class="candidate-source">
+                            <span class="linkedin-icon">in</span>
+                            LinkedIn
+                        </div>
+                        <div class="candidate-reason">Position filled</div>
+                        <div class="candidate-time">Just now</div>
+                    </div>
+                    <div class="action-status bulk">🤖 Auto-archived</div>
+                `;
+                candidateList.appendChild(bulkItem);
+            }
+            
+            if (remainingCount > 6) {
+                const moreItem = document.createElement('div');
+                moreItem.className = 'candidate-item bulk-processed';
+                moreItem.style.fontStyle = 'italic';
+                moreItem.innerHTML = `
+                    <input type="checkbox" class="candidate-checkbox" checked disabled>
+                    <div class="candidate-info">
+                        <div>
+                            <div class="candidate-name">+ ${remainingCount - 6} more candidates</div>
+                            <div class="candidate-company">Successfully auto-archived</div>
+                        </div>
+                        <div class="candidate-source"></div>
+                        <div class="candidate-reason">Bulk processed</div>
+                        <div class="candidate-time">Just now</div>
+                    </div>
+                    <div class="action-status bulk">🤖 Auto-archived</div>
+                `;
+                candidateList.appendChild(moreItem);
+            }
+            
+            bulkProcessed = true;
+            updateUI();
+            showSuccessSummary();
+        }
+
+        function showSuccessSummary() {
+            const summary = document.getElementById('successSummary');
+            summary.classList.add('show');
+            
+            document.getElementById('totalProcessedStat').textContent = '235';
+            document.getElementById('manualReviewedStat').textContent = sampleSize;
+            document.getElementById('bulkProcessedStat').textContent = 235 - sampleSize;
+        }
+
+        function updateUI() {
+            // Update progress bar
+            const progressFill = document.getElementById('progressFill');
+            const progressCount = document.getElementById('progressCount');
+            const reviewedCount = approvedCount + skippedCount;
+            
+            if (confidenceMode) {
+                const progressPercent = (reviewedCount / sampleSize) * 100;
+                progressFill.style.width = `${progressPercent}%`;
+                progressCount.textContent = `${reviewedCount} of ${sampleSize} reviewed`;
+            } else {
+                progressFill.style.width = '100%';
+                progressCount.textContent = 'Direct bulk mode';
+            }
+            
+            // Update bulk process button
+            const bulkBtn = document.getElementById('bulkProcessBtn');
+            const remainingCount = document.getElementById('remainingCount');
+            const confidenceText = document.getElementById('confidenceText');
+            
+            if (confidenceMode && !bulkProcessed) {
+                const canProceed = approvedCount > 0;
+                bulkBtn.disabled = !canProceed;
+                remainingCount.textContent = 235 - sampleSize;
+                
+                if (canProceed) {
+                    confidenceText.textContent = `${approvedCount}/${sampleSize} approved - ready to proceed`;
+                    confidenceText.style.color = '#059669';
+                } else {
+                    confidenceText.textContent = 'Review sample to enable bulk processing';
+                    confidenceText.style.color = '#6b7280';
+                }
+            } else if (bulkProcessed) {
+                bulkBtn.style.display = 'none';
+                confidenceText.textContent = 'Bulk processing complete';
+                confidenceText.style.color = '#059669';
+            } else {
+                bulkBtn.disabled = false;
+                remainingCount.textContent = '235';
+                confidenceText.textContent = 'Direct bulk mode enabled';
+            }
+        }
+
+        function resetDemo() {
+            approvedCount = 0;
+            skippedCount = 0;
+            bulkProcessed = false;
+            document.getElementById('successSummary').classList.remove('show');
+            document.getElementById('bulkProcessBtn').style.display = 'block';
+            renderCandidates();
+            updateUI();
+        }
+
+        function closeModal() {
+            // In a real app, this would close the modal
+            alert('Modal would close in real implementation');
+        }
+    </script>
+</body>
+</html>
