@@ -1,8 +1,8 @@
 # Site Improvements TODO
 
 ## Navigation
-- [ ] Remove "Home" as top-level nav item; make site name/author name the clickable home link instead
-- [ ] Implement hamburger menu on mobile
+- [x] Remove "Home" as top-level nav item; make site name/author name the clickable home link instead
+- [x] Implement hamburger menu on mobile
 
 ## Typography
 - [ ] Rework typography — body font should be easier to read
@@ -19,5 +19,10 @@
 ## Features
 - [ ] Dark mode
 
+## Quick Fixes
+- [ ] Auto-update year in footer (currently hardcoded)
+- [ ] Remove overly large top padding on homepage
+
 ## Content
 - [ ] Rewrite copy to highlight problems/solutions
+- [ ] Blog post about the font comparison tool (font-mockups.html)

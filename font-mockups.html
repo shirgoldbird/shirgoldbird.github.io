@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Font Comparison — shirgoldberg.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500&family=Shrikhand&family=Inter:wght@300;400;500&family=Source+Sans+3:wght@300;400;500&family=Nunito:wght@300;400;500&family=DM+Sans:wght@300;400;500&family=Libre+Franklin:wght@300;400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f0f0f0; padding: 2rem; font-family: system-ui; color: #212529; }
+
+  h1 { text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: #5E3A98; }
+  .subtitle { text-align: center; color: #666; margin-bottom: 2rem; font-size: 0.95rem; }
+
+  .controls {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 2rem; position: sticky; top: 0; background: #f0f0f0;
+    padding: 1rem 0; z-index: 10; border-bottom: 1px solid #ddd;
+  }
+  .controls label { font-size: 0.85rem; color: #555; }
+  .controls select, .controls input {
+    padding: 0.4rem 0.8rem; border: 1px solid #ccc; border-radius: 6px;
+    font-size: 0.9rem;
+  }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 1400px; margin: 0 auto; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: white; border-radius: 12px; padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); position: relative;
+    border: 3px solid transparent; transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .card:hover { border-color: #FF9671; }
+  .card.selected { border-color: #5E3A98; }
+  .card.current { border-color: #FFC75F; }
+
+  .card-label {
+    position: absolute; top: -0.6rem; left: 1rem;
+    background: #5E3A98; color: white; font-size: 0.7rem;
+    padding: 0.15rem 0.6rem; border-radius: 99px; font-weight: 500;
+  }
+  .card.current .card-label { background: #FFC75F; color: #333; }
+
+  .card-font-name {
+    font-size: 0.8rem; color: #999; margin-bottom: 1rem;
+    font-family: monospace; display: flex; justify-content: space-between;
+  }
+
+  .sample-nav {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.8rem 1.2rem; background: rgba(255,255,255,0.95);
+    border-radius: 8px; margin-bottom: 1.5rem;
+    box-shadow: 0 1px 8px rgba(94,58,152,0.1);
+  }
+  .sample-nav .nav-name { color: #5E3A98; font-size: 1.3rem; }
+  .sample-nav .nav-links { display: flex; gap: 1rem; margin-left: auto; }
+  .sample-nav .nav-links a { color: #555; text-decoration: none; font-size: 0.95rem; }
+
+  .sample-heading { color: #5E3A98; font-size: 2.2rem; font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
+  .sample-role { font-weight: 500; margin-bottom: 1rem; font-size: 1.15rem; }
+  .sample-role .hl { color: #5E3A98; font-weight: 500; }
+  .sample-body { line-height: 1.65; color: rgba(33,37,41,0.88); margin-bottom: 1rem; }
+  .sample-body .accent { color: #FF9671; font-weight: 500; }
+  .sample-blog-title { color: #5E3A98; font-size: 1.6rem; margin: 1.2rem 0 0.5rem; font-weight: 500; }
+  .sample-blog { line-height: 1.7; color: rgba(33,37,41,0.88); font-size: 0.95rem; }
+  .sample-meta { color: rgba(33,37,41,0.5); font-size: 0.85rem; font-style: italic; margin-bottom: 0.8rem; }
+
+  .kerning-demo {
+    margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;
+  }
+  .kerning-demo .kerning-label { font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .kerning-sample { font-size: 2.5rem; color: #5E3A98; line-height: 1.2; }
+
+  .vote-btn {
+    display: block; width: 100%; margin-top: 1rem; padding: 0.6rem;
+    background: #5E3A98; color: white; border: none; border-radius: 8px;
+    font-size: 0.9rem; cursor: pointer; transition: background 0.2s;
+  }
+  .vote-btn:hover { background: #4a2d7a; }
+
+  #winner-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; background: #5E3A98;
+    color: white; text-align: center; padding: 0.8rem; font-size: 0.95rem;
+    transform: translateY(100%); transition: transform 0.3s; z-index: 20;
+  }
+  #winner-bar.visible { transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<h1>Font Comparison</h1>
+<p class="subtitle">Click a card to select it. Yellow border = current font. Purple border = your pick.</p>
+
+<div class="controls">
+  <div>
+    <label>Header font</label><br>
+    <select id="header-font">
+      <option value="Shrikhand" selected>Shrikhand (current)</option>
+    </select>
+  </div>
+  <div>
+    <label>Header letter-spacing</label><br>
+    <input type="range" id="header-kerning" min="-2" max="4" step="0.5" value="0">
+    <span id="kerning-val">0px</span>
+  </div>
+  <div>
+    <label>Body font weight</label><br>
+    <select id="body-weight">
+      <option value="300">300 (current)</option>
+      <option value="400" selected>400 (regular)</option>
+      <option value="500">500 (medium)</option>
+    </select>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div id="winner-bar">
+  Selected: <strong id="winner-name"></strong>
+</div>
+
+<script>
+const fonts = [
+  { name: 'Fredoka', label: 'CURRENT', note: 'Rounded, playful — current body font', current: true },
+  { name: 'Inter', label: null, note: 'Clean, highly legible — most popular UI font' },
+  { name: 'Source Sans 3', label: null, note: 'Adobe open-source — excellent readability' },
+  { name: 'Nunito', label: null, note: 'Rounded like Fredoka but more balanced' },
+  { name: 'DM Sans', label: null, note: 'Geometric, modern — great paragraph font' },
+  { name: 'Outfit', label: null, note: 'Geometric with personality — pairs well with Shrikhand' },
+];
+
+const sampleBody = `I'm on a mission to create <span class="accent">exceptional developer experiences</span> that delight technical and non-technical users alike.`;
+const samplePara = `I've worked everywhere from Microsoft to YC startups. No matter the company, I bring a leadership mindset, collaborative approach, and multidisciplinary background that creates winning products and strong teams.`;
+const blogSample = `You just hired a candidate and are about to close the position in your ATS. You're hovering over the "Archive all" button, which will send auto-reject emails to the 237 candidates left in your pipeline. You click the button and immediately feel a knot in your stomach.`;
+
+const grid = document.getElementById('grid');
+const headerFont = document.getElementById('header-font');
+const headerKerning = document.getElementById('header-kerning');
+const kerningVal = document.getElementById('kerning-val');
+const bodyWeight = document.getElementById('body-weight');
+const winnerBar = document.getElementById('winner-bar');
+const winnerName = document.getElementById('winner-name');
+
+function render() {
+  const hFont = headerFont.value;
+  const kern = headerKerning.value + 'px';
+  const weight = bodyWeight.value;
+  kerningVal.textContent = kern;
+
+  grid.innerHTML = '';
+  fonts.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'card' + (f.current ? ' current' : '');
+    card.innerHTML = `
+      ${f.current ? '<div class="card-label">CURRENT</div>' : ''}
+      <div class="card-font-name">
+        <span style="font-family:'${f.name}'">${f.name}</span>
+        <span>${f.note}</span>
+      </div>
+      <div class="sample-nav">
+        <span class="nav-name" style="font-family:'${hFont}';letter-spacing:${kern}">Shir Goldberg</span>
+        <div class="nav-links" style="font-family:'${f.name}';font-weight:${weight}">
+          <a>Career</a><a>Projects</a><a>Blog</a><a>Contact</a>
+        </div>
+      </div>
+      <div class="sample-heading" style="font-family:'${hFont}';letter-spacing:${kern}">Shir here.</div>
+      <div class="sample-role" style="font-family:'${f.name}';font-weight:${weight}">
+        I'm a <span class="hl">senior product manager</span> based in <span class="hl">NYC</span>.
+      </div>
+      <div class="sample-body" style="font-family:'${f.name}';font-weight:${weight}">${sampleBody}</div>
+      <div class="sample-body" style="font-family:'${f.name}';font-weight:${weight}">${samplePara}</div>
+      <div class="sample-blog-title" style="font-family:'${hFont}';letter-spacing:${kern}">The Confidence Ramp</div>
+      <div class="sample-meta" style="font-family:'${f.name}';font-weight:${weight}">April 21, 2026</div>
+      <div class="sample-blog" style="font-family:'${f.name}';font-weight:${weight}">${blogSample}</div>
+      <div class="kerning-demo">
+        <div class="kerning-label">Header kerning preview</div>
+        <div class="kerning-sample" style="font-family:'${hFont}';letter-spacing:${kern}">ABCDEFGHIJKLM</div>
+      </div>
+      <button class="vote-btn" data-font="${f.name}">Pick ${f.name}</button>
+    `;
+    card.querySelector('.vote-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      winnerName.textContent = `${f.name} (weight ${weight}) + ${hFont} (spacing ${kern})`;
+      winnerBar.classList.add('visible');
+    });
+    grid.appendChild(card);
+  });
+}
+
+headerFont.addEventListener('change', render);
+headerKerning.addEventListener('input', render);
+bodyWeight.addEventListener('change', render);
+render();
+</script>
+</body>
+</html>
