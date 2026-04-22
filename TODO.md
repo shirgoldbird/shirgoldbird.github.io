@@ -11,7 +11,7 @@
 ## UI/UX Fixes
 - [x] AI blog pill modal: collapse on second pill click (currently only closes on outside click)
 - [x] Add background to all pages for readability (match existing blog page style)
-- [ ] Mobile: remove empty circle at top of home page (looks like a missing image) OR replace with a small bio pic in the top header instead of full-size at bottom
+- [x] Mobile: remove empty circle at top of home page (looks like a missing image) OR replace with a small bio pic in the top header instead of full-size at bottom
 
 ## Infrastructure
 - [ ] GitHub Actions CI/CD to deploy on push
@@ -25,4 +25,4 @@
 
 ## Content
 - [ ] Rewrite copy to highlight problems/solutions
-- [ ] Blog post about the font/design comparison tools (font-mockups.html, bg-opacity-test.html)
+- [ ] Blog post about the font/design comparison tools (font-mockups.html, bg-opacity-test.html, mobile-bio-mockup.html — note: the mobile bio mockup diverged the most from actual site behavior)

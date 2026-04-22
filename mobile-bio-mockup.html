@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Bio Mockup — Side by Side</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&family=Shrikhand&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Nunito', sans-serif; font-weight: 300; background: #e8e8e8; color: rgba(33,37,41,0.88); padding: 2rem; }
+
+  h1.page-title { text-align: center; font-size: 1.5rem; color: #5E3A98; margin-bottom: 0.3rem; }
+  .page-sub { text-align: center; color: #888; font-size: 0.85rem; margin-bottom: 2rem; }
+
+  .mockups { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; align-items: flex-start; }
+
+  .mockup-wrapper { text-align: center; }
+  .mockup-label {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #5E3A98; font-weight: 500; margin-bottom: 0.5rem;
+  }
+  .mockup-desc { font-size: 0.8rem; color: #888; max-width: 375px; margin: 0.5rem auto 0; }
+
+  .phone {
+    width: 375px; height: 780px; background: #f8f9fa; border-radius: 30px;
+    border: 3px solid #333; overflow: hidden; position: relative;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+
+  .geo-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  .geo-bg .s1 { position: absolute; width: 250px; height: 250px; background: #5E3A98; border-radius: 50%; opacity: 0.15; top: -80px; right: -100px; }
+  .geo-bg .s2 { position: absolute; width: 180px; height: 180px; background: #FF9671; border-radius: 50%; opacity: 0.15; bottom: 10%; left: -60px; }
+  .geo-bg .s3 { position: absolute; width: 120px; height: 120px; background: #FFC75F; border-radius: 50%; opacity: 0.15; top: 45%; right: 5%; }
+
+  .phone-scroll { position: relative; z-index: 1; height: 100%; overflow-y: auto; }
+
+  .nav-bar {
+    background: rgba(255,255,255,0.95); padding: 0.8rem 1.2rem;
+    box-shadow: 0 2px 10px rgba(94,58,152,0.1);
+    display: flex; align-items: center; position: sticky; top: 0; z-index: 10;
+  }
+  .nav-bar .site-name {
+    font-family: 'Shrikhand', cursive; letter-spacing: 1px;
+    color: #5E3A98; font-size: 1.2rem; text-decoration: none;
+  }
+  .nav-bar .hamburger { margin-left: auto; display: flex; flex-direction: column; gap: 4px; }
+  .nav-bar .hamburger span { display: block; width: 20px; height: 2px; background: #5E3A98; border-radius: 2px; }
+
+  .phone-content {
+    background: rgba(255,255,255,0.75); margin: 0.8rem;
+    border-radius: 10px; padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+
+  .phone-content h1 {
+    font-family: 'Shrikhand', cursive; letter-spacing: 1px;
+    color: #5E3A98; font-size: 2rem; font-weight: 400; line-height: 1.1;
+    margin-bottom: 1rem; position: relative;
+  }
+  .phone-content h1::after {
+    content: ''; position: absolute; width: 60px; height: 6px;
+    background: #FF9671; bottom: -8px; left: 4px;
+  }
+
+  .phone-content .role { font-weight: 500; margin-bottom: 0.8rem; font-size: 1rem; }
+  .phone-content .hl { color: #5E3A98; font-weight: 500; }
+  .phone-content .accent { color: #FF9671; font-weight: 500; }
+  .phone-content p { margin-top: 0.6rem; line-height: 1.6; font-size: 0.95rem; }
+  .phone-content a { color: #FF9671; text-decoration: none; }
+
+  .phone-content .current-role {
+    background: linear-gradient(135deg, rgba(94,58,152,0.08), rgba(255,150,113,0.08));
+    border-radius: 8px; padding: 1rem; margin-top: 1.2rem; position: relative;
+  }
+  .phone-content .current-role::before {
+    content: ''; position: absolute; width: 4px; height: 70%;
+    background: #5E3A98; left: 0; top: 15%;
+  }
+
+  /* Current: full-size bio with decorations */
+  .bio-container-full { position: relative; margin-bottom: 1.5rem; }
+  .bio-container-full img {
+    width: 100%; border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(94,58,152,0.2); position: relative; z-index: 2;
+  }
+  .bio-container-full::before {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    background: #5E3A98; border-radius: 10px; top: 15px; left: 15px; z-index: 1;
+  }
+  .bio-container-full::after {
+    content: ''; position: absolute; bottom: -20px; right: -20px;
+    width: 80px; height: 80px; border: 3px solid #FFC75F; border-radius: 10px; z-index: 1;
+  }
+
+  /* Option A: small inline pic next to heading */
+  .hero-with-pic { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .hero-with-pic img {
+    width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+    box-shadow: 0 4px 12px rgba(94,58,152,0.2); border: 3px solid #5E3A98;
+    flex-shrink: 0;
+  }
+  .hero-with-pic h1 { margin-bottom: 0; }
+
+  /* Option B: small pic in header */
+  .nav-bar-with-pic { gap: 0.8rem; }
+  .nav-bar-with-pic .header-pic {
+    width: 32px; height: 32px; border-radius: 50%; object-fit: cover;
+    border: 2px solid #5E3A98; box-shadow: 0 2px 6px rgba(94,58,152,0.2);
+  }
+
+  .tag {
+    display: inline-block; font-size: 0.65rem; padding: 0.15rem 0.5rem;
+    border-radius: 99px; font-weight: 500; margin-bottom: 0.5rem;
+  }
+  .tag-current { background: #FFC75F; color: #333; }
+  .tag-option { background: #5E3A98; color: white; }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">Mobile Homepage — Small Bio Options</h1>
+<p class="page-sub">Simulated 375px mobile views &bull; full homepage content</p>
+
+<div class="mockups">
+
+  <!-- CURRENT -->
+  <div class="mockup-wrapper">
+    <div class="mockup-label"><span class="tag tag-current">CURRENT</span> Full-size image</div>
+    <div class="phone">
+      <div class="geo-bg"><div class="s1"></div><div class="s2"></div><div class="s3"></div></div>
+      <div class="phone-scroll">
+        <div class="nav-bar">
+          <a class="site-name">Shir Goldberg</a>
+          <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+        <div class="phone-content">
+          <div class="bio-container-full">
+            <img src="assets/static/images/bio_pic.png" alt="Shir Goldberg">
+          </div>
+          <h1>Shir here.</h1>
+          <div class="role">I'm a <span class="hl">senior product manager</span> based in <span class="hl">NYC</span>.</div>
+          <p>I'm on a mission to create <span class="accent">exceptional developer experiences</span> that delight technical and non-technical users alike.</p>
+          <p>I've worked everywhere from <span class="hl">Microsoft</span> to <span class="hl">YC startups</span>. No matter the company, I bring a leadership mindset, collaborative approach, and multidisciplinary background that creates winning products and strong teams.</p>
+          <div class="current-role">
+            <p>Right now, I'm building a best-in-class AI developer experience at <a href="#">DeepL</a>. Want to learn more? <a href="#">Reach out</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="mockup-desc">Bio image dominates the viewport. Decorations look broken. Content pushed way down.</p>
+  </div>
+
+  <!-- OPTION A: small pic next to heading -->
+  <div class="mockup-wrapper">
+    <div class="mockup-label"><span class="tag tag-option">OPTION A</span> Small pic next to heading</div>
+    <div class="phone">
+      <div class="geo-bg"><div class="s1"></div><div class="s2"></div><div class="s3"></div></div>
+      <div class="phone-scroll">
+        <div class="nav-bar">
+          <a class="site-name">Shir Goldberg</a>
+          <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+        <div class="phone-content">
+          <div class="hero-with-pic">
+            <img src="assets/static/images/bio_pic.png" alt="Shir Goldberg">
+            <h1>Shir here.</h1>
+          </div>
+          <div class="role">I'm a <span class="hl">senior product manager</span> based in <span class="hl">NYC</span>.</div>
+          <p>I'm on a mission to create <span class="accent">exceptional developer experiences</span> that delight technical and non-technical users alike.</p>
+          <p>I've worked everywhere from <span class="hl">Microsoft</span> to <span class="hl">YC startups</span>. No matter the company, I bring a leadership mindset, collaborative approach, and multidisciplinary background that creates winning products and strong teams.</p>
+          <div class="current-role">
+            <p>Right now, I'm building a best-in-class AI developer experience at <a href="#">DeepL</a>. Want to learn more? <a href="#">Reach out</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="mockup-desc">80px circular pic sits next to "Shir here." — personal but compact. Content visible immediately.</p>
+  </div>
+
+  <!-- OPTION B: small pic in header bar -->
+  <div class="mockup-wrapper">
+    <div class="mockup-label"><span class="tag tag-option">OPTION B</span> Small pic in header bar</div>
+    <div class="phone">
+      <div class="geo-bg"><div class="s1"></div><div class="s2"></div><div class="s3"></div></div>
+      <div class="phone-scroll">
+        <div class="nav-bar nav-bar-with-pic">
+          <img src="assets/static/images/bio_pic.png" alt="Shir Goldberg" class="header-pic">
+          <a class="site-name">Shir Goldberg</a>
+          <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+        <div class="phone-content">
+          <h1>Shir here.</h1>
+          <div class="role">I'm a <span class="hl">senior product manager</span> based in <span class="hl">NYC</span>.</div>
+          <p>I'm on a mission to create <span class="accent">exceptional developer experiences</span> that delight technical and non-technical users alike.</p>
+          <p>I've worked everywhere from <span class="hl">Microsoft</span> to <span class="hl">YC startups</span>. No matter the company, I bring a leadership mindset, collaborative approach, and multidisciplinary background that creates winning products and strong teams.</p>
+          <div class="current-role">
+            <p>Right now, I'm building a best-in-class AI developer experience at <a href="#">DeepL</a>. Want to learn more? <a href="#">Reach out</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="mockup-desc">32px pic in the nav bar next to name. Maximizes content space. Pic visible on every page.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

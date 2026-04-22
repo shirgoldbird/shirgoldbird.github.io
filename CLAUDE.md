@@ -19,8 +19,8 @@ Product Manager at DeepL, former engineer. Builds API products for developers. T
 ## Tech Stack
 
 - **Static site generator:** Lektor (Python-based)
-- **Styling:** SCSS compiled via lektor-scss plugin, output to `assets/css/theme.css`
-- **Fonts:** Google Fonts (Fredoka for body, Shrikhand for display headings, Patua One available)
+- **Styling:** SCSS compiled via lektor-scss plugin, output to `assets/css/theme.css`. **NEVER edit `assets/css/theme.css` directly — it is auto-generated. Always edit `assets/scss/theme.scss` instead.**
+- **Fonts:** Google Fonts (Nunito for body, Shrikhand for display headings)
 - **Icons:** FontAwesome (loaded via kit in layout.html)
 - **Hosting:** GitHub Pages via `gh-pages` branch, custom domain `shirgoldberg.com`
 - **Deployment:** GitHub Actions workflow in `.github/workflows/main.yml`
@@ -84,7 +84,7 @@ $base-color: #5E3A98;      // Purple — headings, nav active
 $header-color: #FFC75F;    // Gold/yellow — h3, accents
 $link-color: #FF9671;      // Coral/orange — links
 $font-color: #212529;      // Near-black — body text
-$body-font-weight: 300;    // Light (Fredoka)
+$body-font-weight: 300;    // Light (Nunito)
 ```
 
 ## Writing Blog Posts for Shir

@@ -3,16 +3,19 @@
 {% block body %}
   <div class="home-hero">
     <div class="hero-text">
-      <h1>{{ this.title }}</h1>
+      <div class="hero-heading">
+        <img class="bio-small" src="{{ '/static/images/bio_pic.png'|url }}" alt="Shir Goldberg">
+        <h1>{{ this.title }}</h1>
+      </div>
       {{ this.body }}
-      
+
       {% if this.current_role %}
       <div class="current-role">
         {{ this.current_role }}
       </div>
       {% endif %}
     </div>
-    
+
     <div class="bio-container">
       <img class="bio" src="{{ '/static/images/bio_pic.png'|url }}" alt="Shir Goldberg">
     </div>
