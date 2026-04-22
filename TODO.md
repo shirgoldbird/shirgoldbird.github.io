@@ -5,8 +5,8 @@
 - [x] Implement hamburger menu on mobile
 
 ## Typography
-- [ ] Rework typography — body font should be easier to read
-- [ ] Fix accent/header font kerning (spacing is off)
+- [x] Rework typography — body font should be easier to read
+- [x] Fix accent/header font kerning (spacing is off)
 
 ## UI/UX Fixes
 - [ ] AI blog pill modal: collapse on second pill click (currently only closes on outside click)

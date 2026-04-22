@@ -68,5 +68,17 @@
       </div>
     </div>
   </footer>
+  <script>
+    document.addEventListener('click', function(e) {
+      var wrapper = e.target.closest('.ai-gauge-wrapper');
+      document.querySelectorAll('.ai-gauge-wrapper.active').forEach(function(el) {
+        if (el !== wrapper) el.classList.remove('active');
+      });
+      if (wrapper) {
+        wrapper.classList.toggle('active');
+        e.stopPropagation();
+      }
+    });
+  </script>
 </body>
 </html>
