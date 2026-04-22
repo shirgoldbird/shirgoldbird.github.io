@@ -1,43 +1,43 @@
-  name: Build and Deploy Lektor Site
+name: Build and Deploy Lektor Site
 
-  on:
-    push:
-      branches:
-        - develop
-    workflow_dispatch:
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
 
-  permissions:
-    contents: write
+permissions:
+  contents: write
 
-  jobs:
-    build-and-deploy:
-      runs-on: ubuntu-latest
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v4
-          with:
-            fetch-depth: 0
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-        - name: Set up Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.11'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-        - name: Install Lektor
-          run: |
-            pip install --upgrade pip
-            pip install lektor
+      - name: Install Lektor
+        run: |
+          pip install --upgrade pip
+          pip install lektor
 
-        - name: Build site
-          run: lektor build -f scss -O build
+      - name: Build site
+        run: lektor build -f scss -O build
 
-        - name: Deploy to GitHub Pages
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./build
-            publish_branch: master
-            cname: shirgoldberg.com
-            user_name: 'github-actions[bot]'
-            user_email: 'github-actions[bot]@users.noreply.github.com'
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: master
+          cname: shirgoldberg.com
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'

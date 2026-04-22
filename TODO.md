@@ -14,7 +14,7 @@
 - [x] Mobile: remove empty circle at top of home page (looks like a missing image) OR replace with a small bio pic in the top header instead of full-size at bottom
 
 ## Infrastructure
-- [ ] GitHub Actions CI/CD to deploy on push
+- [x] GitHub Actions CI/CD to deploy on push (already existed, kept as-is)
 
 ## Features
 - [ ] Dark mode
