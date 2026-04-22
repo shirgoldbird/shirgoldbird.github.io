@@ -1,0 +1,158 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="I'm a senior product manager based in NYC. I focus on building delightful developer experiences with teams of all sizes.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="../../css/theme.css?h=127aec34">
+  <title>The Confidence Ramp - Shir Goldberg</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="../../static/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../static/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../static/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../../static/favicon/site.webmanifest">
+  <script src="https://kit.fontawesome.com/07af19e0f4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Geometric Background -->
+  <div class="geometric-bg">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="line line-1"></div>
+    <div class="line line-2"></div>
+  </div>
+  
+  <header>
+    <nav>
+      <ul class="nav navbar-nav">
+        <li>Shir Goldberg</li>
+        <li><a href="../../">Home</a></li>
+        
+          <li><a href="../../career/">Career</a></li>
+        
+          <li><a href="../../projects/">Projects</a></li>
+        
+          <li class="active"><a href="../">Blog</a></li>
+        
+          <li><a href="../../pronouns/">Pronouns</a></li>
+        
+          <li><a href="../../contact/">Contact</a></li>
+        
+      </ul>
+    </nav>
+  </header>
+  <div class="page">
+    <div class="content">
+      
+  
+  
+  <div class="blog-post">
+    
+      <p class="blog-breadcrumb"><a href="../">&larr; Back to blog</a></p>
+    
+
+    <h1 id="title">The Confidence Ramp</h1>
+    
+      <p class="blog-subtitle">A UX pattern I designed for bulk actions, and a chronicle of trying to use AI to prototype it.</p>
+    
+
+    
+      <span class="ai-gauge-wrapper">
+        <span class="ai-gauge ai-gauge-written">AI written, human edited<i class="fa-solid fa-circle-info ai-gauge-info"></i>
+        </span>
+        <span class="ai-gauge-tooltip">
+          <strong>AI usage levels:</strong><br>
+          <span class="ai-gauge ai-gauge-none">No AI used</span> - 100% human written<br>
+          <span class="ai-gauge ai-gauge-edited">Human written, AI edited</span> - I wrote the first draft<br>
+          <span class="ai-gauge ai-gauge-written">AI written, human edited</span> - AI wrote the first draft<br>
+          <a href="../ai-usage/">Read more</a>
+        </span>
+      </span>
+    
+
+    
+
+    
+
+    
+    <div class="toc-container" id="toc">
+      <p><strong>Table of Contents</strong></p>
+      <ol class="toc">
+        
+        <li><a href="#the-problem">The Problem</a>
+          
+        </li>
+        
+        <li><a href="#the-confidence-ramp">The Confidence Ramp</a>
+          
+        </li>
+        
+        <li><a href="#prototyping-with-ai">Prototyping With AI</a>
+          
+        </li>
+        
+        <li><a href="#what-i-learned">What I Learned</a>
+          
+        </li>
+        
+      </ol>
+    </div>
+    
+
+    <blockquote><p><strong>Note:</strong> I created the below artifacts in June 2025 and just now got around to writing this up. The fidelity issues I describe below are still not solved, but AI tooling is changing fast!</p>
+</blockquote>
+<h2 id="the-problem">The Problem</h2><p>You just hired a candidate and are about to close the position in your ATS. You're hovering over the "Archive all" button, which will send auto-reject emails to the 237 candidates left in your pipeline. You click the button and immediately feel a knot in your stomach. Did you just email the wrong template to 237 people? Was there a candidate in there you meant to keep?</p>
+<p>Or imagine this: you ask Claude to create 50 Linear tickets from a spec, matching your team's specific templates. It starts firing them off. Are they right? You don't want to approve each one individually, but you also don't want to blindly trust it to get them all right.</p>
+<p>This anxiety is everywhere in software (or at least, I hope it's not just me). Bulk actions are efficient but terrifying. The existing solutions are either "approve everything one by one", which defeats the purpose, or "trust the machine and pray" (and who trusts machines these days?!).</p>
+<p>There's a middle ground.</p>
+<h2 id="the-confidence-ramp">The Confidence Ramp</h2><p>Before a bulk action runs on all items, you should be able to manually perform that action on a small sample first. Ideally, this sample is a representative cross-section of the data. Its size can be manually set, with a suggested threshold based on the number of overall items and risk level of the operation.</p>
+<p>In the confidence ramp phase, you manually approve or decline the action for each item in the sample. Once you've built enough confidence that the operation is doing what you expect, you hit "Process Remaining" and let it rip.</p>
+<p>Try it out below. Approve or skip the sample candidates, then hit the bulk process button:</p>
+<iframe src="confidence-ramp-demo.html" style="width:100%;height:750px;border:none;border-radius:12px;" loading="lazy"></iframe><p>Think of it like staged rollouts for user actions. Much like feature flags can be used to gradually increase traffic on a new piece of code from 1% to 100%, the confidence ramp does something similar and keeps the human in the loop til they're ready to let go.</p>
+<p>The goal is to catch edge cases early, build confidence in your systems, and keep it efficient.</p>
+<h2 id="prototyping-with-ai">Prototyping With AI</h2><p>I wanted to see this pattern integrated into a real product's UI, so I picked Ashby (an ATS I'd been using heavily while hiring). I asked Claude to mock it up.</p>
+<p><strong>Round 1: Generic prototype.</strong> Claude got the concept more or less right. The UX logic was solid, but it looked like a generic Bootstrap app, not like any real product.</p>
+<iframe src="round1-generic.html" style="width:100%;height:700px;border:1px solid #e2e8f0;border-radius:12px;" loading="lazy"></iframe><p><strong>Round 2: Ashby-styled version.</strong> I gave Claude screenshots of Ashby's actual UI and asked it to match the design. It got the general vibe (purple palette, layout structure) but wasn't anywhere close to pixel-perfect.</p>
+<iframe src="round2-ashby.html" style="width:100%;height:1100px;border:1px solid #e2e8f0;border-radius:12px;" loading="lazy"></iframe><p><strong>Round 3, 4, and more...</strong> I descended further into madness trying to get Claude to create anything that looked like Ashby's real UI. (Why? It seemed like fun at the time. Famous last words, I know.) I grabbed actual React components from Ashby's source and pasted them into the conversation with their embedded styles, hoping Claude could use the real CSS values. Instead, I got raw React import statements at the top of the page with broken styling.</p>
+<p>At this point I gave up on getting exact fidelity from Claude. Instead, I decided to try <a href="https://magicpatterns.com">Magic Patterns</a>.</p>
+<p><img src="magic-patterns-output.png" alt="Magic Patterns output"></p>
+<p>My understanding was that Magic Patterns solves for this problem, but it didn't really get close. I posted about it in a product community, where co-founder of Magic Patterns kindly weighed in. He said 1:1 perfect matching of a UI is not their product's use case, since the technology simply isn't there yet. (Direct quote: "If AI could match Asbhy directly in one shot I think everyone’s jobs would be in trouble haha.") The real use case, he explained, is communicating visually with stakeholders, not producing production-ready mockups.</p>
+<p>Fair enough. I don't work at Ashby and was just doing this for fun. I can imagine if I were a PM there, I'd be satisfied with something lower-fidelity. (Now if I were a designer there...maybe not.)</p>
+<h2 id="what-i-learned">What I Learned</h2><ol>
+<li><p>The confidence ramp pattern itself is solid. I'm proud of the idea and think it fills a real gap. I haven't seen any systems that use this yet - if you know of one, let me know. And if you work on a product with bulk actions, feel free to steal this idea. :)</p>
+</li>
+<li><p>AI is fine at UX, not great at UI. Claude understood the interaction pattern and could reason about what should happen. It just couldn't make it look like it belonged in a specific product.</p>
+</li>
+<li><p>Prototyping with AI is best for thinking through a rough draft, not for creating something prod-ready. As of April 2026, I'm working with an increasing number of designers who are using prototypes to create rough drafts, but none of them can be handed off to eng or shipped without significant refactoring to fit our design system.</p>
+</li>
+</ol>
+<p>If you're an AI tool builder reading this: high-fidelity UI matching from screenshots is the unlock that would make AI prototyping go from "useful for thinking" to "useful for shipping."</p>
+<p>P.S. The founder of <a href="https://alloy.app/">Alloy</a> has told me that discussing this concept with him inspired him to start his company. He might've just been gassing me up, but I'll take it!</p>
+
+
+    <a href="#title" class="back-to-top">Return to top ↵</a>
+  </div>
+  
+
+
+    </div>
+    
+  </div>
+  
+  <footer>
+    <div class="footer-shape footer-shape-1"></div>
+    <div class="footer-shape footer-shape-2"></div>
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2025 Shir Goldberg</p>
+        <div class="footer-links">
+          <a href="https://github.com/shirgoldbird">GitHub</a>
+          <a href="https://www.linkedin.com/in/shir-goldberg/">LinkedIn</a>
+          <a href="mailto:contact@shirgoldberg.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

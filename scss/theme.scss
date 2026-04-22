@@ -446,9 +446,33 @@ p {
     }
 }
 
-a.project {
+a.project, a.blog-post {
   all: unset;
   cursor: pointer;
+
+  &:hover {
+    color: inherit;
+  }
+
+  .index.card {
+    color: $font-dark;
+
+    h3 {
+      color: $base-color;
+    }
+
+    p, .meta {
+      color: $font-dark;
+    }
+
+    .meta {
+      color: rgba($font-color, 0.6);
+    }
+
+    i a {
+      color: $link-color;
+    }
+  }
 }
 
 .project.card {
@@ -479,17 +503,96 @@ a.project {
     }
 }
 
+// Blog breadcrumb
+.blog-breadcrumb {
+  margin-bottom: 1.5rem;
+  font-size: 0.9em;
+
+  a {
+    color: rgba($font-color, 0.5);
+    text-decoration: none;
+
+    &:hover {
+      color: $link-color;
+    }
+  }
+}
+
+// Blog post full-view background (not index cards)
+div.blog-post:not(.index) {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  padding: 2.5rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+
+  > .ai-gauge-wrapper {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Blog subtitle (full view)
+.blog-subtitle {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.3em;
+  font-weight: 300;
+  color: rgba($font-color, 0.7);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+// Blog subtitle (index cards)
+.blog-subtitle-index {
+  font-size: 0.9em;
+  font-weight: 300;
+  color: rgba($font-color, 0.6);
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
 // Blog-specific styles
 .blog-post {
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .footnote {
+        font-size: 0.75em;
+        vertical-align: super;
+        line-height: 0;
+        text-decoration: none;
+    }
+
+    .footnotes {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        font-size: 0.85em;
+        color: rgba($font-color, 0.7);
+
+        ol {
+            padding-left: 1.5rem;
+        }
+
+        hr {
+            display: none;
+        }
+    }
+
     .meta {
         color: rgba($font-color, 0.6);
         font-size: 0.9em;
         margin-bottom: 1rem;
         font-style: italic;
     }
-    
+
     h1 {
-        margin-bottom: 1rem;
+        font-size: 2.2em;
+        margin-bottom: 1.8rem;
     }
     
     h2 {
@@ -725,4 +828,81 @@ footer {
 }
 .toc a:hover {
   color: darken($link-color, 10%);
+}
+
+// AI usage gauge
+.ai-gauge-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover .ai-gauge-tooltip,
+  &:focus-within .ai-gauge-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.ai-gauge {
+  display: inline-block;
+  font-size: 0.75em;
+  font-style: normal;
+  font-weight: 400;
+  padding: 0.2em 0.6em;
+  border-radius: 999px;
+  vertical-align: baseline;
+  margin-left: 0.5em;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+
+  .ai-gauge-info {
+    font-size: 0.85em;
+    margin-left: 0.3em;
+    opacity: 0.6;
+  }
+
+  &:hover .ai-gauge-info {
+    opacity: 1;
+  }
+}
+
+.ai-gauge-tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 10;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  font-size: 0.85em;
+  line-height: 1.6;
+  width: 320px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+
+  a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: $link-color;
+  }
+}
+
+.ai-gauge-none {
+  background-color: rgba(#6366f1, 0.1);
+  color: #4338ca;
+}
+
+.ai-gauge-edited {
+  background-color: rgba(#8b5cf6, 0.1);
+  color: #6d28d9;
+}
+
+.ai-gauge-written {
+  background-color: rgba(#06b6d4, 0.12);
+  color: #0e7490;
 }
