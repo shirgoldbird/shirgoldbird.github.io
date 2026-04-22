@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background Opacity Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&family=Shrikhand&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Nunito', sans-serif; font-weight: 300; background-color: #f8f9fa; color: rgba(33,37,41,0.88); overflow-x: hidden; }
+
+  .bg-shapes {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;
+  }
+  .bg-shapes .s1 { position: absolute; width: 400px; height: 400px; background: #5E3A98; border-radius: 50%; opacity: 0.15; top: -100px; right: -150px; }
+  .bg-shapes .s2 { position: absolute; width: 300px; height: 300px; background: #FF9671; border-radius: 50%; opacity: 0.15; bottom: 10%; left: -100px; }
+  .bg-shapes .s3 { position: absolute; width: 200px; height: 200px; background: #FFC75F; border-radius: 50%; opacity: 0.15; top: 40%; right: 10%; }
+
+  .controls {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: white; padding: 1rem 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .controls label { font-size: 0.85rem; color: #555; font-weight: 500; }
+  .controls input[type="range"] { width: 300px; }
+  .controls .val { font-family: monospace; font-size: 1.1rem; color: #5E3A98; font-weight: 700; min-width: 3rem; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 5rem auto 2rem; padding: 1rem 2rem; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+  .panel-label {
+    text-align: center; font-size: 0.8rem; color: #999; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 0.5rem; font-weight: 500;
+  }
+  .panel-label strong { color: #5E3A98; }
+
+  .card {
+    border-radius: 10px; padding: 2.5rem; box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+    transition: background-color 0.15s;
+  }
+
+  h1 { font-family: 'Shrikhand', cursive; letter-spacing: 1px; color: #5E3A98; font-size: 2.2rem; font-weight: 400; line-height: 1.1; margin-bottom: 1rem; position: relative; }
+  h1::after { content: ''; position: absolute; width: 80px; height: 8px; background: #FF9671; bottom: -10px; left: 5px; }
+  h2 { font-size: 1.4rem; color: #5E3A98; font-weight: 500; margin: 1.5rem 0 0.5rem; }
+  .meta { color: rgba(33,37,41,0.5); font-size: 0.85rem; font-style: italic; margin-bottom: 0.8rem; }
+  p { margin-top: 0.8rem; line-height: 1.7; }
+  .hl { color: #5E3A98; font-weight: 500; }
+  .accent { color: #FF9671; font-weight: 500; }
+  blockquote { border-left: 4px solid #FF9671; padding-left: 1rem; margin: 1.2rem 0; font-style: italic; color: rgba(33,37,41,0.8); }
+  code { background: rgba(94,58,152,0.1); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+
+  .ai-gauge { display: inline-block; font-size: 0.75em; padding: 0.2em 0.6em; border-radius: 999px; background: rgba(6,182,212,0.12); color: #0e7490; margin-left: 0.5em; }
+</style>
+</head>
+<body>
+
+<div class="bg-shapes">
+  <div class="s1"></div><div class="s2"></div><div class="s3"></div>
+</div>
+
+<div class="controls">
+  <div>
+    <label>Background opacity</label><br>
+    <input type="range" id="opacity" min="0" max="100" value="85" step="1">
+  </div>
+  <div class="val" id="opacity-val">0.85</div>
+  <div style="font-size:0.8rem;color:#999">Left = current (0.85) &bull; Right = your slider value</div>
+</div>
+
+<div class="grid">
+  <div>
+    <div class="panel-label">Current: <strong>0.85</strong></div>
+    <div class="card" id="card-left" style="background-color: rgba(255,255,255,0.85);">
+      <h1>The Confidence Ramp</h1>
+      <div class="meta">April 21, 2026 <span class="ai-gauge">AI written, human edited</span></div>
+
+      <h2>The Problem</h2>
+      <p>You just hired a candidate and are about to close the position in your ATS. You're hovering over the "Archive all" button, which will send auto-reject emails to the <span class="hl">237 candidates</span> left in your pipeline.</p>
+      <p>You click the button and immediately feel a knot in your stomach. Did you just email the wrong template to 237 people? Was there a candidate in there you meant to keep?</p>
+
+      <blockquote>This anxiety is everywhere in software. Bulk actions are efficient but terrifying.</blockquote>
+
+      <p>The existing solutions are either "approve everything one by one", which defeats the purpose, or "trust the machine and pray". There's a <span class="accent">middle ground</span>.</p>
+
+      <h2>The Solution</h2>
+      <p>Before a bulk action runs on all items, you should be able to manually perform that action on a small sample first. The sample is a <span class="hl">representative cross-section</span> of the data, with a suggested threshold based on overall count and risk level.</p>
+      <p>Think of it like <code>git diff</code> before <code>git push</code> — a moment of clarity before commitment.</p>
+    </div>
+  </div>
+  <div>
+    <div class="panel-label">Slider: <strong id="right-label">0.85</strong></div>
+    <div class="card" id="card-right" style="background-color: rgba(255,255,255,0.85);">
+      <h1>The Confidence Ramp</h1>
+      <div class="meta">April 21, 2026 <span class="ai-gauge">AI written, human edited</span></div>
+
+      <h2>The Problem</h2>
+      <p>You just hired a candidate and are about to close the position in your ATS. You're hovering over the "Archive all" button, which will send auto-reject emails to the <span class="hl">237 candidates</span> left in your pipeline.</p>
+      <p>You click the button and immediately feel a knot in your stomach. Did you just email the wrong template to 237 people? Was there a candidate in there you meant to keep?</p>
+
+      <blockquote>This anxiety is everywhere in software. Bulk actions are efficient but terrifying.</blockquote>
+
+      <p>The existing solutions are either "approve everything one by one", which defeats the purpose, or "trust the machine and pray". There's a <span class="accent">middle ground</span>.</p>
+
+      <h2>The Solution</h2>
+      <p>Before a bulk action runs on all items, you should be able to manually perform that action on a small sample first. The sample is a <span class="hl">representative cross-section</span> of the data, with a suggested threshold based on overall count and risk level.</p>
+      <p>Think of it like <code>git diff</code> before <code>git push</code> — a moment of clarity before commitment.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const slider = document.getElementById('opacity');
+  const val = document.getElementById('opacity-val');
+  const rightLabel = document.getElementById('right-label');
+  const cardRight = document.getElementById('card-right');
+
+  slider.addEventListener('input', () => {
+    const v = (slider.value / 100).toFixed(2);
+    val.textContent = v;
+    rightLabel.textContent = v;
+    cardRight.style.backgroundColor = `rgba(255,255,255,${v})`;
+  });
+</script>
+</body>
+</html>

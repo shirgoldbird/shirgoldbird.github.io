@@ -9,8 +9,8 @@
 - [x] Fix accent/header font kerning (spacing is off)
 
 ## UI/UX Fixes
-- [ ] AI blog pill modal: collapse on second pill click (currently only closes on outside click)
-- [ ] Add background to all pages for readability (match existing blog page style)
+- [x] AI blog pill modal: collapse on second pill click (currently only closes on outside click)
+- [x] Add background to all pages for readability (match existing blog page style)
 - [ ] Mobile: remove empty circle at top of home page (looks like a missing image) OR replace with a small bio pic in the top header instead of full-size at bottom
 
 ## Infrastructure
@@ -25,4 +25,4 @@
 
 ## Content
 - [ ] Rewrite copy to highlight problems/solutions
-- [ ] Blog post about the font comparison tool (font-mockups.html)
+- [ ] Blog post about the font/design comparison tools (font-mockups.html, bg-opacity-test.html)
