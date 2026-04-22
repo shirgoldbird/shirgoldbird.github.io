@@ -26,9 +26,7 @@
   <header>
     <nav>
       <ul class="nav navbar-nav">
-        <li>Shir Goldberg</li>
-        <li{% if this._path == '/' %} class="active"{% endif
-          %}><a href="{{ '/'|url }}">Home</a></li>
+        <li><a href="{{ '/'|url }}" class="site-name">Shir Goldberg</a></li>
         {% for href, title in [
           ['/career', 'Career'],
           ['/projects', 'Projects'],
