@@ -1,5 +1,21 @@
 # shirgoldbird.github.io
 
+## About Shir
+
+Product Manager at DeepL, former engineer. Builds API products for developers. The blog covers product thinking, developer experience, and side projects. Audience is developers and PMs.
+
+## How to Work on This Repo
+
+**Ask before guessing.** For anything requiring judgment (blog tone, design choices, content decisions), ask clarifying questions rather than assuming. Mechanical tasks (reformatting, fixing a CSS bug) are fine to just do.
+
+**Always reread files before responding to feedback.** Shir edits files directly between messages (in a text editor, not in the conversation). The version in conversation context is often stale. Don't wait to be told "reread the file."
+
+**Default to writing out to a file** when producing anything of meaningful length. This enables back-and-forth iteration. Don't keep drafts in conversation.
+
+**Tone:** Direct but warm. Be concise. No filler, no preamble, no "Great question!" energy. Don't be overly formal or overly casual. Professional but human.
+
+**At the end of each session, propose any updates to this CLAUDE.md** based on patterns, corrections, or preferences that emerged. Surface them explicitly so Shir can approve.
+
 ## Tech Stack
 
 - **Static site generator:** Lektor (Python-based)
