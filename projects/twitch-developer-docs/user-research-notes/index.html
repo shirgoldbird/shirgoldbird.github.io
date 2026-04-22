@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="description" content="I'm a senior product manager based in NYC. I focus on building delightful developer experiences with teams of all sizes.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="../../../css/theme.css?h=562eb84d">
+  <link rel="stylesheet" href="../../../css/theme.css?h=2b2c5235">
   <title>User Research Notes - Shir Goldberg</title>
   <link rel="apple-touch-icon" sizes="180x180" href="../../../static/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../../../static/favicon/favicon-32x32.png">
@@ -237,5 +237,17 @@
       </div>
     </div>
   </footer>
+  <script>
+    document.addEventListener('click', function(e) {
+      var wrapper = e.target.closest('.ai-gauge-wrapper');
+      document.querySelectorAll('.ai-gauge-wrapper.active').forEach(function(el) {
+        if (el !== wrapper) el.classList.remove('active');
+      });
+      if (wrapper) {
+        wrapper.classList.toggle('active');
+        e.stopPropagation();
+      }
+    });
+  </script>
 </body>
 </html>
