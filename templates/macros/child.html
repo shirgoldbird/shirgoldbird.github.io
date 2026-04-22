@@ -6,9 +6,14 @@
     {% if type == "blog-post" %}
       <p class="meta">
         {% if post.pub_date %} published {{ post.pub_date }} {% endif %}
+        {% if post.ai_usage %}
+          <span class="ai-gauge ai-gauge-{{ post.ai_usage }}">
+            {%- if post.ai_usage == 'none' -%}No AI used{%- elif post.ai_usage == 'edited' -%}Human written, AI edited{%- elif post.ai_usage == 'written' -%}AI written, human edited{%- endif -%}
+          </span>
+        {% endif %}
       </p>
     {% endif %}
-      <p>{{ post.body|excerpt }}</p>
+      <p>{% if post.subtitle %}{{ post.subtitle }}{% else %}{{ post.body|excerpt }}{% endif %}</p>
     {% if type == "blog-post" %}
       <i><a href="{{ post|url }}">read more</a></i>
     {% endif %}
@@ -16,22 +21,46 @@
   </a>
   {% else %}
   <div class="{{ type }}">
+    {% if type == "blog-post" %}
+      <p class="blog-breadcrumb"><a href="{{ '/blog'|url }}">&larr; Back to blog</a></p>
+    {% endif %}
+
     <h1 id="title">{{ post.title }}</h1>
+    {% if post.subtitle %}
+      <p class="blog-subtitle">{{ post.subtitle }}</p>
+    {% endif %}
+
+    {% if type == "blog-post" and post.ai_usage %}
+      <span class="ai-gauge-wrapper">
+        <span class="ai-gauge ai-gauge-{{ post.ai_usage }}">
+          {%- if post.ai_usage == 'none' -%}No AI used{%- elif post.ai_usage == 'edited' -%}Human written, AI edited{%- elif post.ai_usage == 'written' -%}AI written, human edited{%- endif -%}
+          <i class="fa-solid fa-circle-info ai-gauge-info"></i>
+        </span>
+        <span class="ai-gauge-tooltip">
+          <strong>AI usage levels:</strong><br>
+          <span class="ai-gauge ai-gauge-none">No AI used</span> - 100% human written<br>
+          <span class="ai-gauge ai-gauge-edited">Human written, AI edited</span> - I wrote the first draft<br>
+          <span class="ai-gauge ai-gauge-written">AI written, human edited</span> - AI wrote the first draft<br>
+          <a href="{{ '/blog/ai-usage'|url }}">Read more</a>
+        </span>
+      </span>
+    {% endif %}
 
     {% if type == "project" %}
       <p><strong>a {{ post.type }}</strong> <em>by shir goldberg</em></p>
     {% endif %}
 
-    {% set images = post.attachments.images %}
-
-    {% if images %}
-    <div class="project-images">
-      {% for image in images %}
-        <div class="project-image">
-          <img src="{{ image.thumbnail(800, 800)|url }}" alt="Photo of {{ post.title }}">
-        </div>
-       {% endfor %}
-    </div>
+    {% if type == "project" %}
+      {% set images = post.attachments.images %}
+      {% if images %}
+      <div class="project-images">
+        {% for image in images %}
+          <div class="project-image">
+            <img src="{{ image.thumbnail(800, 800)|url }}" alt="Photo of {{ post.title }}">
+          </div>
+         {% endfor %}
+      </div>
+      {% endif %}
     {% endif %}
 
     {% if post.body.toc %}

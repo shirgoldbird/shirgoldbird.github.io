@@ -4,6 +4,9 @@ name = Shir Goldberg
 [servers.ghpages]
 target = ghpages://shirgoldbird/shirgoldbird.github.io?cname=shirgoldberg.com
 
+[markdown]
+extensions = footnotes
+
 [packages]
 lektor-markdown-excerpt = 0.1
 lektor-markdown-header-anchors = 0.3.1
