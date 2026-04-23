@@ -25,7 +25,7 @@
 
 ## Quick Fixes
 - [x] Add iconography for contact methods on contact page
-- [ ] Add dates to case studies
+- [x] Add dates to case studies
 - [ ] Update pronunciation guide — "Shir here" rhymes
 
 ## Content
