@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Mode Palette Comparison</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&family=Shrikhand&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Nunito', sans-serif; font-weight: 300; background: #111; color: #eee; padding: 2rem; }
+
+  h1.title { text-align: center; font-size: 1.5rem; margin-bottom: 0.3rem; color: #FF9671; }
+  .subtitle { text-align: center; color: #888; font-size: 0.85rem; margin-bottom: 2rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 1.5rem; max-width: 1800px; margin: 0 auto; }
+
+  .card {
+    border-radius: 12px; overflow: hidden; border: 3px solid transparent;
+    cursor: pointer; transition: border-color 0.2s;
+  }
+  .card:hover { border-color: #FF9671; }
+  .card.selected { border-color: #FF9671; }
+
+  .card-header {
+    padding: 0.8rem 1.2rem; display: flex; justify-content: space-between; align-items: center;
+  }
+  .card-header .name { font-weight: 500; font-size: 0.95rem; }
+  .card-header .desc { font-size: 0.75rem; opacity: 0.6; }
+
+  .swatches { display: flex; gap: 0; height: 6px; }
+  .swatches span { flex: 1; }
+
+  /* Page simulation */
+  .page-sim { padding: 1.5rem; position: relative; overflow: hidden; }
+
+  .geo { position: absolute; border-radius: 50%; pointer-events: none; }
+
+  .sim-header {
+    display: flex; align-items: center; padding: 0.6rem 1rem;
+    border-radius: 8px; margin-bottom: 1.2rem;
+  }
+  .sim-header .site-name { font-family: 'Shrikhand', cursive; letter-spacing: 1px; font-size: 1.1rem; }
+  .sim-header .nav-links { margin-left: auto; display: flex; gap: 0.8rem; font-size: 0.8rem; }
+
+  .sim-content { border-radius: 8px; padding: 1.5rem; position: relative; z-index: 1; }
+  .sim-content h1 {
+    font-family: 'Shrikhand', cursive; letter-spacing: 1px;
+    font-size: 1.8rem; font-weight: 400; line-height: 1.1; margin-bottom: 0.8rem; position: relative;
+  }
+  .sim-content h1::after {
+    content: ''; position: absolute; width: 50px; height: 5px; bottom: -6px; left: 4px;
+  }
+  .sim-content .role { font-weight: 500; margin-bottom: 0.6rem; font-size: 0.95rem; }
+  .sim-content p { margin-top: 0.5rem; line-height: 1.6; font-size: 0.9rem; }
+  .sim-content h2 { font-size: 1.2rem; margin: 1rem 0 0.4rem; font-weight: 500; }
+  .sim-content code { padding: 0.15rem 0.3rem; border-radius: 3px; font-size: 0.85em; }
+  .sim-content blockquote { border-left-width: 3px; border-left-style: solid; padding-left: 0.8rem; margin: 0.8rem 0; font-style: italic; font-size: 0.9rem; }
+
+  .sim-footer { margin-top: 1rem; padding: 0.8rem 1rem; border-radius: 8px; font-size: 0.75rem; display: flex; justify-content: space-between; }
+
+  .pick-btn {
+    display: block; width: 100%; padding: 0.5rem; border: none;
+    border-radius: 0 0 9px 9px; font-size: 0.85rem; cursor: pointer;
+    font-family: 'Nunito', sans-serif; font-weight: 500; transition: filter 0.2s;
+  }
+  .pick-btn:hover { filter: brightness(1.1); }
+
+  #winner {
+    position: fixed; bottom: 0; left: 0; right: 0; text-align: center;
+    padding: 0.8rem; font-size: 0.9rem; transform: translateY(100%);
+    transition: transform 0.3s; z-index: 20; background: #FF9671; color: #1a1a2e;
+  }
+  #winner.visible { transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<h1 class="title">Dark Mode Palette Comparison</h1>
+<p class="subtitle">Click "Pick" on your favorite. All use real site content.</p>
+
+<div class="grid" id="grid"></div>
+<div id="winner"><strong id="winner-name"></strong></div>
+
+<script>
+const palettes = [
+  {
+    name: 'Current',
+    desc: 'Deep navy + muted purple',
+    bg: '#1a1a2e',
+    cardBg: 'rgba(30,30,50,0.8)',
+    headerBg: 'rgba(26,26,46,0.97)',
+    footerBg: '#16162b',
+    text: 'rgba(230,230,240,0.9)',
+    textMuted: 'rgba(230,230,240,0.6)',
+    purple: '#8B6FC0',
+    coral: '#FF9671',
+    gold: '#FFC75F',
+    highlightBg: 'rgba(139,111,192,0.25)',
+    codeBg: 'rgba(139,111,192,0.15)',
+    blockquoteText: 'rgba(230,230,240,0.75)',
+    geoOpacity: 0.08,
+  },
+  {
+    name: 'Vivid Purple',
+    desc: 'Brighter purple, higher contrast',
+    bg: '#13111C',
+    cardBg: 'rgba(25,22,38,0.85)',
+    headerBg: 'rgba(19,17,28,0.97)',
+    footerBg: '#0f0e17',
+    text: 'rgba(240,238,250,0.92)',
+    textMuted: 'rgba(240,238,250,0.6)',
+    purple: '#A78BFA',
+    coral: '#FF9671',
+    gold: '#FFC75F',
+    highlightBg: 'rgba(167,139,250,0.2)',
+    codeBg: 'rgba(167,139,250,0.12)',
+    blockquoteText: 'rgba(240,238,250,0.7)',
+    geoOpacity: 0.06,
+  },
+  {
+    name: 'Warm Charcoal',
+    desc: 'Warm gray bg, saturated accents',
+    bg: '#1C1B22',
+    cardBg: 'rgba(35,33,42,0.85)',
+    headerBg: 'rgba(28,27,34,0.97)',
+    footerBg: '#15141a',
+    text: 'rgba(235,233,245,0.9)',
+    textMuted: 'rgba(235,233,245,0.6)',
+    purple: '#9F7AEA',
+    coral: '#FFA07A',
+    gold: '#FFD166',
+    highlightBg: 'rgba(159,122,234,0.2)',
+    codeBg: 'rgba(159,122,234,0.12)',
+    blockquoteText: 'rgba(235,233,245,0.7)',
+    geoOpacity: 0.05,
+  },
+  {
+    name: 'Midnight Indigo',
+    desc: 'Blue-tinted dark, neon purple pop',
+    bg: '#0F1724',
+    cardBg: 'rgba(18,28,48,0.8)',
+    headerBg: 'rgba(15,23,36,0.97)',
+    footerBg: '#0a1018',
+    text: 'rgba(220,230,250,0.9)',
+    textMuted: 'rgba(220,230,250,0.6)',
+    purple: '#B794F4',
+    coral: '#FF9671',
+    gold: '#FFC75F',
+    highlightBg: 'rgba(183,148,244,0.2)',
+    codeBg: 'rgba(183,148,244,0.12)',
+    blockquoteText: 'rgba(220,230,250,0.7)',
+    geoOpacity: 0.07,
+  },
+  {
+    name: 'True Black',
+    desc: 'OLED-friendly, max contrast',
+    bg: '#000000',
+    cardBg: 'rgba(18,18,18,0.9)',
+    headerBg: 'rgba(10,10,10,0.97)',
+    footerBg: '#0a0a0a',
+    text: 'rgba(245,245,245,0.92)',
+    textMuted: 'rgba(245,245,245,0.6)',
+    purple: '#C4A8FF',
+    coral: '#FFB088',
+    gold: '#FFD580',
+    highlightBg: 'rgba(196,168,255,0.18)',
+    codeBg: 'rgba(196,168,255,0.12)',
+    blockquoteText: 'rgba(245,245,245,0.7)',
+    geoOpacity: 0.04,
+  },
+  {
+    name: 'Plum Night',
+    desc: 'Purple-tinted bg, cohesive brand',
+    bg: '#1A1225',
+    cardBg: 'rgba(30,22,42,0.85)',
+    headerBg: 'rgba(26,18,37,0.97)',
+    footerBg: '#130d1c',
+    text: 'rgba(235,228,248,0.9)',
+    textMuted: 'rgba(235,228,248,0.6)',
+    purple: '#B89AE8',
+    coral: '#FF9671',
+    gold: '#FFC75F',
+    highlightBg: 'rgba(184,154,232,0.22)',
+    codeBg: 'rgba(184,154,232,0.14)',
+    blockquoteText: 'rgba(235,228,248,0.75)',
+    geoOpacity: 0.07,
+  },
+];
+
+const grid = document.getElementById('grid');
+
+palettes.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'card' + (i === 0 ? ' selected' : '');
+  card.innerHTML = `
+    <div class="card-header" style="background:${p.headerBg}; color:${p.text}">
+      <span class="name">${p.name}</span>
+      <span class="desc">${p.desc}</span>
+    </div>
+    <div class="swatches">
+      <span style="background:${p.bg}"></span>
+      <span style="background:${p.purple}"></span>
+      <span style="background:${p.coral}"></span>
+      <span style="background:${p.gold}"></span>
+      <span style="background:${p.cardBg}"></span>
+    </div>
+    <div class="page-sim" style="background:${p.bg}">
+      <div class="geo" style="width:200px;height:200px;background:${p.purple};opacity:${p.geoOpacity};top:-60px;right:-80px;"></div>
+      <div class="geo" style="width:150px;height:150px;background:${p.coral};opacity:${p.geoOpacity};bottom:5%;left:-50px;"></div>
+      <div class="geo" style="width:80px;height:80px;background:${p.gold};opacity:${p.geoOpacity};top:40%;right:8%;"></div>
+      <div class="geo" style="width:60px;height:60px;border:2px solid ${p.purple};opacity:${p.geoOpacity * 1.5};top:25%;left:3%;background:transparent"></div>
+
+      <div class="sim-header" style="background:${p.headerBg}; box-shadow:0 1px 8px rgba(0,0,0,0.3);">
+        <span class="site-name" style="color:${p.purple}">Shir Goldberg</span>
+        <div class="nav-links" style="color:${p.text}">
+          <span>Career</span><span>Projects</span><span>Blog</span><span>Contact</span>
+        </div>
+      </div>
+
+      <div class="sim-content" style="background:${p.cardBg}; color:${p.text}; box-shadow:0 2px 10px rgba(0,0,0,0.2);">
+        <h1 style="color:${p.purple}">Shir here.</h1>
+        <div style="width:50px;height:5px;background:${p.coral};margin-bottom:0.8rem;border-radius:2px;"></div>
+        <div class="role">I'm a <span style="color:${p.purple};font-weight:500">senior product manager</span> based in <span style="color:${p.purple};font-weight:500">NYC</span>.</div>
+        <p>I'm on a mission to create <span style="color:${p.coral};font-weight:500">exceptional developer experiences</span> that delight technical and non-technical users alike.</p>
+
+        <h2 style="color:${p.purple}">The Confidence Ramp</h2>
+        <p style="color:${p.textMuted}; font-style:italic; font-size:0.8rem;">April 21, 2026</p>
+        <p>You're hovering over the "Archive all" button. Think of it like <code style="background:${p.codeBg}">git diff</code> before <code style="background:${p.codeBg}">git push</code>.</p>
+        <blockquote style="border-color:${p.coral}; color:${p.blockquoteText}">Bulk actions are efficient but terrifying.</blockquote>
+      </div>
+
+      <div class="sim-footer" style="background:${p.footerBg}; color:${p.textMuted}">
+        <span>2026 Shir Goldberg</span>
+        <span style="color:${p.gold}">GitHub &bull; LinkedIn</span>
+      </div>
+    </div>
+    <button class="pick-btn" style="background:${p.coral}; color:${p.bg}" data-name="${p.name}">Pick ${p.name}</button>
+  `;
+
+  card.querySelector('.pick-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    document.getElementById('winner-name').textContent = 'Selected: ' + p.name;
+    document.getElementById('winner').classList.add('visible');
+  });
+
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>

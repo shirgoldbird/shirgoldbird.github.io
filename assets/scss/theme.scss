@@ -1,21 +1,95 @@
-// Base colors
-$base-color: #5E3A98;
-$primary-light: lighten($base-color, 10%);
-$font-color: #212529;
-$header-color: #FFC75F;
-$contrast-link-color: #FFAD8F;
-$link-color: #FF9671;
+// Non-theme constants (sizes, spacing, fonts)
 $body-font-weight: 300;
 $tall-margin: 25px;
-$light-bg: #f8f9fa;
-
-$font-dark: rgba($font-color, 0.88);
-$header-dark: rgba($header-color, 0.88);
-
 $base-size: 1.2em;
 $header-size: 3.5em;
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&family=Shrikhand&display=swap');
+
+// Theme colors via CSS custom properties
+:root {
+  --bg: #f8f9fa;
+  --text: rgba(33, 37, 41, 0.88);
+  --text-muted: rgba(33, 37, 41, 0.6);
+  --text-faint: rgba(33, 37, 41, 0.5);
+  --purple: #5E3A98;
+  --coral: #FF9671;
+  --coral-dark: #ff703e;
+  --gold: #FFC75F;
+  --gold-text: rgba(255, 199, 95, 0.88);
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-bg-solid: white;
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --header-shadow: rgba(94, 58, 152, 0.15);
+  --highlight-bg: rgba(94, 58, 152, 0.2);
+  --accent-bg: rgba(255, 150, 113, 0.2);
+  --code-bg: rgba(94, 58, 152, 0.1);
+  --pre-bg: rgba(94, 58, 152, 0.05);
+  --border-light: rgba(0, 0, 0, 0.1);
+  --shadow-sm: rgba(0, 0, 0, 0.04);
+  --shadow-md: rgba(0, 0, 0, 0.05);
+  --shadow-lg: rgba(0, 0, 0, 0.1);
+  --tooltip-bg: white;
+  --tooltip-shadow: rgba(0, 0, 0, 0.12);
+  --current-role-bg: linear-gradient(135deg, rgba(94, 58, 152, 0.08) 0%, rgba(255, 150, 113, 0.08) 100%);
+  --toc-bg: rgba(94, 58, 152, 0.03);
+  --footnotes-border: rgba(0, 0, 0, 0.1);
+  --blockquote-text: rgba(33, 37, 41, 0.8);
+  --geo-shape-opacity: 0.15;
+  --geo-circle-opacity: 0.2;
+  --geo-line-opacity: 0.1;
+  --footer-bg: #5E3A98;
+  --footer-text: white;
+  --footer-shape-bg: rgba(255, 255, 255, 0.05);
+  --gauge-none-bg: rgba(99, 102, 241, 0.1);
+  --gauge-none-color: #4338ca;
+  --gauge-edited-bg: rgba(139, 92, 246, 0.1);
+  --gauge-edited-color: #6d28d9;
+  --gauge-written-bg: rgba(6, 182, 212, 0.12);
+  --gauge-written-color: #0e7490;
+}
+
+[data-theme="dark"] {
+  --bg: #0F1724;
+  --text: rgba(220, 230, 250, 0.9);
+  --text-muted: rgba(220, 230, 250, 0.6);
+  --text-faint: rgba(220, 230, 250, 0.45);
+  --purple: #B794F4;
+  --coral: #FF9671;
+  --coral-dark: #FFB89A;
+  --gold: #FFC75F;
+  --gold-text: rgba(255, 199, 95, 0.9);
+  --card-bg: rgba(18, 28, 48, 0.8);
+  --card-bg-solid: #162038;
+  --header-bg: rgba(15, 23, 36, 0.97);
+  --header-shadow: rgba(0, 0, 0, 0.3);
+  --highlight-bg: rgba(183, 148, 244, 0.2);
+  --accent-bg: rgba(255, 150, 113, 0.2);
+  --code-bg: rgba(183, 148, 244, 0.12);
+  --pre-bg: rgba(183, 148, 244, 0.08);
+  --border-light: rgba(255, 255, 255, 0.1);
+  --shadow-sm: rgba(0, 0, 0, 0.2);
+  --shadow-md: rgba(0, 0, 0, 0.25);
+  --shadow-lg: rgba(0, 0, 0, 0.35);
+  --tooltip-bg: #162038;
+  --tooltip-shadow: rgba(0, 0, 0, 0.3);
+  --current-role-bg: linear-gradient(135deg, rgba(183, 148, 244, 0.12) 0%, rgba(255, 150, 113, 0.08) 100%);
+  --toc-bg: rgba(183, 148, 244, 0.06);
+  --footnotes-border: rgba(255, 255, 255, 0.1);
+  --blockquote-text: rgba(220, 230, 250, 0.7);
+  --geo-shape-opacity: 0.07;
+  --geo-circle-opacity: 0.09;
+  --geo-line-opacity: 0.05;
+  --footer-bg: #0a1018;
+  --footer-text: rgba(220, 230, 250, 0.9);
+  --footer-shape-bg: rgba(255, 255, 255, 0.03);
+  --gauge-none-bg: rgba(99, 102, 241, 0.2);
+  --gauge-none-color: #818cf8;
+  --gauge-edited-bg: rgba(139, 92, 246, 0.2);
+  --gauge-edited-color: #a78bfa;
+  --gauge-written-bg: rgba(6, 182, 212, 0.2);
+  --gauge-written-color: #22d3ee;
+}
 
 * {
     margin: 0;
@@ -30,14 +104,15 @@ html {
 body {
     font-family: 'Nunito', sans-serif;
     font-weight: $body-font-weight;
-    background-color: $light-bg;
+    background-color: var(--bg);
     font-size: $base-size;
-    color: $font-dark;
+    color: var(--text);
     display: flex;
     min-height: 100vh;
     position: relative;
     flex-direction: column;
     overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 // Geometric background elements
@@ -53,13 +128,14 @@ body {
     .shape {
         position: absolute;
         border-radius: 50%;
-        opacity: 0.15;
+        opacity: var(--geo-shape-opacity);
+        transition: opacity 0.3s;
     }
 
     .shape-1 {
         width: 400px;
         height: 400px;
-        background-color: $base-color;
+        background-color: var(--purple);
         top: -100px;
         right: -150px;
     }
@@ -67,7 +143,7 @@ body {
     .shape-2 {
         width: 300px;
         height: 300px;
-        background-color: $link-color;
+        background-color: var(--coral);
         bottom: 10%;
         left: -100px;
     }
@@ -75,7 +151,7 @@ body {
     .shape-3 {
         width: 200px;
         height: 200px;
-        background-color: $header-color;
+        background-color: var(--gold);
         top: 40%;
         right: 10%;
     }
@@ -83,8 +159,9 @@ body {
     .circle {
         position: absolute;
         border-radius: 50%;
-        border: 2px solid $base-color;
-        opacity: 0.2;
+        border: 2px solid var(--purple);
+        opacity: var(--geo-circle-opacity);
+        transition: opacity 0.3s;
     }
 
     .circle-1 {
@@ -103,8 +180,9 @@ body {
 
     .line {
         position: absolute;
-        background-color: $base-color;
-        opacity: 0.1;
+        background-color: var(--purple);
+        opacity: var(--geo-line-opacity);
+        transition: opacity 0.3s;
     }
 
     .line-1 {
@@ -134,19 +212,21 @@ body {
 
 .content {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 2.5rem;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 15px var(--shadow-sm);
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 20px rgba($base-color, 0.15);
+    background-color: var(--header-bg);
+    box-shadow: 0 2px 20px var(--header-shadow);
     position: sticky;
     top: 0;
     z-index: 100;
     width: 100%;
+    transition: background-color 0.3s, box-shadow 0.3s;
 
     nav {
         max-width: 1000px;
@@ -168,7 +248,7 @@ header {
 
                 a, a:visited {
                     text-decoration: none;
-                    color: $font-dark;
+                    color: var(--text);
                     position: relative;
                     padding: 0.5rem 0;
 
@@ -177,14 +257,14 @@ header {
                         position: absolute;
                         width: 0;
                         height: 2px;
-                        background-color: $link-color;
+                        background-color: var(--coral);
                         bottom: 0;
                         left: 0;
                         transition: width 0.3s;
                     }
 
                     &:hover {
-                        color: $link-color;
+                        color: var(--coral);
 
                         &::after {
                             width: 100%;
@@ -193,12 +273,12 @@ header {
                 }
 
                 &.active a {
-                    color: $base-color;
+                    color: var(--purple);
                     font-weight: 500;
 
                     &::after {
                         width: 100%;
-                        background-color: $base-color;
+                        background-color: var(--purple);
                     }
                 }
             }
@@ -211,7 +291,7 @@ a.site-name,
 a.site-name:visited {
     font-family: 'Shrikhand', cursive;
     letter-spacing: 1px;
-    color: $base-color;
+    color: var(--purple);
     text-decoration: none;
     padding: 0;
     font-size: 1.5rem;
@@ -222,7 +302,23 @@ a.site-name:visited {
     }
 
     &:hover {
-        color: $link-color;
+        color: var(--coral);
+    }
+}
+
+// Theme toggle (in footer)
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem 0;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--footer-text);
+    transition: color 0.3s;
+
+    &:hover {
+        color: var(--gold);
     }
 }
 
@@ -241,7 +337,7 @@ a.site-name:visited {
     span::before,
     span::after {
         display: block;
-        background: $base-color;
+        background: var(--purple);
         height: 2px;
         width: 24px;
         border-radius: 2px;
@@ -279,7 +375,7 @@ a.site-name:visited {
 }
 
 h1 {
-    color: $base-color;
+    color: var(--purple);
     font-family: 'Shrikhand', cursive;
     letter-spacing: 1px;
     font-size: $header-size;
@@ -293,7 +389,7 @@ h1 {
         position: absolute;
         width: 80px;
         height: 8px;
-        background-color: $link-color;
+        background-color: var(--coral);
         bottom: -15px;
         left: 5px;
     }
@@ -302,25 +398,25 @@ h1 {
 h2 {
     font-size: $header-size / 1.5;
     margin-top: $tall-margin;
-    color: $base-color;
+    color: var(--purple);
     font-weight: 500;
 }
 
 h3 {
     font-size: 1em;
     margin-top: $tall-margin;
-    color: $header-dark;
+    color: var(--gold-text);
     font-weight: 500;
 }
 
 a, a:visited {
-    color: $link-color;
+    color: var(--coral);
     text-decoration: none;
     position: relative;
     transition: color 0.3s;
 
     &:hover {
-        color: darken($link-color, 10%);
+        color: var(--coral-dark);
     }
 }
 
@@ -335,7 +431,7 @@ p {
 }
 
 .highlight {
-    color: $base-color;
+    color: var(--purple);
     font-weight: 500;
     position: relative;
 
@@ -344,7 +440,7 @@ p {
         position: absolute;
         width: 100%;
         height: 8px;
-        background-color: rgba($base-color, 0.2);
+        background-color: var(--highlight-bg);
         bottom: 0;
         left: 0;
         z-index: -1;
@@ -352,7 +448,7 @@ p {
 }
 
 .accent {
-    color: $link-color;
+    color: var(--coral);
     font-weight: 500;
     position: relative;
 
@@ -361,7 +457,7 @@ p {
         position: absolute;
         width: 100%;
         height: 8px;
-        background-color: rgba($link-color, 0.2);
+        background-color: var(--accent-bg);
         bottom: 0;
         left: 0;
         z-index: -1;
@@ -389,8 +485,8 @@ p {
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 4px 12px rgba($base-color, 0.2);
-    border: 3px solid $base-color;
+    box-shadow: 0 4px 12px var(--header-shadow);
+    border: 3px solid var(--purple);
     flex-shrink: 0;
 }
 
@@ -402,7 +498,7 @@ p {
     .role {
         font-size: 1.5rem;
         font-weight: 500;
-        color: $font-dark;
+        color: var(--text);
         margin-bottom: 1.5rem;
     }
 }
@@ -413,7 +509,7 @@ p {
     font-size: $base-size / 1.8;
     position: relative;
     display: inline-block;
-    color: $font-dark;
+    color: var(--text);
 
     &::before {
         content: '🔊';
@@ -432,7 +528,7 @@ p {
         img {
             width: 100%;
             border-radius: 10px;
-            box-shadow: 0 20px 40px rgba($base-color, 0.2);
+            box-shadow: 0 20px 40px var(--header-shadow);
             position: relative;
             z-index: 2;
         }
@@ -442,7 +538,7 @@ p {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-color: $base-color;
+            background-color: var(--purple);
             border-radius: 10px;
             top: 20px;
             left: 20px;
@@ -456,7 +552,7 @@ p {
             right: -30px;
             width: 120px;
             height: 120px;
-            border: 3px solid $header-color;
+            border: 3px solid var(--gold);
             border-radius: 10px;
             z-index: 1;
         }
@@ -464,7 +560,7 @@ p {
 }
 
 .current-role {
-    background: linear-gradient(135deg, rgba($base-color, 0.08) 0%, rgba($link-color, 0.08) 100%);
+    background: var(--current-role-bg);
     border-radius: 10px;
     padding: 2rem;
     margin-top: 2rem;
@@ -476,7 +572,7 @@ p {
         position: absolute;
         width: 5px;
         height: 70%;
-        background-color: $base-color;
+        background-color: var(--purple);
         left: 0;
         top: 15%;
     }
@@ -490,7 +586,7 @@ p {
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: $link-color;
+            background-color: var(--coral);
             bottom: -2px;
             left: 0;
             transform: scaleX(0);
@@ -521,7 +617,7 @@ p {
         width: 100%;
         border-radius: 10px;
         margin: $tall-margin 0;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 15px var(--shadow-lg);
     }
 }
 
@@ -534,22 +630,22 @@ a.project, a.blog-post {
   }
 
   .index.card {
-    color: $font-dark;
+    color: var(--text);
 
     h3 {
-      color: $base-color;
+      color: var(--purple);
     }
 
     p, .meta {
-      color: $font-dark;
+      color: var(--text);
     }
 
     .meta {
-      color: rgba($font-color, 0.6);
+      color: var(--text-muted);
     }
 
     i a {
-      color: $link-color;
+      color: var(--coral);
     }
   }
 }
@@ -565,13 +661,13 @@ a.project, a.blog-post {
     padding: 1.5rem;
     margin-top: 2rem;
     border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: var(--card-bg-solid);
+    box-shadow: 0 5px 15px var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
 
     &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        box-shadow: 0 15px 30px var(--shadow-lg);
     }
 
     h6 {
@@ -588,16 +684,16 @@ a.project, a.blog-post {
   font-size: 0.9em;
 
   a {
-    color: rgba($font-color, 0.5);
+    color: var(--text-faint);
     text-decoration: none;
 
     &:hover {
-      color: $link-color;
+      color: var(--coral);
     }
   }
 }
 
-// Blog post full-view background — removed, now handled by .content
+// Blog post full-view
 div.blog-post:not(.index) {
   > .ai-gauge-wrapper {
     display: block;
@@ -610,7 +706,7 @@ div.blog-post:not(.index) {
   font-family: 'Nunito', sans-serif;
   font-size: 1.3em;
   font-weight: 300;
-  color: rgba($font-color, 0.7);
+  color: var(--text-muted);
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   line-height: 1.4;
@@ -620,7 +716,7 @@ div.blog-post:not(.index) {
 .blog-subtitle-index {
   font-size: 0.9em;
   font-weight: 300;
-  color: rgba($font-color, 0.6);
+  color: var(--text-muted);
   margin-top: 0.2rem;
   margin-bottom: 0;
   line-height: 1.4;
@@ -644,9 +740,9 @@ div.blog-post:not(.index) {
     .footnotes {
         margin-top: 2rem;
         padding-top: 1rem;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-top: 1px solid var(--footnotes-border);
         font-size: 0.85em;
-        color: rgba($font-color, 0.7);
+        color: var(--text-muted);
 
         ol {
             padding-left: 1.5rem;
@@ -658,7 +754,7 @@ div.blog-post:not(.index) {
     }
 
     .meta {
-        color: rgba($font-color, 0.6);
+        color: var(--text-muted);
         font-size: 0.9em;
         margin-bottom: 1rem;
         font-style: italic;
@@ -694,15 +790,15 @@ div.blog-post:not(.index) {
     }
 
     blockquote {
-        border-left: 4px solid $link-color;
+        border-left: 4px solid var(--coral);
         padding-left: 1rem;
         margin: 1.5rem 0;
         font-style: italic;
-        color: rgba($font-color, 0.8);
+        color: var(--blockquote-text);
     }
 
     code {
-        background-color: rgba($base-color, 0.1);
+        background-color: var(--code-bg);
         padding: 0.2rem 0.4rem;
         border-radius: 3px;
         font-family: 'Courier New', monospace;
@@ -710,7 +806,7 @@ div.blog-post:not(.index) {
     }
 
     pre {
-        background-color: rgba($base-color, 0.05);
+        background-color: var(--pre-bg);
         padding: 1rem;
         border-radius: 5px;
         overflow-x: auto;
@@ -730,38 +826,39 @@ div.blog-post:not(.index) {
     padding: 1rem;
 
     a {
-        color: $link-color;
+        color: var(--coral);
         text-decoration: none;
         padding: 0.5rem 1rem;
         margin: 0 0.5rem;
-        border: 2px solid $link-color;
+        border: 2px solid var(--coral);
         border-radius: 5px;
         transition: all 0.3s;
 
         &:hover {
-            background-color: $link-color;
+            background-color: var(--coral);
             color: white;
         }
     }
 
     .disabled {
-        color: rgba($font-color, 0.4);
+        color: var(--text-faint);
         padding: 0.5rem 1rem;
         margin: 0 0.5rem;
-        border: 2px solid rgba($font-color, 0.2);
+        border: 2px solid var(--border-light);
         border-radius: 5px;
     }
 }
 
 // Footer
 footer {
-    background-color: $base-color;
-    color: white;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
     padding: 3rem 0;
     margin-top: 5rem;
     position: relative;
     overflow: hidden;
     margin-top: auto;
+    transition: background-color 0.3s;
 
     .container {
         max-width: 1000px;
@@ -773,7 +870,7 @@ footer {
 
     .footer-shape {
         position: absolute;
-        background-color: rgba(255, 255, 255, 0.05);
+        background-color: var(--footer-shape-bg);
         border-radius: 50%;
 
         &-1 {
@@ -808,7 +905,7 @@ footer {
         gap: 1.5rem;
 
         a {
-            color: white;
+            color: var(--footer-text);
             position: relative;
             padding: 0.3rem 0;
 
@@ -817,7 +914,7 @@ footer {
                 position: absolute;
                 width: 0;
                 height: 2px;
-                background-color: $header-color;
+                background-color: var(--gold);
                 bottom: 0;
                 left: 0;
                 transition: width 0.3s;
@@ -894,10 +991,10 @@ footer {
 // Table of Contents styles
 .toc-container {
   margin-bottom: 2rem;
-  background: rgba($base-color, 0.03);
+  background: var(--toc-bg);
   padding: 1rem 1.5rem;
   border-radius: 8px;
-  border-left: 4px solid $link-color;
+  border-left: 4px solid var(--coral);
 }
 .toc {
   list-style: decimal inside;
@@ -907,7 +1004,7 @@ footer {
 .toc li {
   margin-bottom: 0.3em;
   font-size: 1em;
-  color: $font-dark;
+  color: var(--text);
 }
 .toc ol {
   margin-left: 1.5em;
@@ -915,12 +1012,12 @@ footer {
   margin-top: 0.3em;
 }
 .toc a {
-  color: $link-color;
+  color: var(--coral);
   text-decoration: none;
   transition: color 0.2s;
 }
 .toc a:hover {
-  color: darken($link-color, 10%);
+  color: var(--coral-dark);
 }
 
 // AI usage gauge
@@ -929,7 +1026,6 @@ footer {
   display: inline-block;
   cursor: pointer;
 
-  // Click toggle (JS adds .active class)
   &.active .ai-gauge-tooltip {
     opacity: 1;
     visibility: visible;
@@ -937,7 +1033,6 @@ footer {
   }
 }
 
-// Hover on desktop only
 @media (hover: hover) {
   .ai-gauge-wrapper:hover .ai-gauge-tooltip {
     opacity: 1;
@@ -974,11 +1069,11 @@ footer {
   top: calc(100% + 8px);
   left: 0;
   z-index: 10;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--tooltip-bg);
+  border: 1px solid var(--border-light);
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px var(--tooltip-shadow);
   font-size: 0.85em;
   line-height: 1.6;
   width: 320px;
@@ -990,23 +1085,23 @@ footer {
   a {
     display: inline-block;
     margin-top: 0.5rem;
-    color: $link-color;
+    color: var(--coral);
   }
 }
 
 .ai-gauge-none {
-  background-color: rgba(#6366f1, 0.1);
-  color: #4338ca;
+  background-color: var(--gauge-none-bg);
+  color: var(--gauge-none-color);
 }
 
 .ai-gauge-edited {
-  background-color: rgba(#8b5cf6, 0.1);
-  color: #6d28d9;
+  background-color: var(--gauge-edited-bg);
+  color: var(--gauge-edited-color);
 }
 
 .ai-gauge-written {
-  background-color: rgba(#06b6d4, 0.12);
-  color: #0e7490;
+  background-color: var(--gauge-written-bg);
+  color: var(--gauge-written-color);
 }
 
 // Mobile-last overrides (must come after base definitions)

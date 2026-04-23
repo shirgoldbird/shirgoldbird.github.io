@@ -17,12 +17,17 @@
 - [x] GitHub Actions CI/CD to deploy on push (already existed, kept as-is)
 
 ## Features
-- [ ] Dark mode
+- [x] Dark mode
 
 ## Quick Fixes
 - [x] Auto-update year in footer (currently hardcoded)
 - [x] Remove overly large top padding on homepage
 
+## Quick Fixes
+- [ ] Add iconography for contact methods on contact page
+- [ ] Add dates to case studies
+- [ ] Update pronunciation guide — "Shir here" rhymes
+
 ## Content
 - [ ] Rewrite copy to highlight problems/solutions
-- [ ] Blog post about the font/design comparison tools (font-mockups.html, bg-opacity-test.html, mobile-bio-mockup.html — note: the mobile bio mockup diverged the most from actual site behavior)
+- [ ] Blog post about the design comparison tools (mockups/ folder — note: the mobile bio mockup diverged the most from actual site behavior)

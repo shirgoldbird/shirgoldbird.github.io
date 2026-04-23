@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background Iconography — Full Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&family=Shrikhand&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { min-height: 100vh; }
+  body {
+    font-family: 'Nunito', sans-serif; font-weight: 300;
+    background: var(--bg); color: var(--text);
+    overflow-x: hidden; position: relative;
+    transition: background 0.4s, color 0.4s;
+  }
+  :root {
+    --bg: #0F1724;
+    --text: rgba(220,230,250,0.9);
+    --text-muted: rgba(220,230,250,0.6);
+    --text-faint: rgba(220,230,250,0.4);
+    --purple: #B794F4;
+    --coral: #FF9671;
+    --gold: #FFC75F;
+    --card-bg: rgba(18,28,48,0.8);
+    --header-bg: rgba(15,23,36,0.97);
+    --footer-bg: #0a1018;
+    --switcher-bg: rgba(10,16,24,0.95);
+    --switcher-border: rgba(183,148,244,0.15);
+    --btn-bg: rgba(183,148,244,0.1);
+    --btn-border: rgba(183,148,244,0.2);
+    --btn-text: rgba(220,230,250,0.8);
+    --code-bg: rgba(183,148,244,0.12);
+    --highlight-bg: rgba(183,148,244,0.2);
+    --blockquote-text: rgba(220,230,250,0.7);
+    --role-gradient: linear-gradient(135deg, rgba(183,148,244,0.12), rgba(255,150,113,0.08));
+    --shadow: rgba(0,0,0,0.3);
+    --shadow-sm: rgba(0,0,0,0.2);
+  }
+  [data-theme="light"] {
+    --bg: #f8f9fa;
+    --text: rgba(33,37,41,0.88);
+    --text-muted: rgba(33,37,41,0.6);
+    --text-faint: rgba(33,37,41,0.4);
+    --purple: #5E3A98;
+    --coral: #FF9671;
+    --gold: #FFC75F;
+    --card-bg: rgba(255,255,255,0.75);
+    --header-bg: rgba(255,255,255,0.95);
+    --footer-bg: #5E3A98;
+    --switcher-bg: rgba(255,255,255,0.95);
+    --switcher-border: rgba(94,58,152,0.15);
+    --btn-bg: rgba(94,58,152,0.08);
+    --btn-border: rgba(94,58,152,0.2);
+    --btn-text: rgba(33,37,41,0.8);
+    --code-bg: rgba(94,58,152,0.1);
+    --highlight-bg: rgba(94,58,152,0.2);
+    --blockquote-text: rgba(33,37,41,0.7);
+    --role-gradient: linear-gradient(135deg, rgba(94,58,152,0.08), rgba(255,150,113,0.08));
+    --shadow: rgba(94,58,152,0.15);
+    --shadow-sm: rgba(0,0,0,0.04);
+  }
+
+  /* Switcher bar */
+  .switcher {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: var(--switcher-bg); backdrop-filter: blur(8px);
+    padding: 0.6rem 1.5rem; display: flex; align-items: center; gap: 0.5rem;
+    border-bottom: 1px solid var(--switcher-border);
+    transition: background 0.4s;
+  }
+  .switcher .label { font-size: 0.8rem; color: var(--text-faint); margin-right: 0.5rem; }
+  .switcher button {
+    background: var(--btn-bg); border: 1px solid var(--btn-border);
+    color: var(--btn-text); padding: 0.35rem 0.8rem; border-radius: 6px;
+    font-size: 0.8rem; cursor: pointer; font-family: 'Nunito', sans-serif;
+    transition: all 0.2s;
+  }
+  .switcher button:hover { opacity: 0.8; }
+  .switcher button.active { background: var(--purple); color: var(--bg); border-color: var(--purple); font-weight: 500; }
+  .switcher .current-desc { font-size: 0.75rem; color: var(--text-faint); }
+  .theme-btn {
+    margin-left: auto; background: var(--btn-bg); border: 1px solid var(--btn-border);
+    color: var(--btn-text); padding: 0.35rem 0.8rem; border-radius: 6px;
+    font-size: 0.9rem; cursor: pointer; font-family: 'Nunito', sans-serif;
+    transition: all 0.2s;
+  }
+  .theme-btn:hover { opacity: 0.8; }
+
+  /* Background layer */
+  .bg-layer {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; pointer-events: none; transition: opacity 0.4s;
+  }
+  .bg-layer.hidden { opacity: 0; }
+
+  /* A: Circles (current) */
+  .bg-circles .el { position: absolute; border-radius: 50%; }
+  .bg-circles .e1 { width: 400px; height: 400px; background: #B794F4; opacity: 0.07; top: -100px; right: -150px; }
+  .bg-circles .e2 { width: 300px; height: 300px; background: #FF9671; opacity: 0.07; bottom: 10%; left: -100px; }
+  .bg-circles .e3 { width: 200px; height: 200px; background: #FFC75F; opacity: 0.07; top: 40%; right: 10%; }
+  .bg-circles .e4 { width: 100px; height: 100px; border: 2px solid #B794F4; opacity: 0.09; top: 20%; left: 5%; }
+  .bg-circles .e5 { width: 50px; height: 50px; border: 2px solid #B794F4; opacity: 0.09; bottom: 30%; right: 15%; }
+  .bg-circles .e6 { position: absolute; background: #B794F4; opacity: 0.05; height: 3px; width: 150px; top: 15%; left: 20%; transform: rotate(45deg); }
+  .bg-circles .e7 { position: absolute; background: #B794F4; opacity: 0.05; height: 200px; width: 3px; bottom: 10%; right: 25%; }
+
+  /* B: Dot grid */
+  .bg-dots {
+    background-image: radial-gradient(circle, rgba(183,148,244,0.15) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .bg-dots .el { position: absolute; border-radius: 50%; }
+  .bg-dots .e1 { width: 450px; height: 450px; background: radial-gradient(circle, rgba(183,148,244,0.12), transparent 60%); top: -100px; right: -100px; }
+  .bg-dots .e2 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(255,150,113,0.09), transparent 60%); bottom: 5%; left: -80px; }
+  .bg-dots .e3 { width: 250px; height: 250px; background: radial-gradient(circle, rgba(255,199,95,0.07), transparent 60%); top: 50%; left: 30%; }
+
+  /* C: Code symbols */
+  .bg-code .sym {
+    position: absolute; font-family: 'Courier New', monospace; font-weight: 700;
+  }
+  .bg-code .s1 { font-size: 10rem; color: rgba(183,148,244,0.04); top: 3%; right: 5%; transform: rotate(12deg); }
+  .bg-code .s2 { font-size: 7rem; color: rgba(255,150,113,0.035); bottom: 12%; left: 2%; transform: rotate(-8deg); }
+  .bg-code .s3 { font-size: 5rem; color: rgba(255,199,95,0.03); top: 30%; right: 18%; transform: rotate(20deg); }
+  .bg-code .s4 { font-size: 8rem; color: rgba(183,148,244,0.03); bottom: 3%; right: 6%; transform: rotate(-15deg); }
+  .bg-code .s5 { font-size: 4rem; color: rgba(183,148,244,0.05); top: 55%; left: 6%; transform: rotate(5deg); }
+  .bg-code .s6 { font-size: 6rem; color: rgba(255,150,113,0.03); top: 8%; left: 10%; transform: rotate(-12deg); }
+  .bg-code .s7 { font-size: 3.5rem; color: rgba(183,148,244,0.04); top: 75%; right: 30%; transform: rotate(8deg); }
+  .bg-code .s8 { font-size: 5.5rem; color: rgba(255,199,95,0.025); bottom: 30%; left: 35%; transform: rotate(-20deg); }
+
+  /* D: Gradient mesh */
+  .bg-mesh .el { position: absolute; }
+  .bg-mesh .e1 { width: 700px; height: 700px; top: -200px; right: -150px; background: radial-gradient(ellipse, rgba(183,148,244,0.15), transparent 55%); }
+  .bg-mesh .e2 { width: 600px; height: 600px; bottom: -150px; left: -120px; background: radial-gradient(ellipse, rgba(255,150,113,0.12), transparent 55%); }
+  .bg-mesh .e3 { width: 400px; height: 400px; top: 35%; left: 35%; background: radial-gradient(ellipse, rgba(255,199,95,0.08), transparent 60%); }
+
+  /* E: Circuit lines */
+  .bg-circuit .line { position: absolute; background: rgba(183,148,244,0.12); border-radius: 1px; }
+  .bg-circuit .h { height: 2px; }
+  .bg-circuit .v { width: 2px; }
+  .bg-circuit .l1 { width: 2px; height: 300px; top: 5%; left: 8%; }
+  .bg-circuit .l2 { width: 180px; height: 2px; top: calc(5% + 300px); left: 8%; }
+  .bg-circuit .l3 { width: 2px; height: 200px; top: calc(5% + 300px); left: calc(8% + 180px); }
+  .bg-circuit .l4 { width: 2px; height: 250px; right: 12%; top: 8%; }
+  .bg-circuit .l5 { width: 150px; height: 2px; right: 12%; top: calc(8% + 250px); }
+  .bg-circuit .l6 { width: 2px; height: 180px; right: calc(12% + 150px); top: calc(8% + 250px); }
+  .bg-circuit .l7 { width: 2px; height: 200px; bottom: 3%; left: 30%; }
+  .bg-circuit .l8 { width: 120px; height: 2px; bottom: calc(3% + 200px); left: 30%; }
+  .bg-circuit .l9 { width: 2px; height: 150px; top: 20%; left: 50%; }
+  .bg-circuit .l10 { width: 100px; height: 2px; top: calc(20% + 150px); left: 50%; }
+  .bg-circuit .nd { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: rgba(183,148,244,0.2); }
+  .bg-circuit .n1 { top: 5%; left: calc(8% - 2px); }
+  .bg-circuit .n2 { top: calc(5% + 300px - 2px); left: calc(8% - 2px); }
+  .bg-circuit .n3 { top: calc(5% + 300px - 2px); left: calc(8% + 180px - 2px); }
+  .bg-circuit .n4 { right: calc(12% - 2px); top: 8%; }
+  .bg-circuit .n5 { right: calc(12% - 2px); top: calc(8% + 250px - 2px); }
+  .bg-circuit .n6 { right: calc(12% + 150px - 2px); top: calc(8% + 250px - 2px); }
+  .bg-circuit .n7 { bottom: calc(3% + 200px - 2px); left: calc(30% - 2px); }
+  .bg-circuit .n8 { top: 20%; left: calc(50% - 2px); }
+  .bg-circuit .n9 { top: calc(20% + 150px - 2px); left: calc(50% + 100px - 2px); }
+
+  /* F: Hex grid */
+  .bg-hex {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(183,148,244,0.035)' stroke-width='1'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(183,148,244,0.035)' stroke-width='1'/%3E%3C/svg%3E");
+  }
+  .bg-hex .el { position: absolute; border-radius: 50%; }
+  .bg-hex .e1 { width: 400px; height: 400px; top: -100px; right: -80px; background: radial-gradient(circle, rgba(183,148,244,0.05), transparent 60%); }
+  .bg-hex .e2 { width: 300px; height: 300px; bottom: -50px; left: -60px; background: radial-gradient(circle, rgba(255,150,113,0.035), transparent 60%); }
+  .bg-hex .e3 { width: 200px; height: 200px; top: 45%; left: 40%; background: radial-gradient(circle, rgba(255,199,95,0.025), transparent 65%); }
+
+  /* Page content */
+  .page-wrap { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 4.5rem 1rem 2rem; }
+
+  header {
+    background: var(--header-bg); box-shadow: 0 2px 20px var(--shadow);
+    padding: 1.2rem 2rem; display: flex; align-items: center; border-radius: 10px; margin-bottom: 2rem;
+    transition: background 0.4s;
+  }
+  header .sn { font-family: 'Shrikhand', cursive; letter-spacing: 1px; color: var(--purple); font-size: 1.5rem; }
+  header .nl { margin-left: auto; display: flex; gap: 1.2rem; color: var(--text-muted); font-size: 0.95rem; }
+
+  .content-card {
+    background: var(--card-bg); border-radius: 10px; padding: 2.5rem;
+    box-shadow: 0 2px 15px var(--shadow-sm); transition: background 0.4s;
+  }
+  .content-card h1 {
+    font-family: 'Shrikhand', cursive; letter-spacing: 1px;
+    color: var(--purple); font-size: 3.5rem; font-weight: 400; line-height: 1.1;
+    margin-bottom: 1.5rem; position: relative;
+  }
+  .content-card h1::after { content: ''; position: absolute; width: 80px; height: 8px; background: var(--coral); bottom: -15px; left: 5px; }
+  .content-card .role { font-size: 1.5rem; font-weight: 500; margin-bottom: 1.5rem; }
+  .content-card .hl { color: var(--purple); font-weight: 500; }
+  .content-card .ac { color: var(--coral); font-weight: 500; }
+  .content-card p { margin-top: 12px; line-height: 1.6; }
+  .content-card h2 { color: var(--purple); font-size: 1.8rem; margin: 2rem 0 0.5rem; font-weight: 500; }
+  .content-card .meta { color: var(--text-faint); font-size: 0.9rem; font-style: italic; margin-bottom: 0.5rem; }
+  .content-card code { background: var(--code-bg); padding: 0.2rem 0.4rem; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em; }
+  .content-card blockquote { border-left: 4px solid var(--coral); padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: var(--blockquote-text); }
+  .current-role {
+    background: var(--role-gradient);
+    border-radius: 10px; padding: 2rem; margin-top: 2rem; position: relative;
+  }
+  .current-role::before { content: ''; position: absolute; width: 5px; height: 70%; background: var(--purple); left: 0; top: 15%; }
+  .current-role a { color: var(--coral); }
+
+  .sim-footer {
+    background: var(--footer-bg); color: var(--text-muted); padding: 2rem;
+    border-radius: 10px; margin-top: 2rem; display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.4s;
+  }
+  .sim-footer a { color: var(--text); text-decoration: none; margin-left: 1rem; }
+
+  /* Light mode bg adjustments — same shapes, tuned opacity */
+  [data-theme="light"] .bg-circles .e1 { background: #5E3A98; opacity: 0.15; }
+  [data-theme="light"] .bg-circles .e2 { background: #FF9671; opacity: 0.15; }
+  [data-theme="light"] .bg-circles .e3 { background: #FFC75F; opacity: 0.15; }
+  [data-theme="light"] .bg-circles .e4 { border-color: #5E3A98; opacity: 0.2; }
+  [data-theme="light"] .bg-circles .e5 { border-color: #5E3A98; opacity: 0.2; }
+  [data-theme="light"] .bg-circles .e6 { background: #5E3A98; opacity: 0.1; }
+  [data-theme="light"] .bg-circles .e7 { background: #5E3A98; opacity: 0.1; }
+
+  [data-theme="light"] .bg-dots { background-image: radial-gradient(circle, rgba(94,58,152,0.12) 1px, transparent 1px); }
+  [data-theme="light"] .bg-dots .e1 { background: radial-gradient(circle, rgba(94,58,152,0.1), transparent 60%); }
+  [data-theme="light"] .bg-dots .e2 { background: radial-gradient(circle, rgba(255,150,113,0.08), transparent 60%); }
+  [data-theme="light"] .bg-dots .e3 { background: radial-gradient(circle, rgba(255,199,95,0.06), transparent 60%); }
+
+  [data-theme="light"] .bg-code .s1 { color: rgba(94,58,152,0.06); }
+  [data-theme="light"] .bg-code .s2 { color: rgba(255,150,113,0.06); }
+  [data-theme="light"] .bg-code .s3 { color: rgba(255,199,95,0.05); }
+  [data-theme="light"] .bg-code .s4 { color: rgba(94,58,152,0.05); }
+  [data-theme="light"] .bg-code .s5 { color: rgba(94,58,152,0.07); }
+  [data-theme="light"] .bg-code .s6 { color: rgba(255,150,113,0.05); }
+  [data-theme="light"] .bg-code .s7 { color: rgba(94,58,152,0.06); }
+  [data-theme="light"] .bg-code .s8 { color: rgba(255,199,95,0.04); }
+
+  [data-theme="light"] .bg-mesh .e1 { background: radial-gradient(ellipse, rgba(94,58,152,0.12), transparent 55%); }
+  [data-theme="light"] .bg-mesh .e2 { background: radial-gradient(ellipse, rgba(255,150,113,0.1), transparent 55%); }
+  [data-theme="light"] .bg-mesh .e3 { background: radial-gradient(ellipse, rgba(255,199,95,0.07), transparent 60%); }
+
+  [data-theme="light"] .bg-circuit .line { background: rgba(94,58,152,0.1); }
+  [data-theme="light"] .bg-circuit .nd { background: rgba(94,58,152,0.18); }
+
+  [data-theme="light"] .bg-hex { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(94,58,152,0.06)' stroke-width='1'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(94,58,152,0.06)' stroke-width='1'/%3E%3C/svg%3E"); }
+  [data-theme="light"] .bg-hex .e1 { background: radial-gradient(circle, rgba(94,58,152,0.08), transparent 60%); }
+  [data-theme="light"] .bg-hex .e2 { background: radial-gradient(circle, rgba(255,150,113,0.06), transparent 60%); }
+  [data-theme="light"] .bg-hex .e3 { background: radial-gradient(circle, rgba(255,199,95,0.04), transparent 65%); }
+</style>
+</head>
+<body>
+
+<div class="switcher">
+  <span class="label">BG:</span>
+  <button class="active" data-bg="circles">Circles</button>
+  <button data-bg="dots">Dot Grid</button>
+  <button data-bg="code">Code Symbols</button>
+  <button data-bg="mesh">Gradient Mesh</button>
+  <button data-bg="circuit">Circuit Lines</button>
+  <button data-bg="hex">Hex Grid</button>
+  <span class="current-desc" id="desc">Existing blob shapes</span>
+  <button class="theme-btn" id="theme-btn">&#9788; Light</button>
+</div>
+
+<!-- Background layers -->
+<div class="bg-layer bg-circles" id="bg-circles">
+  <div class="el e1"></div><div class="el e2"></div><div class="el e3"></div>
+  <div class="el e4"></div><div class="el e5"></div><div class="el e6"></div><div class="el e7"></div>
+</div>
+
+<div class="bg-layer bg-dots hidden" id="bg-dots">
+  <div class="el e1"></div><div class="el e2"></div><div class="el e3"></div>
+</div>
+
+<div class="bg-layer bg-code hidden" id="bg-code">
+  <div class="sym s1">{ }</div><div class="sym s2">&lt;/&gt;</div>
+  <div class="sym s3">( )</div><div class="sym s4">[ ]</div>
+  <div class="sym s5">=&gt;</div><div class="sym s6">#</div>
+  <div class="sym s7">&&</div><div class="sym s8">/**</div>
+</div>
+
+<div class="bg-layer bg-mesh hidden" id="bg-mesh">
+  <div class="el e1"></div><div class="el e2"></div><div class="el e3"></div>
+</div>
+
+<div class="bg-layer bg-circuit hidden" id="bg-circuit">
+  <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div>
+  <div class="line l4"></div><div class="line l5"></div><div class="line l6"></div>
+  <div class="line l7"></div><div class="line l8"></div><div class="line l9"></div><div class="line l10"></div>
+  <div class="nd n1"></div><div class="nd n2"></div><div class="nd n3"></div>
+  <div class="nd n4"></div><div class="nd n5"></div><div class="nd n6"></div>
+  <div class="nd n7"></div><div class="nd n8"></div><div class="nd n9"></div>
+</div>
+
+<div class="bg-layer bg-hex hidden" id="bg-hex">
+  <div class="el e1"></div><div class="el e2"></div><div class="el e3"></div>
+</div>
+
+<!-- Page content -->
+<div class="page-wrap">
+  <header>
+    <span class="sn">Shir Goldberg</span>
+    <div class="nl"><span>Career</span><span>Projects</span><span>Blog</span><span>Contact</span></div>
+  </header>
+
+  <div class="content-card">
+    <h1>Shir here.</h1>
+    <div class="role">I'm a <span class="hl">senior product manager</span> based in <span class="hl">NYC</span>.</div>
+    <p>I'm on a mission to create <span class="ac">exceptional developer experiences</span> that delight technical and non-technical users alike.</p>
+    <p>I've worked everywhere from <span class="hl">Microsoft</span> to <span class="hl">YC startups</span>. No matter the company, I bring a leadership mindset, collaborative approach, and multidisciplinary background that creates winning products and strong teams.</p>
+
+    <div class="current-role">
+      <p>Right now, I'm building a best-in-class AI developer experience at <a href="#">DeepL</a>. Want to learn more? <a href="#">Reach out</a>.</p>
+    </div>
+
+    <h2>The Confidence Ramp</h2>
+    <div class="meta">April 21, 2026</div>
+    <p>You just hired a candidate and are about to close the position in your ATS. You're hovering over the "Archive all" button, which will send auto-reject emails to the 237 candidates left in your pipeline.</p>
+    <blockquote>This anxiety is everywhere in software. Bulk actions are efficient but terrifying.</blockquote>
+    <p>Think of it like <code>git diff</code> before <code>git push</code> — a moment of clarity before commitment.</p>
+  </div>
+
+  <div class="sim-footer">
+    <span>2026 Shir Goldberg</span>
+    <div><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">Email</a></div>
+  </div>
+</div>
+
+<script>
+var descs = {
+  circles: 'Existing blob shapes',
+  dots: 'Subtle repeating dots + soft color glow',
+  code: 'Floating { } </> => brackets — dev-themed',
+  mesh: 'Soft color blurs, no hard edges',
+  circuit: 'Thin orthogonal traces with junction nodes',
+  hex: 'Tessellated hexagons with soft glow'
+};
+
+document.querySelectorAll('.switcher button[data-bg]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var bg = this.dataset.bg;
+    document.querySelectorAll('.switcher button[data-bg]').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    document.querySelectorAll('.bg-layer').forEach(function(el) { el.classList.add('hidden'); });
+    document.getElementById('bg-' + bg).classList.remove('hidden');
+    document.getElementById('desc').textContent = descs[bg];
+  });
+});
+
+// Light/dark toggle
+var themeBtn = document.getElementById('theme-btn');
+themeBtn.addEventListener('click', function() {
+  var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    document.documentElement.removeAttribute('data-theme');
+    themeBtn.innerHTML = '&#9788; Light';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    themeBtn.innerHTML = '&#9789; Dark';
+  }
+});
+</script>
+</body>
+</html>
