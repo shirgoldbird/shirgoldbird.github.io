@@ -609,6 +609,10 @@ p {
         font-size: $header-size;
     }
 
+    .meta {
+        text-transform: lowercase;
+    }
+
     p {
         margin-top: $tall-margin / 2;
     }
