@@ -923,6 +923,14 @@ footer {
             &:hover::after {
                 width: 100%;
             }
+
+            i {
+                margin-right: 0.3rem;
+            }
+
+            &[target="_blank"]::after {
+                content: none;
+            }
         }
     }
 }
@@ -1018,6 +1026,61 @@ footer {
 }
 .toc a:hover {
   color: var(--coral-dark);
+}
+
+// Contact page
+.contact-methods {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--card-bg-solid);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px var(--shadow-md);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex: 1;
+  min-width: 200px;
+
+  i {
+    font-size: 1.5rem;
+    color: var(--purple);
+  }
+
+  span {
+    font-weight: 400;
+  }
+
+  &:hover,
+  &:visited:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--shadow-lg);
+    color: var(--text);
+
+    i {
+      color: var(--purple);
+    }
+  }
+
+  &::after {
+    display: none;
+  }
+
+  &:visited {
+    color: var(--text);
+
+    i {
+      color: var(--purple);
+    }
+  }
 }
 
 // AI usage gauge
