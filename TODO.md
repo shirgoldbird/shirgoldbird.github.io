@@ -17,14 +17,14 @@
 - [x] GitHub Actions CI/CD to deploy on push (already existed, kept as-is)
 
 ## Features
-- [x] Dark mode
+- [x] Dark mode (Midnight Indigo palette, footer toggle, system preference detection)
 
 ## Quick Fixes
 - [x] Auto-update year in footer (currently hardcoded)
 - [x] Remove overly large top padding on homepage
 
 ## Quick Fixes
-- [ ] Add iconography for contact methods on contact page
+- [x] Add iconography for contact methods on contact page
 - [ ] Add dates to case studies
 - [ ] Update pronunciation guide — "Shir here" rhymes
 

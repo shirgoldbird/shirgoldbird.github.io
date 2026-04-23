@@ -1,3 +1,8 @@
+{% set social_links = [
+  ['mailto:contact@shirgoldberg.com', 'Email', 'fa-solid fa-envelope'],
+  ['https://github.com/shirgoldbird', 'GitHub', 'fa-brands fa-github'],
+  ['https://www.linkedin.com/in/shir-goldberg/', 'LinkedIn', 'fa-brands fa-linkedin'],
+] %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
@@ -69,9 +74,9 @@
       <div class="footer-content">
         <p>&copy; <script>document.write(new Date().getFullYear())</script> Shir Goldberg</p>
         <div class="footer-links">
-          <a href="https://github.com/shirgoldbird">GitHub</a>
-          <a href="https://www.linkedin.com/in/shir-goldberg/">LinkedIn</a>
-          <a href="mailto:contact@shirgoldberg.com">Email</a>
+          {% for href, label, icon in social_links %}
+            <a href="{{ href }}" aria-label="{{ label }}"><i class="{{ icon }}"></i></a>
+          {% endfor %}
           <button class="theme-toggle" aria-label="Toggle dark mode"></button>
         </div>
       </div>

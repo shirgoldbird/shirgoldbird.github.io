@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}{{ this.title }} -{% endblock %}
+{% block body %}
+  <h1>{{ this.title }}</h1>
+
+  <div class="contact-methods">
+    {% for href, label, icon in social_links %}
+      <a href="{{ href }}" class="contact-card"{% if not href.startswith('mailto') %} target="_blank"{% endif %}>
+        <i class="{{ icon }}"></i>
+        <span>{{ label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  {{ this.body }}
+{% endblock %}
