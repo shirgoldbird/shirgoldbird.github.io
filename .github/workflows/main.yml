@@ -1,9 +1,6 @@
 name: Build and Deploy Lektor Site
 
 on:
-  push:
-    branches:
-      - develop
   workflow_dispatch:
 
 permissions:
